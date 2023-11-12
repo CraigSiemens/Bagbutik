@@ -83,9 +83,36 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
             self.state = state
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            lastModifiedDate = try container.decodeIfPresent(Date.self, forKey: .lastModifiedDate)
+            responseBody = try container.decodeIfPresent(String.self, forKey: .responseBody)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(lastModifiedDate, forKey: .lastModifiedDate)
+            try container.encodeIfPresent(responseBody, forKey: .responseBody)
+            try container.encodeIfPresent(state, forKey: .state)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case lastModifiedDate
+            case responseBody
+            case state
+        }
+
+        public enum State: String, CodableEnum, CaseIterable {
             case published = "PUBLISHED"
             case pendingPublish = "PENDING_PUBLISH"
+
+            var allCases: [Self] {
+                [
+                    .published,
+                    .pendingPublish,
+                ]
+            }
         }
     }
 
@@ -102,6 +129,20 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
 
         public init(review: Review? = nil) {
             self.review = review
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            review = try container.decodeIfPresent(Review.self, forKey: .review)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(review, forKey: .review)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case review
         }
 
         /**

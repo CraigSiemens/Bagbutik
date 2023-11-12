@@ -41,12 +41,19 @@ public enum ListPromotionalOffersForSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionPromotionalOfferPrices: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPromotionalOfferPrices: String, ParameterValue, CodableEnum, CaseIterable {
             case subscriptionPricePoint
             case territory
+
+            var allCases: [Self] {
+                [
+                    .subscriptionPricePoint,
+                    .territory,
+                ]
+            }
         }
 
-        public enum SubscriptionPromotionalOffers: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPromotionalOffers: String, ParameterValue, CodableEnum, CaseIterable {
             case duration
             case name
             case numberOfPeriods
@@ -54,9 +61,21 @@ public enum ListPromotionalOffersForSubscriptionV1 {
             case offerMode
             case prices
             case subscription
+
+            var allCases: [Self] {
+                [
+                    .duration,
+                    .name,
+                    .numberOfPeriods,
+                    .offerCode,
+                    .offerMode,
+                    .prices,
+                    .subscription,
+                ]
+            }
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -75,6 +94,29 @@ public enum ListPromotionalOffersForSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .familySharable,
+                    .group,
+                    .groupLevel,
+                    .introductoryOffers,
+                    .name,
+                    .offerCodes,
+                    .pricePoints,
+                    .prices,
+                    .productId,
+                    .promotedPurchase,
+                    .promotionalOffers,
+                    .reviewNote,
+                    .state,
+                    .subscriptionAvailability,
+                    .subscriptionLocalizations,
+                    .subscriptionPeriod,
+                ]
+            }
         }
     }
 

@@ -64,11 +64,43 @@ public struct SubscriptionLocalization: Codable, Identifiable {
             self.state = state
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            description = try container.decodeIfPresent(String.self, forKey: .description)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(description, forKey: .description)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(state, forKey: .state)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case description
+            case locale
+            case name
+            case state
+        }
+
+        public enum State: String, CodableEnum, CaseIterable {
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case waitingForReview = "WAITING_FOR_REVIEW"
             case approved = "APPROVED"
             case rejected = "REJECTED"
+
+            var allCases: [Self] {
+                [
+                    .prepareForSubmission,
+                    .waitingForReview,
+                    .approved,
+                    .rejected,
+                ]
+            }
         }
     }
 
@@ -77,6 +109,20 @@ public struct SubscriptionLocalization: Codable, Identifiable {
 
         public init(subscription: Subscription? = nil) {
             self.subscription = subscription
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            subscription = try container.decodeIfPresent(Subscription.self, forKey: .subscription)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(subscription, forKey: .subscription)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case subscription
         }
 
         public struct Subscription: Codable {

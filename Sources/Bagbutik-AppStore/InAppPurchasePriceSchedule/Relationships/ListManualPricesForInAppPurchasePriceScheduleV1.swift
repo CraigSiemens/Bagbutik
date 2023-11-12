@@ -41,25 +41,52 @@ public enum ListManualPricesForInAppPurchasePriceScheduleV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchasePricePoints: String, ParameterValue, CodableEnum, CaseIterable {
             case customerPrice
             case inAppPurchaseV2
             case priceTier
             case proceeds
             case territory
+
+            var allCases: [Self] {
+                [
+                    .customerPrice,
+                    .inAppPurchaseV2,
+                    .priceTier,
+                    .proceeds,
+                    .territory,
+                ]
+            }
         }
 
-        public enum InAppPurchasePrices: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchasePrices: String, ParameterValue, CodableEnum, CaseIterable {
             case endDate
             case inAppPurchasePricePoint
             case inAppPurchaseV2
             case manual
             case startDate
             case territory
+
+            var allCases: [Self] {
+                [
+                    .endDate,
+                    .inAppPurchasePricePoint,
+                    .inAppPurchaseV2,
+                    .manual,
+                    .startDate,
+                    .territory,
+                ]
+            }
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, ParameterValue, CodableEnum, CaseIterable {
             case currency
+
+            var allCases: [Self] {
+                [
+                    .currency,
+                ]
+            }
         }
     }
 

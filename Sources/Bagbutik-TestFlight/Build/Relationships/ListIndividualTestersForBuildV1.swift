@@ -31,7 +31,7 @@ public enum ListIndividualTestersForBuildV1 {
         /// The fields to include for returned resources of type betaTesters
         case betaTesters([BetaTesters])
 
-        public enum BetaTesters: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaTesters: String, ParameterValue, CodableEnum, CaseIterable {
             case apps
             case betaGroups
             case builds
@@ -39,6 +39,18 @@ public enum ListIndividualTestersForBuildV1 {
             case firstName
             case inviteType
             case lastName
+
+            var allCases: [Self] {
+                [
+                    .apps,
+                    .betaGroups,
+                    .builds,
+                    .email,
+                    .firstName,
+                    .inviteType,
+                    .lastName,
+                ]
+            }
         }
     }
 }

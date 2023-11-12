@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/internalbetastate>
  */
-public enum InternalBetaState: String, Codable, CaseIterable {
+public enum InternalBetaState: String, CodableEnum, CaseIterable {
     case processing = "PROCESSING"
     case processingException = "PROCESSING_EXCEPTION"
     case missingExportCompliance = "MISSING_EXPORT_COMPLIANCE"
@@ -16,4 +16,16 @@ public enum InternalBetaState: String, Codable, CaseIterable {
     case inBetaTesting = "IN_BETA_TESTING"
     case expired = "EXPIRED"
     case inExportComplianceReview = "IN_EXPORT_COMPLIANCE_REVIEW"
+
+    var allCases: [Self] {
+        [
+            .processing,
+            .processingException,
+            .missingExportCompliance,
+            .readyForBetaTesting,
+            .inBetaTesting,
+            .expired,
+            .inExportComplianceReview,
+        ]
+    }
 }

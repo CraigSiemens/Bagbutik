@@ -31,7 +31,7 @@ public enum GetGameCenterAchievementImageV1 {
         /// The fields to include for returned resources of type gameCenterAchievementImages
         case gameCenterAchievementImages([GameCenterAchievementImages])
 
-        public enum GameCenterAchievementImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -39,6 +39,18 @@ public enum GetGameCenterAchievementImageV1 {
             case imageAsset
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .gameCenterAchievementLocalization,
+                    .imageAsset,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 

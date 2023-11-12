@@ -41,13 +41,21 @@ public enum ListAchievementReleasesForGameCenterDetailV1 {
         /// The fields to include for returned resources of type gameCenterDetails
         case gameCenterDetails([GameCenterDetails])
 
-        public enum GameCenterAchievementReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterAchievement
             case gameCenterDetail
             case live
+
+            var allCases: [Self] {
+                [
+                    .gameCenterAchievement,
+                    .gameCenterDetail,
+                    .live,
+                ]
+            }
         }
 
-        public enum GameCenterAchievements: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievements: String, ParameterValue, CodableEnum, CaseIterable {
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -59,9 +67,25 @@ public enum ListAchievementReleasesForGameCenterDetailV1 {
             case repeatable
             case showBeforeEarned
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .archived,
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .groupAchievement,
+                    .localizations,
+                    .points,
+                    .referenceName,
+                    .releases,
+                    .repeatable,
+                    .showBeforeEarned,
+                    .vendorIdentifier,
+                ]
+            }
         }
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -75,6 +99,24 @@ public enum ListAchievementReleasesForGameCenterDetailV1 {
             case gameCenterLeaderboards
             case leaderboardReleases
             case leaderboardSetReleases
+
+            var allCases: [Self] {
+                [
+                    .achievementReleases,
+                    .app,
+                    .arcadeEnabled,
+                    .challengeEnabled,
+                    .defaultGroupLeaderboard,
+                    .defaultLeaderboard,
+                    .gameCenterAchievements,
+                    .gameCenterAppVersions,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboardSets,
+                    .gameCenterLeaderboards,
+                    .leaderboardReleases,
+                    .leaderboardSetReleases,
+                ]
+            }
         }
     }
 

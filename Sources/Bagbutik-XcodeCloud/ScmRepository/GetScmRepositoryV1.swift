@@ -37,15 +37,25 @@ public enum GetScmRepositoryV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum ScmGitReferences: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmGitReferences: String, ParameterValue, CodableEnum, CaseIterable {
             case canonicalName
             case isDeleted
             case kind
             case name
             case repository
+
+            var allCases: [Self] {
+                [
+                    .canonicalName,
+                    .isDeleted,
+                    .kind,
+                    .name,
+                    .repository,
+                ]
+            }
         }
 
-        public enum ScmPullRequests: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmPullRequests: String, ParameterValue, CodableEnum, CaseIterable {
             case destinationBranchName
             case destinationRepositoryName
             case destinationRepositoryOwner
@@ -58,9 +68,26 @@ public enum GetScmRepositoryV1 {
             case sourceRepositoryOwner
             case title
             case webUrl
+
+            var allCases: [Self] {
+                [
+                    .destinationBranchName,
+                    .destinationRepositoryName,
+                    .destinationRepositoryOwner,
+                    .isClosed,
+                    .isCrossRepository,
+                    .number,
+                    .repository,
+                    .sourceBranchName,
+                    .sourceRepositoryName,
+                    .sourceRepositoryOwner,
+                    .title,
+                    .webUrl,
+                ]
+            }
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String, ParameterValue, CodableEnum, CaseIterable {
             case defaultBranch
             case gitReferences
             case httpCloneUrl
@@ -70,6 +97,20 @@ public enum GetScmRepositoryV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            var allCases: [Self] {
+                [
+                    .defaultBranch,
+                    .gitReferences,
+                    .httpCloneUrl,
+                    .lastAccessedDate,
+                    .ownerName,
+                    .pullRequests,
+                    .repositoryName,
+                    .scmProvider,
+                    .sshCloneUrl,
+                ]
+            }
         }
     }
 

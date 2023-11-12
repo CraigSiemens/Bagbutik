@@ -36,11 +36,20 @@ public enum ListDiagnosticSignaturesForBuildV1 {
         /// The fields to include for returned resources of type diagnosticSignatures
         case diagnosticSignatures([DiagnosticSignatures])
 
-        public enum DiagnosticSignatures: String, ParameterValue, Codable, CaseIterable {
+        public enum DiagnosticSignatures: String, ParameterValue, CodableEnum, CaseIterable {
             case diagnosticType
             case logs
             case signature
             case weight
+
+            var allCases: [Self] {
+                [
+                    .diagnosticType,
+                    .logs,
+                    .signature,
+                    .weight,
+                ]
+            }
         }
     }
 
@@ -51,9 +60,16 @@ public enum ListDiagnosticSignaturesForBuildV1 {
         /// Filter by attribute 'diagnosticType'
         case diagnosticType([DiagnosticType])
 
-        public enum DiagnosticType: String, ParameterValue, Codable, CaseIterable {
+        public enum DiagnosticType: String, ParameterValue, CodableEnum, CaseIterable {
             case diskWrites = "DISK_WRITES"
             case hangs = "HANGS"
+
+            var allCases: [Self] {
+                [
+                    .diskWrites,
+                    .hangs,
+                ]
+            }
         }
     }
 }

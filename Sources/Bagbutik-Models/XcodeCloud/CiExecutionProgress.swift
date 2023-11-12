@@ -8,11 +8,19 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciexecutionprogress>
  */
-public enum CiExecutionProgress: String, Codable, CaseIterable {
+public enum CiExecutionProgress: String, CodableEnum, CaseIterable {
     /// Xcode Cloud hasn’t started the build.
     case pending = "PENDING"
     /// Xcode Cloud is performing the build.
     case running = "RUNNING"
     /// Xcode Cloud completed the build.
     case complete = "COMPLETE"
+
+    var allCases: [Self] {
+        [
+            .pending,
+            .running,
+            .complete,
+        ]
+    }
 }

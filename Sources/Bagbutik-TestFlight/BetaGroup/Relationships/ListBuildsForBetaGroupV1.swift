@@ -31,7 +31,7 @@ public enum ListBuildsForBetaGroupV1 {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -56,6 +56,35 @@ public enum ListBuildsForBetaGroupV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appEncryptionDeclaration,
+                    .appStoreVersion,
+                    .betaAppReviewSubmission,
+                    .betaBuildLocalizations,
+                    .betaGroups,
+                    .buildAudienceType,
+                    .buildBetaDetail,
+                    .buildBundles,
+                    .computedMinMacOsVersion,
+                    .diagnosticSignatures,
+                    .expirationDate,
+                    .expired,
+                    .iconAssetToken,
+                    .icons,
+                    .individualTesters,
+                    .lsMinimumSystemVersion,
+                    .minOsVersion,
+                    .perfPowerMetrics,
+                    .preReleaseVersion,
+                    .processingState,
+                    .uploadedDate,
+                    .usesNonExemptEncryption,
+                    .version,
+                ]
+            }
         }
     }
 }

@@ -41,22 +41,46 @@ public enum ListPricesForSubscriptionOfferCodeV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum SubscriptionOfferCodePrices: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodePrices: String, ParameterValue, CodableEnum, CaseIterable {
             case subscriptionPricePoint
             case territory
+
+            var allCases: [Self] {
+                [
+                    .subscriptionPricePoint,
+                    .territory,
+                ]
+            }
         }
 
-        public enum SubscriptionPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPricePoints: String, ParameterValue, CodableEnum, CaseIterable {
             case customerPrice
             case equalizations
             case proceeds
             case proceedsYear2
             case subscription
             case territory
+
+            var allCases: [Self] {
+                [
+                    .customerPrice,
+                    .equalizations,
+                    .proceeds,
+                    .proceedsYear2,
+                    .subscription,
+                    .territory,
+                ]
+            }
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, ParameterValue, CodableEnum, CaseIterable {
             case currency
+
+            var allCases: [Self] {
+                [
+                    .currency,
+                ]
+            }
         }
     }
 

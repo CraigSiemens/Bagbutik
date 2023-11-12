@@ -42,7 +42,7 @@ public enum GetCiProductForAppV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -87,9 +87,58 @@ public enum GetCiProductForAppV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum BundleIds: String, ParameterValue, Codable, CaseIterable {
+        public enum BundleIds: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case bundleIdCapabilities
             case identifier
@@ -97,9 +146,21 @@ public enum GetCiProductForAppV1 {
             case platform
             case profiles
             case seedId
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .bundleIdCapabilities,
+                    .identifier,
+                    .name,
+                    .platform,
+                    .profiles,
+                    .seedId,
+                ]
+            }
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String, ParameterValue, CodableEnum, CaseIterable {
             case additionalRepositories
             case app
             case buildRuns
@@ -109,9 +170,23 @@ public enum GetCiProductForAppV1 {
             case primaryRepositories
             case productType
             case workflows
+
+            var allCases: [Self] {
+                [
+                    .additionalRepositories,
+                    .app,
+                    .buildRuns,
+                    .bundleId,
+                    .createdDate,
+                    .name,
+                    .primaryRepositories,
+                    .productType,
+                    .workflows,
+                ]
+            }
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String, ParameterValue, CodableEnum, CaseIterable {
             case defaultBranch
             case gitReferences
             case httpCloneUrl
@@ -121,6 +196,20 @@ public enum GetCiProductForAppV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            var allCases: [Self] {
+                [
+                    .defaultBranch,
+                    .gitReferences,
+                    .httpCloneUrl,
+                    .lastAccessedDate,
+                    .ownerName,
+                    .pullRequests,
+                    .repositoryName,
+                    .scmProvider,
+                    .sshCloneUrl,
+                ]
+            }
         }
     }
 

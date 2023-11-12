@@ -28,7 +28,7 @@ public enum GetAppEncryptionDeclarationForBuildV1 {
         /// The fields to include for returned resources of type appEncryptionDeclarations
         case appEncryptionDeclarations([AppEncryptionDeclarations])
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appDescription
             case appEncryptionDeclarationDocument
@@ -46,6 +46,28 @@ public enum GetAppEncryptionDeclarationForBuildV1 {
             case platform
             case uploadedDate
             case usesEncryption
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appDescription,
+                    .appEncryptionDeclarationDocument,
+                    .appEncryptionDeclarationState,
+                    .availableOnFrenchStore,
+                    .builds,
+                    .codeValue,
+                    .containsProprietaryCryptography,
+                    .containsThirdPartyCryptography,
+                    .createdDate,
+                    .documentName,
+                    .documentType,
+                    .documentUrl,
+                    .exempt,
+                    .platform,
+                    .uploadedDate,
+                    .usesEncryption,
+                ]
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public enum GameCenterLeaderboardFormatter: String, Codable, CaseIterable {
+public enum GameCenterLeaderboardFormatter: String, CodableEnum, CaseIterable {
     case integer = "INTEGER"
     case decimalPoint1Place = "DECIMAL_POINT_1_PLACE"
     case decimalPoint2Place = "DECIMAL_POINT_2_PLACE"
@@ -20,4 +20,27 @@ public enum GameCenterLeaderboardFormatter: String, Codable, CaseIterable {
     case moneyKronerDecimal = "MONEY_KRONER_DECIMAL"
     case moneyKroner = "MONEY_KRONER"
     case moneyYen = "MONEY_YEN"
+
+    var allCases: [Self] {
+        [
+            .integer,
+            .decimalPoint1Place,
+            .decimalPoint2Place,
+            .decimalPoint3Place,
+            .elapsedTimeMillisecond,
+            .elapsedTimeMinute,
+            .elapsedTimeSecond,
+            .moneyPoundDecimal,
+            .moneyPound,
+            .moneyDollarDecimal,
+            .moneyDollar,
+            .moneyEuroDecimal,
+            .moneyEuro,
+            .moneyFrancDecimal,
+            .moneyFranc,
+            .moneyKronerDecimal,
+            .moneyKroner,
+            .moneyYen,
+        ]
+    }
 }

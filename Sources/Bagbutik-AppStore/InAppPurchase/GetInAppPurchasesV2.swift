@@ -48,7 +48,7 @@ public enum GetInAppPurchasesV2 {
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])
 
-        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -59,46 +59,108 @@ public enum GetInAppPurchasesV2 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .assetToken,
+                    .assetType,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .inAppPurchaseV2,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum InAppPurchaseAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseAvailabilities: String, ParameterValue, CodableEnum, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
             case inAppPurchase
+
+            var allCases: [Self] {
+                [
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .inAppPurchase,
+                ]
+            }
         }
 
-        public enum InAppPurchaseContents: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseContents: String, ParameterValue, CodableEnum, CaseIterable {
             case fileName
             case fileSize
             case inAppPurchaseV2
             case lastModifiedDate
             case url
+
+            var allCases: [Self] {
+                [
+                    .fileName,
+                    .fileSize,
+                    .inAppPurchaseV2,
+                    .lastModifiedDate,
+                    .url,
+                ]
+            }
         }
 
-        public enum InAppPurchaseLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case description
             case inAppPurchaseV2
             case locale
             case name
             case state
+
+            var allCases: [Self] {
+                [
+                    .description,
+                    .inAppPurchaseV2,
+                    .locale,
+                    .name,
+                    .state,
+                ]
+            }
         }
 
-        public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchasePricePoints: String, ParameterValue, CodableEnum, CaseIterable {
             case customerPrice
             case inAppPurchaseV2
             case priceTier
             case proceeds
             case territory
+
+            var allCases: [Self] {
+                [
+                    .customerPrice,
+                    .inAppPurchaseV2,
+                    .priceTier,
+                    .proceeds,
+                    .territory,
+                ]
+            }
         }
 
-        public enum InAppPurchasePriceSchedules: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchasePriceSchedules: String, ParameterValue, CodableEnum, CaseIterable {
             case automaticPrices
             case baseTerritory
             case inAppPurchase
             case manualPrices
+
+            var allCases: [Self] {
+                [
+                    .automaticPrices,
+                    .baseTerritory,
+                    .inAppPurchase,
+                    .manualPrices,
+                ]
+            }
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories
@@ -115,9 +177,30 @@ public enum GetInAppPurchasesV2 {
             case promotedPurchase
             case reviewNote
             case state
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .content,
+                    .contentHosting,
+                    .familySharable,
+                    .iapPriceSchedule,
+                    .inAppPurchaseAvailability,
+                    .inAppPurchaseLocalizations,
+                    .inAppPurchaseType,
+                    .name,
+                    .pricePoints,
+                    .productId,
+                    .promotedPurchase,
+                    .reviewNote,
+                    .state,
+                ]
+            }
         }
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case enabled
             case inAppPurchaseV2
@@ -125,6 +208,18 @@ public enum GetInAppPurchasesV2 {
             case state
             case subscription
             case visibleForAllUsers
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .enabled,
+                    .inAppPurchaseV2,
+                    .promotionImages,
+                    .state,
+                    .subscription,
+                    .visibleForAllUsers,
+                ]
+            }
         }
     }
 

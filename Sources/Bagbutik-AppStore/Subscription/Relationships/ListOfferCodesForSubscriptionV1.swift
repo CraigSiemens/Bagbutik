@@ -45,30 +45,59 @@ public enum ListOfferCodesForSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionOfferCodeCustomCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodeCustomCodes: String, ParameterValue, CodableEnum, CaseIterable {
             case active
             case createdDate
             case customCode
             case expirationDate
             case numberOfCodes
             case offerCode
+
+            var allCases: [Self] {
+                [
+                    .active,
+                    .createdDate,
+                    .customCode,
+                    .expirationDate,
+                    .numberOfCodes,
+                    .offerCode,
+                ]
+            }
         }
 
-        public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, CodableEnum, CaseIterable {
             case active
             case createdDate
             case expirationDate
             case numberOfCodes
             case offerCode
             case values
+
+            var allCases: [Self] {
+                [
+                    .active,
+                    .createdDate,
+                    .expirationDate,
+                    .numberOfCodes,
+                    .offerCode,
+                    .values,
+                ]
+            }
         }
 
-        public enum SubscriptionOfferCodePrices: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodePrices: String, ParameterValue, CodableEnum, CaseIterable {
             case subscriptionPricePoint
             case territory
+
+            var allCases: [Self] {
+                [
+                    .subscriptionPricePoint,
+                    .territory,
+                ]
+            }
         }
 
-        public enum SubscriptionOfferCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodes: String, ParameterValue, CodableEnum, CaseIterable {
             case active
             case customCodes
             case customerEligibilities
@@ -81,9 +110,26 @@ public enum ListOfferCodesForSubscriptionV1 {
             case prices
             case subscription
             case totalNumberOfCodes
+
+            var allCases: [Self] {
+                [
+                    .active,
+                    .customCodes,
+                    .customerEligibilities,
+                    .duration,
+                    .name,
+                    .numberOfPeriods,
+                    .offerEligibility,
+                    .offerMode,
+                    .oneTimeUseCodes,
+                    .prices,
+                    .subscription,
+                    .totalNumberOfCodes,
+                ]
+            }
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -102,6 +148,29 @@ public enum ListOfferCodesForSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .familySharable,
+                    .group,
+                    .groupLevel,
+                    .introductoryOffers,
+                    .name,
+                    .offerCodes,
+                    .pricePoints,
+                    .prices,
+                    .productId,
+                    .promotedPurchase,
+                    .promotionalOffers,
+                    .reviewNote,
+                    .state,
+                    .subscriptionAvailability,
+                    .subscriptionLocalizations,
+                    .subscriptionPeriod,
+                ]
+            }
         }
     }
 

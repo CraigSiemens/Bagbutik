@@ -38,22 +38,41 @@ public enum GetSubscriptionGroupV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionGroupLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGroupLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case customAppName
             case locale
             case name
             case state
             case subscriptionGroup
+
+            var allCases: [Self] {
+                [
+                    .customAppName,
+                    .locale,
+                    .name,
+                    .state,
+                    .subscriptionGroup,
+                ]
+            }
         }
 
-        public enum SubscriptionGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGroups: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .referenceName,
+                    .subscriptionGroupLocalizations,
+                    .subscriptions,
+                ]
+            }
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -72,6 +91,29 @@ public enum GetSubscriptionGroupV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .familySharable,
+                    .group,
+                    .groupLevel,
+                    .introductoryOffers,
+                    .name,
+                    .offerCodes,
+                    .pricePoints,
+                    .prices,
+                    .productId,
+                    .promotedPurchase,
+                    .promotionalOffers,
+                    .reviewNote,
+                    .state,
+                    .subscriptionAvailability,
+                    .subscriptionLocalizations,
+                    .subscriptionPeriod,
+                ]
+            }
         }
     }
 

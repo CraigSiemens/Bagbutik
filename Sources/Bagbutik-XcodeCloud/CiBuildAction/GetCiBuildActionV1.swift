@@ -41,14 +41,23 @@ public enum GetCiBuildActionV1 {
         /// The fields to include for returned resources of type ciTestResults
         case ciTestResults([CiTestResults])
 
-        public enum CiArtifacts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiArtifacts: String, ParameterValue, CodableEnum, CaseIterable {
             case downloadUrl
             case fileName
             case fileSize
             case fileType
+
+            var allCases: [Self] {
+                [
+                    .downloadUrl,
+                    .fileName,
+                    .fileSize,
+                    .fileType,
+                ]
+            }
         }
 
-        public enum CiBuildActions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildActions: String, ParameterValue, CodableEnum, CaseIterable {
             case actionType
             case artifacts
             case buildRun
@@ -61,9 +70,26 @@ public enum GetCiBuildActionV1 {
             case name
             case startedDate
             case testResults
+
+            var allCases: [Self] {
+                [
+                    .actionType,
+                    .artifacts,
+                    .buildRun,
+                    .completionStatus,
+                    .executionProgress,
+                    .finishedDate,
+                    .isRequiredToPass,
+                    .issueCounts,
+                    .issues,
+                    .name,
+                    .startedDate,
+                    .testResults,
+                ]
+            }
         }
 
-        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildRuns: String, ParameterValue, CodableEnum, CaseIterable {
             case actions
             case buildRun
             case builds
@@ -85,22 +111,68 @@ public enum GetCiBuildActionV1 {
             case startReason
             case startedDate
             case workflow
+
+            var allCases: [Self] {
+                [
+                    .actions,
+                    .buildRun,
+                    .builds,
+                    .cancelReason,
+                    .clean,
+                    .completionStatus,
+                    .createdDate,
+                    .destinationBranch,
+                    .destinationCommit,
+                    .executionProgress,
+                    .finishedDate,
+                    .isPullRequestBuild,
+                    .issueCounts,
+                    .number,
+                    .product,
+                    .pullRequest,
+                    .sourceBranchOrTag,
+                    .sourceCommit,
+                    .startReason,
+                    .startedDate,
+                    .workflow,
+                ]
+            }
         }
 
-        public enum CiIssues: String, ParameterValue, Codable, CaseIterable {
+        public enum CiIssues: String, ParameterValue, CodableEnum, CaseIterable {
             case category
             case fileSource
             case issueType
             case message
+
+            var allCases: [Self] {
+                [
+                    .category,
+                    .fileSource,
+                    .issueType,
+                    .message,
+                ]
+            }
         }
 
-        public enum CiTestResults: String, ParameterValue, Codable, CaseIterable {
+        public enum CiTestResults: String, ParameterValue, CodableEnum, CaseIterable {
             case className
             case destinationTestResults
             case fileSource
             case message
             case name
             case status
+
+            var allCases: [Self] {
+                [
+                    .className,
+                    .destinationTestResults,
+                    .fileSource,
+                    .message,
+                    .name,
+                    .status,
+                ]
+            }
         }
     }
 

@@ -36,7 +36,7 @@ public enum GetAppStoreVersionExperimentsV2 {
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
 
-        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, CodableEnum, CaseIterable {
             case appIcon
             case appIconName
             case appStoreVersionExperiment
@@ -44,9 +44,21 @@ public enum GetAppStoreVersionExperimentsV2 {
             case appStoreVersionExperimentV2
             case name
             case promotedDate
+
+            var allCases: [Self] {
+                [
+                    .appIcon,
+                    .appIconName,
+                    .appStoreVersionExperiment,
+                    .appStoreVersionExperimentTreatmentLocalizations,
+                    .appStoreVersionExperimentV2,
+                    .name,
+                    .promotedDate,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreVersionExperimentTreatments
             case controlVersions
@@ -59,6 +71,23 @@ public enum GetAppStoreVersionExperimentsV2 {
             case started
             case state
             case trafficProportion
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreVersionExperimentTreatments,
+                    .controlVersions,
+                    .endDate,
+                    .latestControlVersion,
+                    .name,
+                    .platform,
+                    .reviewRequired,
+                    .startDate,
+                    .started,
+                    .state,
+                    .trafficProportion,
+                ]
+            }
         }
     }
 

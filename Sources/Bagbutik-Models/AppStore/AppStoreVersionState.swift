@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionstate>
  */
-public enum AppStoreVersionState: String, ParameterValue, Codable, CaseIterable {
+public enum AppStoreVersionState: String, ParameterValue, CodableEnum, CaseIterable {
     case accepted = "ACCEPTED"
     case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
     case developerRejected = "DEVELOPER_REJECTED"
@@ -28,4 +28,28 @@ public enum AppStoreVersionState: String, ParameterValue, Codable, CaseIterable 
     case waitingForExportCompliance = "WAITING_FOR_EXPORT_COMPLIANCE"
     case waitingForReview = "WAITING_FOR_REVIEW"
     case replacedWithNewVersion = "REPLACED_WITH_NEW_VERSION"
+
+    var allCases: [Self] {
+        [
+            .accepted,
+            .developerRemovedFromSale,
+            .developerRejected,
+            .inReview,
+            .invalidBinary,
+            .metadataRejected,
+            .pendingAppleRelease,
+            .pendingContract,
+            .pendingDeveloperRelease,
+            .prepareForSubmission,
+            .preorderReadyForSale,
+            .processingForAppStore,
+            .readyForReview,
+            .readyForSale,
+            .rejected,
+            .removedFromSale,
+            .waitingForExportCompliance,
+            .waitingForReview,
+            .replacedWithNewVersion,
+        ]
+    }
 }

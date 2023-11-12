@@ -31,11 +31,20 @@ public enum ListBuildBundleFileSizesForBuildBundleV1 {
         /// The fields to include for returned resources of type buildBundleFileSizes
         case buildBundleFileSizes([BuildBundleFileSizes])
 
-        public enum BuildBundleFileSizes: String, ParameterValue, Codable, CaseIterable {
+        public enum BuildBundleFileSizes: String, ParameterValue, CodableEnum, CaseIterable {
             case deviceModel
             case downloadBytes
             case installBytes
             case osVersion
+
+            var allCases: [Self] {
+                [
+                    .deviceModel,
+                    .downloadBytes,
+                    .installBytes,
+                    .osVersion,
+                ]
+            }
         }
     }
 }

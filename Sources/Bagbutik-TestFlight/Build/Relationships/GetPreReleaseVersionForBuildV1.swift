@@ -28,11 +28,20 @@ public enum GetPreReleaseVersionForBuildV1 {
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
 
-        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum PreReleaseVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case builds
             case platform
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .builds,
+                    .platform,
+                    .version,
+                ]
+            }
         }
     }
 }

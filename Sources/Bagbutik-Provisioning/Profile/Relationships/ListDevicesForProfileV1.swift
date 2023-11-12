@@ -31,7 +31,7 @@ public enum ListDevicesForProfileV1 {
         /// The fields to include for returned resources of type devices
         case devices([Devices])
 
-        public enum Devices: String, ParameterValue, Codable, CaseIterable {
+        public enum Devices: String, ParameterValue, CodableEnum, CaseIterable {
             case addedDate
             case deviceClass
             case model
@@ -39,6 +39,18 @@ public enum ListDevicesForProfileV1 {
             case platform
             case status
             case udid
+
+            var allCases: [Self] {
+                [
+                    .addedDate,
+                    .deviceClass,
+                    .model,
+                    .name,
+                    .platform,
+                    .status,
+                    .udid,
+                ]
+            }
         }
     }
 }

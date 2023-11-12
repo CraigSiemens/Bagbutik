@@ -40,20 +40,37 @@ public enum GetGameCenterLeaderboardSetV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
-        public enum GameCenterLeaderboardSetLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterLeaderboardSet
             case gameCenterLeaderboardSetImage
             case locale
             case name
+
+            var allCases: [Self] {
+                [
+                    .gameCenterLeaderboardSet,
+                    .gameCenterLeaderboardSetImage,
+                    .locale,
+                    .name,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardSetReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboardSet
             case live
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterLeaderboardSet,
+                    .live,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSets: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboards
@@ -62,9 +79,22 @@ public enum GetGameCenterLeaderboardSetV1 {
             case referenceName
             case releases
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboards,
+                    .groupLeaderboardSet,
+                    .localizations,
+                    .referenceName,
+                    .releases,
+                    .vendorIdentifier,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboards: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboards: String, ParameterValue, CodableEnum, CaseIterable {
             case archived
             case defaultFormatter
             case gameCenterDetail
@@ -82,6 +112,28 @@ public enum GetGameCenterLeaderboardSetV1 {
             case scoreSortType
             case submissionType
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .archived,
+                    .defaultFormatter,
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboardSets,
+                    .groupLeaderboard,
+                    .localizations,
+                    .recurrenceDuration,
+                    .recurrenceRule,
+                    .recurrenceStartDate,
+                    .referenceName,
+                    .releases,
+                    .scoreRangeEnd,
+                    .scoreRangeStart,
+                    .scoreSortType,
+                    .submissionType,
+                    .vendorIdentifier,
+                ]
+            }
         }
     }
 

@@ -78,15 +78,48 @@ public struct InAppPurchase: Codable, Identifiable {
             self.state = state
         }
 
-        public enum InAppPurchaseType: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            inAppPurchaseType = try container.decodeIfPresent(InAppPurchaseType.self, forKey: .inAppPurchaseType)
+            productId = try container.decodeIfPresent(String.self, forKey: .productId)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(inAppPurchaseType, forKey: .inAppPurchaseType)
+            try container.encodeIfPresent(productId, forKey: .productId)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+            try container.encodeIfPresent(state, forKey: .state)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case inAppPurchaseType
+            case productId
+            case referenceName
+            case state
+        }
+
+        public enum InAppPurchaseType: String, CodableEnum, CaseIterable {
             case automaticallyRenewableSubscription = "AUTOMATICALLY_RENEWABLE_SUBSCRIPTION"
             case nonConsumable = "NON_CONSUMABLE"
             case consumable = "CONSUMABLE"
             case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
             case freeSubscription = "FREE_SUBSCRIPTION"
+
+            var allCases: [Self] {
+                [
+                    .automaticallyRenewableSubscription,
+                    .nonConsumable,
+                    .consumable,
+                    .nonRenewingSubscription,
+                    .freeSubscription,
+                ]
+            }
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, CodableEnum, CaseIterable {
             case created = "CREATED"
             case developerSignedOff = "DEVELOPER_SIGNED_OFF"
             case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
@@ -106,6 +139,30 @@ public struct InAppPurchase: Codable, Identifiable {
             case waitingForReview = "WAITING_FOR_REVIEW"
             case inReview = "IN_REVIEW"
             case pendingDeveloperRelease = "PENDING_DEVELOPER_RELEASE"
+
+            var allCases: [Self] {
+                [
+                    .created,
+                    .developerSignedOff,
+                    .developerActionNeeded,
+                    .deletionInProgress,
+                    .approved,
+                    .deleted,
+                    .removedFromSale,
+                    .developerRemovedFromSale,
+                    .waitingForUpload,
+                    .processingContent,
+                    .replaced,
+                    .rejected,
+                    .waitingForScreenshot,
+                    .prepareForSubmission,
+                    .missingMetadata,
+                    .readyToSubmit,
+                    .waitingForReview,
+                    .inReview,
+                    .pendingDeveloperRelease,
+                ]
+            }
         }
     }
 
@@ -121,6 +178,20 @@ public struct InAppPurchase: Codable, Identifiable {
 
         public init(apps: Apps? = nil) {
             self.apps = apps
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            apps = try container.decodeIfPresent(Apps.self, forKey: .apps)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(apps, forKey: .apps)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case apps
         }
 
         /**

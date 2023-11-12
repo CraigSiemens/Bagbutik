@@ -40,19 +40,35 @@ public enum GetSalesReportsV1 {
         /// Filter by attribute 'version'
         case version([String])
 
-        public enum Frequency: String, ParameterValue, Codable, CaseIterable {
+        public enum Frequency: String, ParameterValue, CodableEnum, CaseIterable {
             case daily = "DAILY"
             case weekly = "WEEKLY"
             case monthly = "MONTHLY"
             case yearly = "YEARLY"
+
+            var allCases: [Self] {
+                [
+                    .daily,
+                    .weekly,
+                    .monthly,
+                    .yearly,
+                ]
+            }
         }
 
-        public enum ReportSubType: String, ParameterValue, Codable, CaseIterable {
+        public enum ReportSubType: String, ParameterValue, CodableEnum, CaseIterable {
             case summary = "SUMMARY"
             case detailed = "DETAILED"
+
+            var allCases: [Self] {
+                [
+                    .summary,
+                    .detailed,
+                ]
+            }
         }
 
-        public enum ReportType: String, ParameterValue, Codable, CaseIterable {
+        public enum ReportType: String, ParameterValue, CodableEnum, CaseIterable {
             case sales = "SALES"
             case preOrder = "PRE_ORDER"
             case newsstand = "NEWSSTAND"
@@ -60,6 +76,18 @@ public enum GetSalesReportsV1 {
             case subscriptionEvent = "SUBSCRIPTION_EVENT"
             case subscriber = "SUBSCRIBER"
             case subscriptionOfferCodeRedemption = "SUBSCRIPTION_OFFER_CODE_REDEMPTION"
+
+            var allCases: [Self] {
+                [
+                    .sales,
+                    .preOrder,
+                    .newsstand,
+                    .subscription,
+                    .subscriptionEvent,
+                    .subscriber,
+                    .subscriptionOfferCodeRedemption,
+                ]
+            }
         }
     }
 }

@@ -33,18 +33,36 @@ public enum GetAppClipAppStoreReviewDetailForAppClipDefaultExperienceV1 {
         /// The fields to include for returned resources of type appClipDefaultExperiences
         case appClipDefaultExperiences([AppClipDefaultExperiences])
 
-        public enum AppClipAppStoreReviewDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAppStoreReviewDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case appClipDefaultExperience
             case invocationUrls
+
+            var allCases: [Self] {
+                [
+                    .appClipDefaultExperience,
+                    .invocationUrls,
+                ]
+            }
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperiences: String, ParameterValue, CodableEnum, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
             case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
+
+            var allCases: [Self] {
+                [
+                    .action,
+                    .appClip,
+                    .appClipAppStoreReviewDetail,
+                    .appClipDefaultExperienceLocalizations,
+                    .appClipDefaultExperienceTemplate,
+                    .releaseWithAppStoreVersion,
+                ]
+            }
         }
     }
 

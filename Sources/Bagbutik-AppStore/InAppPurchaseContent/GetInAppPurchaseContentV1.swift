@@ -31,12 +31,22 @@ public enum GetInAppPurchaseContentV1 {
         /// The fields to include for returned resources of type inAppPurchaseContents
         case inAppPurchaseContents([InAppPurchaseContents])
 
-        public enum InAppPurchaseContents: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseContents: String, ParameterValue, CodableEnum, CaseIterable {
             case fileName
             case fileSize
             case inAppPurchaseV2
             case lastModifiedDate
             case url
+
+            var allCases: [Self] {
+                [
+                    .fileName,
+                    .fileSize,
+                    .inAppPurchaseV2,
+                    .lastModifiedDate,
+                    .url,
+                ]
+            }
         }
     }
 

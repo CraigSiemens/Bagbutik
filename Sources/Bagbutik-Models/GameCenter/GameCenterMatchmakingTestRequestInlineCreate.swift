@@ -104,7 +104,48 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
             self.secondsInQueue = secondsInQueue
         }
 
-        public enum Locale: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appVersion = try container.decode(String.self, forKey: .appVersion)
+            bundleId = try container.decode(String.self, forKey: .bundleId)
+            locale = try container.decodeIfPresent(Locale.self, forKey: .locale)
+            location = try container.decodeIfPresent(Location.self, forKey: .location)
+            maxPlayers = try container.decodeIfPresent(Int.self, forKey: .maxPlayers)
+            minPlayers = try container.decodeIfPresent(Int.self, forKey: .minPlayers)
+            platform = try container.decode(Platform.self, forKey: .platform)
+            playerCount = try container.decodeIfPresent(Int.self, forKey: .playerCount)
+            requestName = try container.decode(String.self, forKey: .requestName)
+            secondsInQueue = try container.decode(Int.self, forKey: .secondsInQueue)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(appVersion, forKey: .appVersion)
+            try container.encode(bundleId, forKey: .bundleId)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(location, forKey: .location)
+            try container.encodeIfPresent(maxPlayers, forKey: .maxPlayers)
+            try container.encodeIfPresent(minPlayers, forKey: .minPlayers)
+            try container.encode(platform, forKey: .platform)
+            try container.encodeIfPresent(playerCount, forKey: .playerCount)
+            try container.encode(requestName, forKey: .requestName)
+            try container.encode(secondsInQueue, forKey: .secondsInQueue)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appVersion
+            case bundleId
+            case locale
+            case location
+            case maxPlayers
+            case minPlayers
+            case platform
+            case playerCount
+            case requestName
+            case secondsInQueue
+        }
+
+        public enum Locale: String, CodableEnum, CaseIterable {
             case AR_SA = "AR-SA"
             case CA_ES = "CA-ES"
             case CS_CZ = "CS-CZ"
@@ -144,6 +185,50 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
             case ZH_CN = "ZH-CN"
             case ZH_TW = "ZH-TW"
             case ZH_HK = "ZH-HK"
+
+            var allCases: [Self] {
+                [
+                    .AR_SA,
+                    .CA_ES,
+                    .CS_CZ,
+                    .DA_DK,
+                    .DE_DE,
+                    .EL_GR,
+                    .EN_AU,
+                    .EN_GB,
+                    .EN_US,
+                    .EN_KY,
+                    .ES_ES,
+                    .ES_MX,
+                    .FI_FI,
+                    .FR_CA,
+                    .FR_FR,
+                    .HI_IN,
+                    .HR_HR,
+                    .HU_HU,
+                    .ID_ID,
+                    .IT_IT,
+                    .IW_IL,
+                    .JA_JP,
+                    .KO_KR,
+                    .MS_MY,
+                    .NL_NL,
+                    .NO_NO,
+                    .PL_PL,
+                    .PT_BR,
+                    .PT_PT,
+                    .RO_RO,
+                    .RU_RU,
+                    .SK_SK,
+                    .SV_SE,
+                    .TH_TH,
+                    .TR_TR,
+                    .UK_UA,
+                    .ZH_CN,
+                    .ZH_TW,
+                    .ZH_HK,
+                ]
+            }
         }
     }
 
@@ -159,6 +244,20 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
 
         public init(matchmakingPlayerProperties: MatchmakingPlayerProperties? = nil) {
             self.matchmakingPlayerProperties = matchmakingPlayerProperties
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            matchmakingPlayerProperties = try container.decodeIfPresent(MatchmakingPlayerProperties.self, forKey: .matchmakingPlayerProperties)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(matchmakingPlayerProperties, forKey: .matchmakingPlayerProperties)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case matchmakingPlayerProperties
         }
 
         /**

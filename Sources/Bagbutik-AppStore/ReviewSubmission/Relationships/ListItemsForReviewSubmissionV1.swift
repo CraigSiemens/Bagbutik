@@ -42,14 +42,23 @@ public enum ListItemsForReviewSubmissionV1 {
         /// The fields to include for returned resources of type reviewSubmissionItems
         case reviewSubmissionItems([ReviewSubmissionItems])
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case state
             case version
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPage,
+                    .appCustomProductPageLocalizations,
+                    .state,
+                    .version,
+                ]
+            }
         }
 
-        public enum AppEvents: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEvents: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case archivedTerritorySchedules
             case badge
@@ -62,9 +71,26 @@ public enum ListItemsForReviewSubmissionV1 {
             case purpose
             case referenceName
             case territorySchedules
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .archivedTerritorySchedules,
+                    .badge,
+                    .deepLink,
+                    .eventState,
+                    .localizations,
+                    .primaryLocale,
+                    .priority,
+                    .purchaseRequirement,
+                    .purpose,
+                    .referenceName,
+                    .territorySchedules,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreVersion
             case appStoreVersionExperimentTreatments
@@ -78,9 +104,27 @@ public enum ListItemsForReviewSubmissionV1 {
             case started
             case state
             case trafficProportion
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreVersion,
+                    .appStoreVersionExperimentTreatments,
+                    .controlVersions,
+                    .endDate,
+                    .latestControlVersion,
+                    .name,
+                    .platform,
+                    .reviewRequired,
+                    .startDate,
+                    .started,
+                    .state,
+                    .trafficProportion,
+                ]
+            }
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -101,9 +145,34 @@ public enum ListItemsForReviewSubmissionV1 {
             case releaseType
             case routingAppCoverage
             case versionString
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appClipDefaultExperience,
+                    .appStoreReviewDetail,
+                    .appStoreState,
+                    .appStoreVersionExperiments,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersionLocalizations,
+                    .appStoreVersionPhasedRelease,
+                    .appStoreVersionSubmission,
+                    .build,
+                    .copyright,
+                    .createdDate,
+                    .customerReviews,
+                    .downloadable,
+                    .earliestReleaseDate,
+                    .platform,
+                    .releaseType,
+                    .routingAppCoverage,
+                    .versionString,
+                ]
+            }
         }
 
-        public enum ReviewSubmissionItems: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissionItems: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion
@@ -113,6 +182,20 @@ public enum ListItemsForReviewSubmissionV1 {
             case resolved
             case reviewSubmission
             case state
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageVersion,
+                    .appEvent,
+                    .appStoreVersion,
+                    .appStoreVersionExperiment,
+                    .appStoreVersionExperimentV2,
+                    .removed,
+                    .resolved,
+                    .reviewSubmission,
+                    .state,
+                ]
+            }
         }
     }
 

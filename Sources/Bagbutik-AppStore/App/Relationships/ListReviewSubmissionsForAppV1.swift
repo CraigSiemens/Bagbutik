@@ -45,15 +45,25 @@ public enum ListReviewSubmissionsForAppV1 {
         /// The fields to include for returned resources of type reviewSubmissions
         case reviewSubmissions([ReviewSubmissions])
 
-        public enum Actors: String, ParameterValue, Codable, CaseIterable {
+        public enum Actors: String, ParameterValue, CodableEnum, CaseIterable {
             case actorType
             case apiKeyId
             case userEmail
             case userFirstName
             case userLastName
+
+            var allCases: [Self] {
+                [
+                    .actorType,
+                    .apiKeyId,
+                    .userEmail,
+                    .userFirstName,
+                    .userLastName,
+                ]
+            }
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -74,9 +84,34 @@ public enum ListReviewSubmissionsForAppV1 {
             case releaseType
             case routingAppCoverage
             case versionString
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appClipDefaultExperience,
+                    .appStoreReviewDetail,
+                    .appStoreState,
+                    .appStoreVersionExperiments,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersionLocalizations,
+                    .appStoreVersionPhasedRelease,
+                    .appStoreVersionSubmission,
+                    .build,
+                    .copyright,
+                    .createdDate,
+                    .customerReviews,
+                    .downloadable,
+                    .earliestReleaseDate,
+                    .platform,
+                    .releaseType,
+                    .routingAppCoverage,
+                    .versionString,
+                ]
+            }
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -121,9 +156,58 @@ public enum ListReviewSubmissionsForAppV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum ReviewSubmissionItems: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissionItems: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion
@@ -133,9 +217,23 @@ public enum ListReviewSubmissionsForAppV1 {
             case resolved
             case reviewSubmission
             case state
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageVersion,
+                    .appEvent,
+                    .appStoreVersion,
+                    .appStoreVersionExperiment,
+                    .appStoreVersionExperimentV2,
+                    .removed,
+                    .resolved,
+                    .reviewSubmission,
+                    .state,
+                ]
+            }
         }
 
-        public enum ReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissions: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreVersionForReview
             case canceled
@@ -146,6 +244,21 @@ public enum ListReviewSubmissionsForAppV1 {
             case submitted
             case submittedByActor
             case submittedDate
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreVersionForReview,
+                    .canceled,
+                    .items,
+                    .lastUpdatedByActor,
+                    .platform,
+                    .state,
+                    .submitted,
+                    .submittedByActor,
+                    .submittedDate,
+                ]
+            }
         }
     }
 
@@ -158,7 +271,7 @@ public enum ListReviewSubmissionsForAppV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String, ParameterValue, CodableEnum, CaseIterable {
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"
             case inReview = "IN_REVIEW"
@@ -166,6 +279,18 @@ public enum ListReviewSubmissionsForAppV1 {
             case canceling = "CANCELING"
             case completing = "COMPLETING"
             case complete = "COMPLETE"
+
+            var allCases: [Self] {
+                [
+                    .readyForReview,
+                    .waitingForReview,
+                    .inReview,
+                    .unresolvedIssues,
+                    .canceling,
+                    .completing,
+                    .complete,
+                ]
+            }
         }
     }
 

@@ -37,27 +37,56 @@ public enum GetAppStoreVersionExperimentTreatmentLocalizationV1 {
         /// The fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations
         case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])
 
-        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviewSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appPreviews,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .previewType,
+                ]
+            }
         }
 
-        public enum AppScreenshotSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshotSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appScreenshots
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appScreenshots,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .screenshotDisplayType,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
+
+            var allCases: [Self] {
+                [
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .appStoreVersionExperimentTreatment,
+                    .locale,
+                ]
+            }
         }
     }
 

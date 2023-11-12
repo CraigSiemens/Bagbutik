@@ -37,7 +37,7 @@ public enum GetAppStoreVersionExperimentV1 {
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
 
-        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, CodableEnum, CaseIterable {
             case appIcon
             case appIconName
             case appStoreVersionExperiment
@@ -45,9 +45,21 @@ public enum GetAppStoreVersionExperimentV1 {
             case appStoreVersionExperimentV2
             case name
             case promotedDate
+
+            var allCases: [Self] {
+                [
+                    .appIcon,
+                    .appIconName,
+                    .appStoreVersionExperiment,
+                    .appStoreVersionExperimentTreatmentLocalizations,
+                    .appStoreVersionExperimentV2,
+                    .name,
+                    .promotedDate,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreVersion
             case appStoreVersionExperimentTreatments
             case endDate
@@ -57,6 +69,20 @@ public enum GetAppStoreVersionExperimentV1 {
             case started
             case state
             case trafficProportion
+
+            var allCases: [Self] {
+                [
+                    .appStoreVersion,
+                    .appStoreVersionExperimentTreatments,
+                    .endDate,
+                    .name,
+                    .reviewRequired,
+                    .startDate,
+                    .started,
+                    .state,
+                    .trafficProportion,
+                ]
+            }
         }
     }
 

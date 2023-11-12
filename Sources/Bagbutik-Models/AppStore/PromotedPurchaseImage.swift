@@ -76,7 +76,42 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
             self.uploadOperations = uploadOperations
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            assetToken = try container.decodeIfPresent(String.self, forKey: .assetToken)
+            assetType = try container.decodeIfPresent(String.self, forKey: .assetType)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            imageAsset = try container.decodeIfPresent(ImageAsset.self, forKey: .imageAsset)
+            sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: .sourceFileChecksum)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: .uploadOperations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(assetToken, forKey: .assetToken)
+            try container.encodeIfPresent(assetType, forKey: .assetType)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(imageAsset, forKey: .imageAsset)
+            try container.encodeIfPresent(sourceFileChecksum, forKey: .sourceFileChecksum)
+            try container.encodeIfPresent(state, forKey: .state)
+            try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case assetToken
+            case assetType
+            case fileName
+            case fileSize
+            case imageAsset
+            case sourceFileChecksum
+            case state
+            case uploadOperations
+        }
+
+        public enum State: String, CodableEnum, CaseIterable {
             case awaitingUpload = "AWAITING_UPLOAD"
             case uploadComplete = "UPLOAD_COMPLETE"
             case failed = "FAILED"
@@ -84,6 +119,18 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
             case waitingForReview = "WAITING_FOR_REVIEW"
             case approved = "APPROVED"
             case rejected = "REJECTED"
+
+            var allCases: [Self] {
+                [
+                    .awaitingUpload,
+                    .uploadComplete,
+                    .failed,
+                    .prepareForSubmission,
+                    .waitingForReview,
+                    .approved,
+                    .rejected,
+                ]
+            }
         }
     }
 
@@ -92,6 +139,20 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
 
         public init(promotedPurchase: PromotedPurchase? = nil) {
             self.promotedPurchase = promotedPurchase
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            promotedPurchase = try container.decodeIfPresent(PromotedPurchase.self, forKey: .promotedPurchase)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(promotedPurchase, forKey: .promotedPurchase)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case promotedPurchase
         }
 
         public struct PromotedPurchase: Codable {

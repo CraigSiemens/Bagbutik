@@ -31,7 +31,7 @@ public enum GetAppStoreReviewAttachmentV1 {
         /// The fields to include for returned resources of type appStoreReviewAttachments
         case appStoreReviewAttachments([AppStoreReviewAttachments])
 
-        public enum AppStoreReviewAttachments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreReviewAttachments: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewDetail
             case assetDeliveryState
             case fileName
@@ -39,6 +39,18 @@ public enum GetAppStoreReviewAttachmentV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewDetail,
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 

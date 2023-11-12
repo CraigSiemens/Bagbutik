@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreagerating>
  */
-public enum AppStoreAgeRating: String, Codable, CaseIterable {
+public enum AppStoreAgeRating: String, CodableEnum, CaseIterable {
     /// A literal that represents the app rating 4+.
     case fourPlus = "FOUR_PLUS"
     /// A literal that represents the app rating 9+.
@@ -19,4 +19,13 @@ public enum AppStoreAgeRating: String, Codable, CaseIterable {
     case twelvePlus = "TWELVE_PLUS"
     /// A literal that represents the app rating 17+.
     case seventeenPlus = "SEVENTEEN_PLUS"
+
+    var allCases: [Self] {
+        [
+            .fourPlus,
+            .ninePlus,
+            .twelvePlus,
+            .seventeenPlus,
+        ]
+    }
 }

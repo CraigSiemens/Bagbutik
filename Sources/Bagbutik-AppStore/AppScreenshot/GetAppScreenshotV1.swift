@@ -31,7 +31,7 @@ public enum GetAppScreenshotV1 {
         /// The fields to include for returned resources of type appScreenshots
         case appScreenshots([AppScreenshots])
 
-        public enum AppScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshots: String, ParameterValue, CodableEnum, CaseIterable {
             case appScreenshotSet
             case assetDeliveryState
             case assetToken
@@ -42,6 +42,21 @@ public enum GetAppScreenshotV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appScreenshotSet,
+                    .assetDeliveryState,
+                    .assetToken,
+                    .assetType,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 

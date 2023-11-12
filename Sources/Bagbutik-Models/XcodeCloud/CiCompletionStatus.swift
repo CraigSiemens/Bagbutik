@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cicompletionstatus>
  */
-public enum CiCompletionStatus: String, Codable, CaseIterable {
+public enum CiCompletionStatus: String, CodableEnum, CaseIterable {
     /// Xcode Cloud successfully completed a build.
     case succeeded = "SUCCEEDED"
     /// The Xcode Cloud build failed; for example, if you configure the Required to Pass setting for a test action and a unit test fails. For more information, see Add a Test Action in [Configuring your Xcode Cloud workflow’s actions](https://developer.apple.com/documentation/xcode/configuring-your-xcode-cloud-workflow-s-actions).
@@ -19,4 +19,14 @@ public enum CiCompletionStatus: String, Codable, CaseIterable {
     case canceled = "CANCELED"
     /// Xcode Cloud skipped the build; for example, if you configure the Auto-cancel Builds setting for a workflow and push many changes in quick succession.
     case skipped = "SKIPPED"
+
+    var allCases: [Self] {
+        [
+            .succeeded,
+            .failed,
+            .errored,
+            .canceled,
+            .skipped,
+        ]
+    }
 }

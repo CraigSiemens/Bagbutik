@@ -31,7 +31,7 @@ public enum ListBetaGroupsForAppV1 {
         /// The fields to include for returned resources of type betaGroups
         case betaGroups([BetaGroups])
 
-        public enum BetaGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaGroups: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case betaTesters
             case builds
@@ -46,6 +46,25 @@ public enum ListBetaGroupsForAppV1 {
             case publicLinkId
             case publicLinkLimit
             case publicLinkLimitEnabled
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .betaTesters,
+                    .builds,
+                    .createdDate,
+                    .feedbackEnabled,
+                    .hasAccessToAllBuilds,
+                    .iosBuildsAvailableForAppleSiliconMac,
+                    .isInternalGroup,
+                    .name,
+                    .publicLink,
+                    .publicLinkEnabled,
+                    .publicLinkId,
+                    .publicLinkLimit,
+                    .publicLinkLimitEnabled,
+                ]
+            }
         }
     }
 }

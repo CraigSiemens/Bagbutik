@@ -32,10 +32,18 @@ public enum ListGameCenterMatchmakingQueuesV1 {
         /// The fields to include for returned resources of type gameCenterMatchmakingQueues
         case gameCenterMatchmakingQueues([GameCenterMatchmakingQueues])
 
-        public enum GameCenterMatchmakingQueues: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingQueues: String, ParameterValue, CodableEnum, CaseIterable {
             case experimentRuleSet
             case referenceName
             case ruleSet
+
+            var allCases: [Self] {
+                [
+                    .experimentRuleSet,
+                    .referenceName,
+                    .ruleSet,
+                ]
+            }
         }
     }
 

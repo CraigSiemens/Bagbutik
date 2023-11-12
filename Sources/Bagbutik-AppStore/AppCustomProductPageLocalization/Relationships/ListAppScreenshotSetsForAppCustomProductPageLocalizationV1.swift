@@ -44,23 +44,43 @@ public enum ListAppScreenshotSetsForAppCustomProductPageLocalizationV1 {
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
             case locale
             case promotionalText
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageVersion,
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .locale,
+                    .promotionalText,
+                ]
+            }
         }
 
-        public enum AppScreenshotSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshotSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appScreenshots
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appScreenshots,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .screenshotDisplayType,
+                ]
+            }
         }
 
-        public enum AppScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshots: String, ParameterValue, CodableEnum, CaseIterable {
             case appScreenshotSet
             case assetDeliveryState
             case assetToken
@@ -71,16 +91,40 @@ public enum ListAppScreenshotSetsForAppCustomProductPageLocalizationV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appScreenshotSet,
+                    .assetDeliveryState,
+                    .assetToken,
+                    .assetType,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
+
+            var allCases: [Self] {
+                [
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .appStoreVersionExperimentTreatment,
+                    .locale,
+                ]
+            }
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion
@@ -91,6 +135,21 @@ public enum ListAppScreenshotSetsForAppCustomProductPageLocalizationV1 {
             case promotionalText
             case supportUrl
             case whatsNew
+
+            var allCases: [Self] {
+                [
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .appStoreVersion,
+                    .description,
+                    .keywords,
+                    .locale,
+                    .marketingUrl,
+                    .promotionalText,
+                    .supportUrl,
+                    .whatsNew,
+                ]
+            }
         }
     }
 

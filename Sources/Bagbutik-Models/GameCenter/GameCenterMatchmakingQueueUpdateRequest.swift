@@ -16,6 +16,20 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # GameCenterMatchmakingQueueUpdateRequest.Data
      The data structure of the request body you use to modify a queue.
@@ -77,6 +91,23 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
             {
                 self.experimentRuleSet = experimentRuleSet
                 self.ruleSet = ruleSet
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                experimentRuleSet = try container.decodeIfPresent(ExperimentRuleSet.self, forKey: .experimentRuleSet)
+                ruleSet = try container.decodeIfPresent(RuleSet.self, forKey: .ruleSet)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(experimentRuleSet, forKey: .experimentRuleSet)
+                try container.encodeIfPresent(ruleSet, forKey: .ruleSet)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case experimentRuleSet
+                case ruleSet
             }
 
             /**

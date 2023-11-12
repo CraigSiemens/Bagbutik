@@ -30,13 +30,24 @@ public enum GetCiTestResultV1 {
         /// The fields to include for returned resources of type ciTestResults
         case ciTestResults([CiTestResults])
 
-        public enum CiTestResults: String, ParameterValue, Codable, CaseIterable {
+        public enum CiTestResults: String, ParameterValue, CodableEnum, CaseIterable {
             case className
             case destinationTestResults
             case fileSource
             case message
             case name
             case status
+
+            var allCases: [Self] {
+                [
+                    .className,
+                    .destinationTestResults,
+                    .fileSource,
+                    .message,
+                    .name,
+                    .status,
+                ]
+            }
         }
     }
 }

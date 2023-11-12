@@ -31,12 +31,22 @@ public enum GetSubscriptionLocalizationV1 {
         /// The fields to include for returned resources of type subscriptionLocalizations
         case subscriptionLocalizations([SubscriptionLocalizations])
 
-        public enum SubscriptionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case description
             case locale
             case name
             case state
             case subscription
+
+            var allCases: [Self] {
+                [
+                    .description,
+                    .locale,
+                    .name,
+                    .state,
+                    .subscription,
+                ]
+            }
         }
     }
 

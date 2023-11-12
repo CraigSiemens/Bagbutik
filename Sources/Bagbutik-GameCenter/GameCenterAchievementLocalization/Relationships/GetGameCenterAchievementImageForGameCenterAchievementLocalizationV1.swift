@@ -33,7 +33,7 @@ public enum GetGameCenterAchievementImageForGameCenterAchievementLocalizationV1 
         /// The fields to include for returned resources of type gameCenterAchievementLocalizations
         case gameCenterAchievementLocalizations([GameCenterAchievementLocalizations])
 
-        public enum GameCenterAchievementImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -41,15 +41,38 @@ public enum GetGameCenterAchievementImageForGameCenterAchievementLocalizationV1 
             case imageAsset
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .gameCenterAchievementLocalization,
+                    .imageAsset,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum GameCenterAchievementLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case afterEarnedDescription
             case beforeEarnedDescription
             case gameCenterAchievement
             case gameCenterAchievementImage
             case locale
             case name
+
+            var allCases: [Self] {
+                [
+                    .afterEarnedDescription,
+                    .beforeEarnedDescription,
+                    .gameCenterAchievement,
+                    .gameCenterAchievementImage,
+                    .locale,
+                    .name,
+                ]
+            }
         }
     }
 

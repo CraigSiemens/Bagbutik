@@ -44,7 +44,7 @@ public enum GetCiProductV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -89,9 +89,58 @@ public enum GetCiProductV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildRuns: String, ParameterValue, CodableEnum, CaseIterable {
             case actions
             case buildRun
             case builds
@@ -113,9 +162,35 @@ public enum GetCiProductV1 {
             case startReason
             case startedDate
             case workflow
+
+            var allCases: [Self] {
+                [
+                    .actions,
+                    .buildRun,
+                    .builds,
+                    .cancelReason,
+                    .clean,
+                    .completionStatus,
+                    .createdDate,
+                    .destinationBranch,
+                    .destinationCommit,
+                    .executionProgress,
+                    .finishedDate,
+                    .isPullRequestBuild,
+                    .issueCounts,
+                    .number,
+                    .product,
+                    .pullRequest,
+                    .sourceBranchOrTag,
+                    .sourceCommit,
+                    .startReason,
+                    .startedDate,
+                    .workflow,
+                ]
+            }
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String, ParameterValue, CodableEnum, CaseIterable {
             case additionalRepositories
             case app
             case buildRuns
@@ -125,9 +200,23 @@ public enum GetCiProductV1 {
             case primaryRepositories
             case productType
             case workflows
+
+            var allCases: [Self] {
+                [
+                    .additionalRepositories,
+                    .app,
+                    .buildRuns,
+                    .bundleId,
+                    .createdDate,
+                    .name,
+                    .primaryRepositories,
+                    .productType,
+                    .workflows,
+                ]
+            }
         }
 
-        public enum CiWorkflows: String, ParameterValue, Codable, CaseIterable {
+        public enum CiWorkflows: String, ParameterValue, CodableEnum, CaseIterable {
             case actions
             case branchStartCondition
             case buildRuns
@@ -145,9 +234,31 @@ public enum GetCiProductV1 {
             case scheduledStartCondition
             case tagStartCondition
             case xcodeVersion
+
+            var allCases: [Self] {
+                [
+                    .actions,
+                    .branchStartCondition,
+                    .buildRuns,
+                    .clean,
+                    .containerFilePath,
+                    .description,
+                    .isEnabled,
+                    .isLockedForEditing,
+                    .lastModifiedDate,
+                    .macOsVersion,
+                    .name,
+                    .product,
+                    .pullRequestStartCondition,
+                    .repository,
+                    .scheduledStartCondition,
+                    .tagStartCondition,
+                    .xcodeVersion,
+                ]
+            }
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String, ParameterValue, CodableEnum, CaseIterable {
             case defaultBranch
             case gitReferences
             case httpCloneUrl
@@ -157,6 +268,20 @@ public enum GetCiProductV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            var allCases: [Self] {
+                [
+                    .defaultBranch,
+                    .gitReferences,
+                    .httpCloneUrl,
+                    .lastAccessedDate,
+                    .ownerName,
+                    .pullRequests,
+                    .repositoryName,
+                    .scmProvider,
+                    .sshCloneUrl,
+                ]
+            }
         }
     }
 

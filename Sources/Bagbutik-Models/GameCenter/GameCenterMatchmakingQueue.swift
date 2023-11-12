@@ -73,6 +73,20 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
         public init(referenceName: String? = nil) {
             self.referenceName = referenceName
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case referenceName
+        }
     }
 
     /**
@@ -91,6 +105,23 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
         {
             self.experimentRuleSet = experimentRuleSet
             self.ruleSet = ruleSet
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            experimentRuleSet = try container.decodeIfPresent(ExperimentRuleSet.self, forKey: .experimentRuleSet)
+            ruleSet = try container.decodeIfPresent(RuleSet.self, forKey: .ruleSet)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(experimentRuleSet, forKey: .experimentRuleSet)
+            try container.encodeIfPresent(ruleSet, forKey: .ruleSet)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case experimentRuleSet
+            case ruleSet
         }
 
         /**

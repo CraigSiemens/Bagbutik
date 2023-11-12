@@ -39,7 +39,7 @@ public enum ListAppInfoLocalizationsForAppInfoV1 {
         /// The fields to include for returned resources of type appInfos
         case appInfos([AppInfos])
 
-        public enum AppInfoLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfoLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appInfo
             case locale
             case name
@@ -47,9 +47,21 @@ public enum ListAppInfoLocalizationsForAppInfoV1 {
             case privacyPolicyText
             case privacyPolicyUrl
             case subtitle
+
+            var allCases: [Self] {
+                [
+                    .appInfo,
+                    .locale,
+                    .name,
+                    .privacyChoicesUrl,
+                    .privacyPolicyText,
+                    .privacyPolicyUrl,
+                    .subtitle,
+                ]
+            }
         }
 
-        public enum AppInfos: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfos: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appInfoLocalizations
@@ -64,6 +76,25 @@ public enum ListAppInfoLocalizationsForAppInfoV1 {
             case secondaryCategory
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appInfoLocalizations,
+                    .appStoreAgeRating,
+                    .appStoreState,
+                    .brazilAgeRating,
+                    .brazilAgeRatingV2,
+                    .kidsAgeBand,
+                    .primaryCategory,
+                    .primarySubcategoryOne,
+                    .primarySubcategoryTwo,
+                    .secondaryCategory,
+                    .secondarySubcategoryOne,
+                    .secondarySubcategoryTwo,
+                ]
+            }
         }
     }
 

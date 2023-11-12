@@ -72,6 +72,23 @@ public struct AppClipDomainStatus: Codable, Identifiable {
             self.lastUpdatedDate = lastUpdatedDate
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            domains = try container.decodeIfPresent([Domains].self, forKey: .domains)
+            lastUpdatedDate = try container.decodeIfPresent(Date.self, forKey: .lastUpdatedDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(domains, forKey: .domains)
+            try container.encodeIfPresent(lastUpdatedDate, forKey: .lastUpdatedDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case domains
+            case lastUpdatedDate
+        }
+
         /**
          # AppClipDomainStatus.Attributes.Domains
          Domains you associated with your App Clip.
@@ -100,7 +117,30 @@ public struct AppClipDomainStatus: Codable, Identifiable {
                 self.lastUpdatedDate = lastUpdatedDate
             }
 
-            public enum ErrorCode: String, Codable, CaseIterable {
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                domain = try container.decodeIfPresent(String.self, forKey: .domain)
+                errorCode = try container.decodeIfPresent(ErrorCode.self, forKey: .errorCode)
+                isValid = try container.decodeIfPresent(Bool.self, forKey: .isValid)
+                lastUpdatedDate = try container.decodeIfPresent(Date.self, forKey: .lastUpdatedDate)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(domain, forKey: .domain)
+                try container.encodeIfPresent(errorCode, forKey: .errorCode)
+                try container.encodeIfPresent(isValid, forKey: .isValid)
+                try container.encodeIfPresent(lastUpdatedDate, forKey: .lastUpdatedDate)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case domain
+                case errorCode
+                case isValid
+                case lastUpdatedDate
+            }
+
+            public enum ErrorCode: String, CodableEnum, CaseIterable {
                 case badHttpResponse = "BAD_HTTP_RESPONSE"
                 case badJsonContent = "BAD_JSON_CONTENT"
                 case badPkcs7Signature = "BAD_PKCS7_SIGNATURE"
@@ -117,6 +157,27 @@ public struct AppClipDomainStatus: Codable, Identifiable {
                 case timeout = "TIMEOUT"
                 case tlsError = "TLS_ERROR"
                 case unexpectedError = "UNEXPECTED_ERROR"
+
+                var allCases: [Self] {
+                    [
+                        .badHttpResponse,
+                        .badJsonContent,
+                        .badPkcs7Signature,
+                        .cannotReachAasaFile,
+                        .dnsError,
+                        .insecureRedirectsForbidden,
+                        .invalidEntitlementMissingSection,
+                        .invalidEntitlementSyntaxError,
+                        .invalidEntitlementUnhandledSection,
+                        .invalidEntitlementUnknownId,
+                        .networkError,
+                        .networkErrorTemporary,
+                        .otherError,
+                        .timeout,
+                        .tlsError,
+                        .unexpectedError,
+                    ]
+                }
             }
         }
     }

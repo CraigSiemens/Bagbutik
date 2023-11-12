@@ -36,15 +36,25 @@ public enum ListSubscriptionLocalizationsForSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case description
             case locale
             case name
             case state
             case subscription
+
+            var allCases: [Self] {
+                [
+                    .description,
+                    .locale,
+                    .name,
+                    .state,
+                    .subscription,
+                ]
+            }
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -63,6 +73,29 @@ public enum ListSubscriptionLocalizationsForSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .familySharable,
+                    .group,
+                    .groupLevel,
+                    .introductoryOffers,
+                    .name,
+                    .offerCodes,
+                    .pricePoints,
+                    .prices,
+                    .productId,
+                    .promotedPurchase,
+                    .promotionalOffers,
+                    .reviewNote,
+                    .state,
+                    .subscriptionAvailability,
+                    .subscriptionLocalizations,
+                    .subscriptionPeriod,
+                ]
+            }
         }
     }
 

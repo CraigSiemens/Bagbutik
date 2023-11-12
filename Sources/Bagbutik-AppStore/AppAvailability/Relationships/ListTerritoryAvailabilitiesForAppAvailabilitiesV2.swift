@@ -36,17 +36,34 @@ public enum ListTerritoryAvailabilitiesForAppAvailabilitiesV2 {
         /// The fields to include for returned resources of type territoryAvailabilities
         case territoryAvailabilities([TerritoryAvailabilities])
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, ParameterValue, CodableEnum, CaseIterable {
             case currency
+
+            var allCases: [Self] {
+                [
+                    .currency,
+                ]
+            }
         }
 
-        public enum TerritoryAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum TerritoryAvailabilities: String, ParameterValue, CodableEnum, CaseIterable {
             case available
             case contentStatuses
             case preOrderEnabled
             case preOrderPublishDate
             case releaseDate
             case territory
+
+            var allCases: [Self] {
+                [
+                    .available,
+                    .contentStatuses,
+                    .preOrderEnabled,
+                    .preOrderPublishDate,
+                    .releaseDate,
+                    .territory,
+                ]
+            }
         }
     }
 

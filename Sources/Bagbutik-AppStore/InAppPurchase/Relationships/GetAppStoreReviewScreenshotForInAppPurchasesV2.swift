@@ -33,7 +33,7 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -44,9 +44,24 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .assetToken,
+                    .assetType,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .inAppPurchaseV2,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories
@@ -63,6 +78,27 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
             case promotedPurchase
             case reviewNote
             case state
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .content,
+                    .contentHosting,
+                    .familySharable,
+                    .iapPriceSchedule,
+                    .inAppPurchaseAvailability,
+                    .inAppPurchaseLocalizations,
+                    .inAppPurchaseType,
+                    .name,
+                    .pricePoints,
+                    .productId,
+                    .promotedPurchase,
+                    .reviewNote,
+                    .state,
+                ]
+            }
         }
     }
 

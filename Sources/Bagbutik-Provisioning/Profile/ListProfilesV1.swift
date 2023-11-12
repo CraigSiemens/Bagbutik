@@ -44,7 +44,7 @@ public enum ListProfilesV1 {
         /// The fields to include for returned resources of type profiles
         case profiles([Profiles])
 
-        public enum BundleIds: String, ParameterValue, Codable, CaseIterable {
+        public enum BundleIds: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case bundleIdCapabilities
             case identifier
@@ -52,9 +52,21 @@ public enum ListProfilesV1 {
             case platform
             case profiles
             case seedId
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .bundleIdCapabilities,
+                    .identifier,
+                    .name,
+                    .platform,
+                    .profiles,
+                    .seedId,
+                ]
+            }
         }
 
-        public enum Certificates: String, ParameterValue, Codable, CaseIterable {
+        public enum Certificates: String, ParameterValue, CodableEnum, CaseIterable {
             case certificateContent
             case certificateType
             case csrContent
@@ -63,9 +75,22 @@ public enum ListProfilesV1 {
             case name
             case platform
             case serialNumber
+
+            var allCases: [Self] {
+                [
+                    .certificateContent,
+                    .certificateType,
+                    .csrContent,
+                    .displayName,
+                    .expirationDate,
+                    .name,
+                    .platform,
+                    .serialNumber,
+                ]
+            }
         }
 
-        public enum Devices: String, ParameterValue, Codable, CaseIterable {
+        public enum Devices: String, ParameterValue, CodableEnum, CaseIterable {
             case addedDate
             case deviceClass
             case model
@@ -73,9 +98,21 @@ public enum ListProfilesV1 {
             case platform
             case status
             case udid
+
+            var allCases: [Self] {
+                [
+                    .addedDate,
+                    .deviceClass,
+                    .model,
+                    .name,
+                    .platform,
+                    .status,
+                    .udid,
+                ]
+            }
         }
 
-        public enum Profiles: String, ParameterValue, Codable, CaseIterable {
+        public enum Profiles: String, ParameterValue, CodableEnum, CaseIterable {
             case bundleId
             case certificates
             case createdDate
@@ -87,6 +124,22 @@ public enum ListProfilesV1 {
             case profileState
             case profileType
             case uuid
+
+            var allCases: [Self] {
+                [
+                    .bundleId,
+                    .certificates,
+                    .createdDate,
+                    .devices,
+                    .expirationDate,
+                    .name,
+                    .platform,
+                    .profileContent,
+                    .profileState,
+                    .profileType,
+                    .uuid,
+                ]
+            }
         }
     }
 

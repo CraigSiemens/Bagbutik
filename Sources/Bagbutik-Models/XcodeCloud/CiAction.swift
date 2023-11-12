@@ -45,7 +45,42 @@ public struct CiAction: Codable {
         self.testConfiguration = testConfiguration
     }
 
-    public enum Destination: String, Codable, CaseIterable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        actionType = try container.decodeIfPresent(CiActionType.self, forKey: .actionType)
+        buildDistributionAudience = try container.decodeIfPresent(BuildAudienceType.self, forKey: .buildDistributionAudience)
+        destination = try container.decodeIfPresent(Destination.self, forKey: .destination)
+        isRequiredToPass = try container.decodeIfPresent(Bool.self, forKey: .isRequiredToPass)
+        name = try container.decodeIfPresent(String.self, forKey: .name)
+        platform = try container.decodeIfPresent(Platform.self, forKey: .platform)
+        scheme = try container.decodeIfPresent(String.self, forKey: .scheme)
+        testConfiguration = try container.decodeIfPresent(TestConfiguration.self, forKey: .testConfiguration)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(actionType, forKey: .actionType)
+        try container.encodeIfPresent(buildDistributionAudience, forKey: .buildDistributionAudience)
+        try container.encodeIfPresent(destination, forKey: .destination)
+        try container.encodeIfPresent(isRequiredToPass, forKey: .isRequiredToPass)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(platform, forKey: .platform)
+        try container.encodeIfPresent(scheme, forKey: .scheme)
+        try container.encodeIfPresent(testConfiguration, forKey: .testConfiguration)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case actionType
+        case buildDistributionAudience
+        case destination
+        case isRequiredToPass
+        case name
+        case platform
+        case scheme
+        case testConfiguration
+    }
+
+    public enum Destination: String, CodableEnum, CaseIterable {
         case anyIosDevice = "ANY_IOS_DEVICE"
         case anyIosSimulator = "ANY_IOS_SIMULATOR"
         case anyTvosDevice = "ANY_TVOS_DEVICE"
@@ -54,13 +89,35 @@ public struct CiAction: Codable {
         case anyWatchosSimulator = "ANY_WATCHOS_SIMULATOR"
         case anyMac = "ANY_MAC"
         case anyMacCatalyst = "ANY_MAC_CATALYST"
+
+        var allCases: [Self] {
+            [
+                .anyIosDevice,
+                .anyIosSimulator,
+                .anyTvosDevice,
+                .anyTvosSimulator,
+                .anyWatchosDevice,
+                .anyWatchosSimulator,
+                .anyMac,
+                .anyMacCatalyst,
+            ]
+        }
     }
 
-    public enum Platform: String, Codable, CaseIterable {
+    public enum Platform: String, CodableEnum, CaseIterable {
         case macOS = "MACOS"
         case iOS = "IOS"
         case tvOS = "TVOS"
         case watchos = "WATCHOS"
+
+        var allCases: [Self] {
+            [
+                .macOS,
+                .iOS,
+                .tvOS,
+                .watchos,
+            ]
+        }
     }
 
     /**
@@ -87,9 +144,36 @@ public struct CiAction: Codable {
             self.testPlanName = testPlanName
         }
 
-        public enum Kind: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            kind = try container.decodeIfPresent(Kind.self, forKey: .kind)
+            testDestinations = try container.decodeIfPresent([CiTestDestination].self, forKey: .testDestinations)
+            testPlanName = try container.decodeIfPresent(String.self, forKey: .testPlanName)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(kind, forKey: .kind)
+            try container.encodeIfPresent(testDestinations, forKey: .testDestinations)
+            try container.encodeIfPresent(testPlanName, forKey: .testPlanName)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case kind
+            case testDestinations
+            case testPlanName
+        }
+
+        public enum Kind: String, CodableEnum, CaseIterable {
             case useSchemeSettings = "USE_SCHEME_SETTINGS"
             case specificTestPlans = "SPECIFIC_TEST_PLANS"
+
+            var allCases: [Self] {
+                [
+                    .useSchemeSettings,
+                    .specificTestPlans,
+                ]
+            }
         }
     }
 }

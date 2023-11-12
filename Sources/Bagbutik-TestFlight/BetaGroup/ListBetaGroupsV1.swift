@@ -44,7 +44,7 @@ public enum ListBetaGroupsV1 {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -89,9 +89,58 @@ public enum ListBetaGroupsV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum BetaGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaGroups: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case betaTesters
             case builds
@@ -106,9 +155,28 @@ public enum ListBetaGroupsV1 {
             case publicLinkId
             case publicLinkLimit
             case publicLinkLimitEnabled
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .betaTesters,
+                    .builds,
+                    .createdDate,
+                    .feedbackEnabled,
+                    .hasAccessToAllBuilds,
+                    .iosBuildsAvailableForAppleSiliconMac,
+                    .isInternalGroup,
+                    .name,
+                    .publicLink,
+                    .publicLinkEnabled,
+                    .publicLinkId,
+                    .publicLinkLimit,
+                    .publicLinkLimitEnabled,
+                ]
+            }
         }
 
-        public enum BetaTesters: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaTesters: String, ParameterValue, CodableEnum, CaseIterable {
             case apps
             case betaGroups
             case builds
@@ -116,9 +184,21 @@ public enum ListBetaGroupsV1 {
             case firstName
             case inviteType
             case lastName
+
+            var allCases: [Self] {
+                [
+                    .apps,
+                    .betaGroups,
+                    .builds,
+                    .email,
+                    .firstName,
+                    .inviteType,
+                    .lastName,
+                ]
+            }
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -143,6 +223,35 @@ public enum ListBetaGroupsV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appEncryptionDeclaration,
+                    .appStoreVersion,
+                    .betaAppReviewSubmission,
+                    .betaBuildLocalizations,
+                    .betaGroups,
+                    .buildAudienceType,
+                    .buildBetaDetail,
+                    .buildBundles,
+                    .computedMinMacOsVersion,
+                    .diagnosticSignatures,
+                    .expirationDate,
+                    .expired,
+                    .iconAssetToken,
+                    .icons,
+                    .individualTesters,
+                    .lsMinimumSystemVersion,
+                    .minOsVersion,
+                    .perfPowerMetrics,
+                    .preReleaseVersion,
+                    .processingState,
+                    .uploadedDate,
+                    .usesNonExemptEncryption,
+                    .version,
+                ]
+            }
         }
     }
 

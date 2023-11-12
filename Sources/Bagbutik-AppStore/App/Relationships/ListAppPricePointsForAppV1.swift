@@ -41,15 +41,25 @@ public enum ListAppPricePointsForAppV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum AppPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPricePoints: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case customerPrice
             case equalizations
             case proceeds
             case territory
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .customerPrice,
+                    .equalizations,
+                    .proceeds,
+                    .territory,
+                ]
+            }
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -94,10 +104,65 @@ public enum ListAppPricePointsForAppV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, ParameterValue, CodableEnum, CaseIterable {
             case currency
+
+            var allCases: [Self] {
+                [
+                    .currency,
+                ]
+            }
         }
     }
 

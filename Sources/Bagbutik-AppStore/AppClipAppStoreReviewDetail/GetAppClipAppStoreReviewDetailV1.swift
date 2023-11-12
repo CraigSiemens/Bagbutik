@@ -31,9 +31,16 @@ public enum GetAppClipAppStoreReviewDetailV1 {
         /// The fields to include for returned resources of type appClipAppStoreReviewDetails
         case appClipAppStoreReviewDetails([AppClipAppStoreReviewDetails])
 
-        public enum AppClipAppStoreReviewDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAppStoreReviewDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case appClipDefaultExperience
             case invocationUrls
+
+            var allCases: [Self] {
+                [
+                    .appClipDefaultExperience,
+                    .invocationUrls,
+                ]
+            }
         }
     }
 

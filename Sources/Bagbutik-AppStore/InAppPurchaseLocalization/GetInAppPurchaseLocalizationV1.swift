@@ -31,12 +31,22 @@ public enum GetInAppPurchaseLocalizationV1 {
         /// The fields to include for returned resources of type inAppPurchaseLocalizations
         case inAppPurchaseLocalizations([InAppPurchaseLocalizations])
 
-        public enum InAppPurchaseLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case description
             case inAppPurchaseV2
             case locale
             case name
             case state
+
+            var allCases: [Self] {
+                [
+                    .description,
+                    .inAppPurchaseV2,
+                    .locale,
+                    .name,
+                    .state,
+                ]
+            }
         }
     }
 

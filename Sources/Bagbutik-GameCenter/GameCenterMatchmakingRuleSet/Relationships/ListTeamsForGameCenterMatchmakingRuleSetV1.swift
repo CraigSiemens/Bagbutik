@@ -31,11 +31,20 @@ public enum ListTeamsForGameCenterMatchmakingRuleSetV1 {
         /// The fields to include for returned resources of type gameCenterMatchmakingTeams
         case gameCenterMatchmakingTeams([GameCenterMatchmakingTeams])
 
-        public enum GameCenterMatchmakingTeams: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingTeams: String, ParameterValue, CodableEnum, CaseIterable {
             case maxPlayers
             case minPlayers
             case referenceName
             case ruleSet
+
+            var allCases: [Self] {
+                [
+                    .maxPlayers,
+                    .minPlayers,
+                    .referenceName,
+                    .ruleSet,
+                ]
+            }
         }
     }
 }

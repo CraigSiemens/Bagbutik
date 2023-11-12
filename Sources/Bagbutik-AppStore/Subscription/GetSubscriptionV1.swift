@@ -52,7 +52,7 @@ public enum GetSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case enabled
             case inAppPurchaseV2
@@ -60,9 +60,21 @@ public enum GetSubscriptionV1 {
             case state
             case subscription
             case visibleForAllUsers
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .enabled,
+                    .inAppPurchaseV2,
+                    .promotionImages,
+                    .state,
+                    .subscription,
+                    .visibleForAllUsers,
+                ]
+            }
         }
 
-        public enum SubscriptionAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionAppStoreReviewScreenshots: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -73,15 +85,38 @@ public enum GetSubscriptionV1 {
             case subscription
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .assetToken,
+                    .assetType,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .sourceFileChecksum,
+                    .subscription,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum SubscriptionAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionAvailabilities: String, ParameterValue, CodableEnum, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
             case subscription
+
+            var allCases: [Self] {
+                [
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .subscription,
+                ]
+            }
         }
 
-        public enum SubscriptionIntroductoryOffers: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionIntroductoryOffers: String, ParameterValue, CodableEnum, CaseIterable {
             case duration
             case endDate
             case numberOfPeriods
@@ -90,17 +125,40 @@ public enum GetSubscriptionV1 {
             case subscription
             case subscriptionPricePoint
             case territory
+
+            var allCases: [Self] {
+                [
+                    .duration,
+                    .endDate,
+                    .numberOfPeriods,
+                    .offerMode,
+                    .startDate,
+                    .subscription,
+                    .subscriptionPricePoint,
+                    .territory,
+                ]
+            }
         }
 
-        public enum SubscriptionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case description
             case locale
             case name
             case state
             case subscription
+
+            var allCases: [Self] {
+                [
+                    .description,
+                    .locale,
+                    .name,
+                    .state,
+                    .subscription,
+                ]
+            }
         }
 
-        public enum SubscriptionOfferCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodes: String, ParameterValue, CodableEnum, CaseIterable {
             case active
             case customCodes
             case customerEligibilities
@@ -113,27 +171,66 @@ public enum GetSubscriptionV1 {
             case prices
             case subscription
             case totalNumberOfCodes
+
+            var allCases: [Self] {
+                [
+                    .active,
+                    .customCodes,
+                    .customerEligibilities,
+                    .duration,
+                    .name,
+                    .numberOfPeriods,
+                    .offerEligibility,
+                    .offerMode,
+                    .oneTimeUseCodes,
+                    .prices,
+                    .subscription,
+                    .totalNumberOfCodes,
+                ]
+            }
         }
 
-        public enum SubscriptionPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPricePoints: String, ParameterValue, CodableEnum, CaseIterable {
             case customerPrice
             case equalizations
             case proceeds
             case proceedsYear2
             case subscription
             case territory
+
+            var allCases: [Self] {
+                [
+                    .customerPrice,
+                    .equalizations,
+                    .proceeds,
+                    .proceedsYear2,
+                    .subscription,
+                    .territory,
+                ]
+            }
         }
 
-        public enum SubscriptionPrices: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPrices: String, ParameterValue, CodableEnum, CaseIterable {
             case preserveCurrentPrice
             case preserved
             case startDate
             case subscription
             case subscriptionPricePoint
             case territory
+
+            var allCases: [Self] {
+                [
+                    .preserveCurrentPrice,
+                    .preserved,
+                    .startDate,
+                    .subscription,
+                    .subscriptionPricePoint,
+                    .territory,
+                ]
+            }
         }
 
-        public enum SubscriptionPromotionalOffers: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPromotionalOffers: String, ParameterValue, CodableEnum, CaseIterable {
             case duration
             case name
             case numberOfPeriods
@@ -141,9 +238,21 @@ public enum GetSubscriptionV1 {
             case offerMode
             case prices
             case subscription
+
+            var allCases: [Self] {
+                [
+                    .duration,
+                    .name,
+                    .numberOfPeriods,
+                    .offerCode,
+                    .offerMode,
+                    .prices,
+                    .subscription,
+                ]
+            }
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -162,6 +271,29 @@ public enum GetSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .familySharable,
+                    .group,
+                    .groupLevel,
+                    .introductoryOffers,
+                    .name,
+                    .offerCodes,
+                    .pricePoints,
+                    .prices,
+                    .productId,
+                    .promotedPurchase,
+                    .promotionalOffers,
+                    .reviewNote,
+                    .state,
+                    .subscriptionAvailability,
+                    .subscriptionLocalizations,
+                    .subscriptionPeriod,
+                ]
+            }
         }
     }
 

@@ -31,10 +31,18 @@ public enum ListBundleIdCapabilitiesForBundleIdV1 {
         /// The fields to include for returned resources of type bundleIdCapabilities
         case bundleIdCapabilities([BundleIdCapabilities])
 
-        public enum BundleIdCapabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum BundleIdCapabilities: String, ParameterValue, CodableEnum, CaseIterable {
             case bundleId
             case capabilityType
             case settings
+
+            var allCases: [Self] {
+                [
+                    .bundleId,
+                    .capabilityType,
+                    .settings,
+                ]
+            }
         }
     }
 }

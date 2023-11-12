@@ -36,7 +36,7 @@ public enum GetGameCenterAppVersionV1 {
         /// The fields to include for returned resources of type gameCenterAppVersions
         case gameCenterAppVersions([GameCenterAppVersions])
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -57,12 +57,45 @@ public enum GetGameCenterAppVersionV1 {
             case releaseType
             case routingAppCoverage
             case versionString
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appClipDefaultExperience,
+                    .appStoreReviewDetail,
+                    .appStoreState,
+                    .appStoreVersionExperiments,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersionLocalizations,
+                    .appStoreVersionPhasedRelease,
+                    .appStoreVersionSubmission,
+                    .build,
+                    .copyright,
+                    .createdDate,
+                    .customerReviews,
+                    .downloadable,
+                    .earliestReleaseDate,
+                    .platform,
+                    .releaseType,
+                    .routingAppCoverage,
+                    .versionString,
+                ]
+            }
         }
 
-        public enum GameCenterAppVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAppVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreVersion
             case compatibilityVersions
             case enabled
+
+            var allCases: [Self] {
+                [
+                    .appStoreVersion,
+                    .compatibilityVersions,
+                    .enabled,
+                ]
+            }
         }
     }
 

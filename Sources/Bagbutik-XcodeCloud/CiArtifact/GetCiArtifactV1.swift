@@ -30,11 +30,20 @@ public enum GetCiArtifactV1 {
         /// The fields to include for returned resources of type ciArtifacts
         case ciArtifacts([CiArtifacts])
 
-        public enum CiArtifacts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiArtifacts: String, ParameterValue, CodableEnum, CaseIterable {
             case downloadUrl
             case fileName
             case fileSize
             case fileType
+
+            var allCases: [Self] {
+                [
+                    .downloadUrl,
+                    .fileName,
+                    .fileSize,
+                    .fileType,
+                ]
+            }
         }
     }
 }

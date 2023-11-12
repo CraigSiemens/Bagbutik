@@ -35,7 +35,7 @@ public enum GetGameCenterAchievementLocalizationV1 {
         /// The fields to include for returned resources of type gameCenterAchievements
         case gameCenterAchievements([GameCenterAchievements])
 
-        public enum GameCenterAchievementImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -43,18 +43,41 @@ public enum GetGameCenterAchievementLocalizationV1 {
             case imageAsset
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .gameCenterAchievementLocalization,
+                    .imageAsset,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum GameCenterAchievementLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case afterEarnedDescription
             case beforeEarnedDescription
             case gameCenterAchievement
             case gameCenterAchievementImage
             case locale
             case name
+
+            var allCases: [Self] {
+                [
+                    .afterEarnedDescription,
+                    .beforeEarnedDescription,
+                    .gameCenterAchievement,
+                    .gameCenterAchievementImage,
+                    .locale,
+                    .name,
+                ]
+            }
         }
 
-        public enum GameCenterAchievements: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievements: String, ParameterValue, CodableEnum, CaseIterable {
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -66,6 +89,22 @@ public enum GetGameCenterAchievementLocalizationV1 {
             case repeatable
             case showBeforeEarned
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .archived,
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .groupAchievement,
+                    .localizations,
+                    .points,
+                    .referenceName,
+                    .releases,
+                    .repeatable,
+                    .showBeforeEarned,
+                    .vendorIdentifier,
+                ]
+            }
         }
     }
 

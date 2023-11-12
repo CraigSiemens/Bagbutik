@@ -33,7 +33,7 @@ public enum GetGameCenterLeaderboardSetImageForGameCenterLeaderboardSetLocalizat
         /// The fields to include for returned resources of type gameCenterLeaderboardSetLocalizations
         case gameCenterLeaderboardSetLocalizations([GameCenterLeaderboardSetLocalizations])
 
-        public enum GameCenterLeaderboardSetImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -41,13 +41,34 @@ public enum GetGameCenterLeaderboardSetImageForGameCenterLeaderboardSetLocalizat
             case imageAsset
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .gameCenterLeaderboardSetLocalization,
+                    .imageAsset,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardSetLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterLeaderboardSet
             case gameCenterLeaderboardSetImage
             case locale
             case name
+
+            var allCases: [Self] {
+                [
+                    .gameCenterLeaderboardSet,
+                    .gameCenterLeaderboardSetImage,
+                    .locale,
+                    .name,
+                ]
+            }
         }
     }
 

@@ -40,7 +40,7 @@ public enum GetPromotedPurchaseForSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories
@@ -57,9 +57,30 @@ public enum GetPromotedPurchaseForSubscriptionV1 {
             case promotedPurchase
             case reviewNote
             case state
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .content,
+                    .contentHosting,
+                    .familySharable,
+                    .iapPriceSchedule,
+                    .inAppPurchaseAvailability,
+                    .inAppPurchaseLocalizations,
+                    .inAppPurchaseType,
+                    .name,
+                    .pricePoints,
+                    .productId,
+                    .promotedPurchase,
+                    .reviewNote,
+                    .state,
+                ]
+            }
         }
 
-        public enum PromotedPurchaseImages: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchaseImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetToken
             case assetType
             case fileName
@@ -70,9 +91,24 @@ public enum GetPromotedPurchaseForSubscriptionV1 {
             case state
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetToken,
+                    .assetType,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .promotedPurchase,
+                    .sourceFileChecksum,
+                    .state,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case enabled
             case inAppPurchaseV2
@@ -80,9 +116,21 @@ public enum GetPromotedPurchaseForSubscriptionV1 {
             case state
             case subscription
             case visibleForAllUsers
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .enabled,
+                    .inAppPurchaseV2,
+                    .promotionImages,
+                    .state,
+                    .subscription,
+                    .visibleForAllUsers,
+                ]
+            }
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -101,6 +149,29 @@ public enum GetPromotedPurchaseForSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .familySharable,
+                    .group,
+                    .groupLevel,
+                    .introductoryOffers,
+                    .name,
+                    .offerCodes,
+                    .pricePoints,
+                    .prices,
+                    .productId,
+                    .promotedPurchase,
+                    .promotionalOffers,
+                    .reviewNote,
+                    .state,
+                    .subscriptionAvailability,
+                    .subscriptionLocalizations,
+                    .subscriptionPeriod,
+                ]
+            }
         }
     }
 

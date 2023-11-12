@@ -169,76 +169,234 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
             self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public enum AlcoholTobaccoOrDrugUseOrReferences: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case frequentOrIntense = "FREQUENT_OR_INTENSE"
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AlcoholTobaccoOrDrugUseOrReferences.self, forKey: .alcoholTobaccoOrDrugUseOrReferences)
+            contests = try container.decodeIfPresent(Contests.self, forKey: .contests)
+            gambling = try container.decodeIfPresent(Bool.self, forKey: .gambling)
+            gamblingAndContests = try container.decodeIfPresent(Bool.self, forKey: .gamblingAndContests)
+            gamblingSimulated = try container.decodeIfPresent(GamblingSimulated.self, forKey: .gamblingSimulated)
+            horrorOrFearThemes = try container.decodeIfPresent(HorrorOrFearThemes.self, forKey: .horrorOrFearThemes)
+            kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: .kidsAgeBand)
+            matureOrSuggestiveThemes = try container.decodeIfPresent(MatureOrSuggestiveThemes.self, forKey: .matureOrSuggestiveThemes)
+            medicalOrTreatmentInformation = try container.decodeIfPresent(MedicalOrTreatmentInformation.self, forKey: .medicalOrTreatmentInformation)
+            profanityOrCrudeHumor = try container.decodeIfPresent(ProfanityOrCrudeHumor.self, forKey: .profanityOrCrudeHumor)
+            seventeenPlus = try container.decodeIfPresent(Bool.self, forKey: .seventeenPlus)
+            sexualContentGraphicAndNudity = try container.decodeIfPresent(SexualContentGraphicAndNudity.self, forKey: .sexualContentGraphicAndNudity)
+            sexualContentOrNudity = try container.decodeIfPresent(SexualContentOrNudity.self, forKey: .sexualContentOrNudity)
+            unrestrictedWebAccess = try container.decodeIfPresent(Bool.self, forKey: .unrestrictedWebAccess)
+            violenceCartoonOrFantasy = try container.decodeIfPresent(ViolenceCartoonOrFantasy.self, forKey: .violenceCartoonOrFantasy)
+            violenceRealistic = try container.decodeIfPresent(ViolenceRealistic.self, forKey: .violenceRealistic)
+            violenceRealisticProlongedGraphicOrSadistic = try container.decodeIfPresent(ViolenceRealisticProlongedGraphicOrSadistic.self, forKey: .violenceRealisticProlongedGraphicOrSadistic)
         }
 
-        public enum Contests: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case frequentOrIntense = "FREQUENT_OR_INTENSE"
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(alcoholTobaccoOrDrugUseOrReferences, forKey: .alcoholTobaccoOrDrugUseOrReferences)
+            try container.encodeIfPresent(contests, forKey: .contests)
+            try container.encodeIfPresent(gambling, forKey: .gambling)
+            try container.encodeIfPresent(gamblingAndContests, forKey: .gamblingAndContests)
+            try container.encodeIfPresent(gamblingSimulated, forKey: .gamblingSimulated)
+            try container.encodeIfPresent(horrorOrFearThemes, forKey: .horrorOrFearThemes)
+            try container.encodeIfPresent(kidsAgeBand, forKey: .kidsAgeBand)
+            try container.encodeIfPresent(matureOrSuggestiveThemes, forKey: .matureOrSuggestiveThemes)
+            try container.encodeIfPresent(medicalOrTreatmentInformation, forKey: .medicalOrTreatmentInformation)
+            try container.encodeIfPresent(profanityOrCrudeHumor, forKey: .profanityOrCrudeHumor)
+            try container.encodeIfPresent(seventeenPlus, forKey: .seventeenPlus)
+            try container.encodeIfPresent(sexualContentGraphicAndNudity, forKey: .sexualContentGraphicAndNudity)
+            try container.encodeIfPresent(sexualContentOrNudity, forKey: .sexualContentOrNudity)
+            try container.encodeIfPresent(unrestrictedWebAccess, forKey: .unrestrictedWebAccess)
+            try container.encodeIfPresent(violenceCartoonOrFantasy, forKey: .violenceCartoonOrFantasy)
+            try container.encodeIfPresent(violenceRealistic, forKey: .violenceRealistic)
+            try container.encodeIfPresent(violenceRealisticProlongedGraphicOrSadistic, forKey: .violenceRealisticProlongedGraphicOrSadistic)
         }
 
-        public enum GamblingSimulated: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
-            case frequentOrIntense = "FREQUENT_OR_INTENSE"
+        private enum CodingKeys: String, CodingKey {
+            case alcoholTobaccoOrDrugUseOrReferences
+            case contests
+            case gambling
+            case gamblingAndContests
+            case gamblingSimulated
+            case horrorOrFearThemes
+            case kidsAgeBand
+            case matureOrSuggestiveThemes
+            case medicalOrTreatmentInformation
+            case profanityOrCrudeHumor
+            case seventeenPlus
+            case sexualContentGraphicAndNudity
+            case sexualContentOrNudity
+            case unrestrictedWebAccess
+            case violenceCartoonOrFantasy
+            case violenceRealistic
+            case violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public enum HorrorOrFearThemes: String, Codable, CaseIterable {
+        public enum AlcoholTobaccoOrDrugUseOrReferences: String, CodableEnum, CaseIterable {
             case none = "NONE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
         }
 
-        public enum MatureOrSuggestiveThemes: String, Codable, CaseIterable {
+        public enum Contests: String, CodableEnum, CaseIterable {
             case none = "NONE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
         }
 
-        public enum MedicalOrTreatmentInformation: String, Codable, CaseIterable {
+        public enum GamblingSimulated: String, CodableEnum, CaseIterable {
             case none = "NONE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
         }
 
-        public enum ProfanityOrCrudeHumor: String, Codable, CaseIterable {
+        public enum HorrorOrFearThemes: String, CodableEnum, CaseIterable {
             case none = "NONE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
         }
 
-        public enum SexualContentGraphicAndNudity: String, Codable, CaseIterable {
+        public enum MatureOrSuggestiveThemes: String, CodableEnum, CaseIterable {
             case none = "NONE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
         }
 
-        public enum SexualContentOrNudity: String, Codable, CaseIterable {
+        public enum MedicalOrTreatmentInformation: String, CodableEnum, CaseIterable {
             case none = "NONE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
         }
 
-        public enum ViolenceCartoonOrFantasy: String, Codable, CaseIterable {
+        public enum ProfanityOrCrudeHumor: String, CodableEnum, CaseIterable {
             case none = "NONE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
         }
 
-        public enum ViolenceRealistic: String, Codable, CaseIterable {
+        public enum SexualContentGraphicAndNudity: String, CodableEnum, CaseIterable {
             case none = "NONE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
         }
 
-        public enum ViolenceRealisticProlongedGraphicOrSadistic: String, Codable, CaseIterable {
+        public enum SexualContentOrNudity: String, CodableEnum, CaseIterable {
             case none = "NONE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
+        }
+
+        public enum ViolenceCartoonOrFantasy: String, CodableEnum, CaseIterable {
+            case none = "NONE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
+        }
+
+        public enum ViolenceRealistic: String, CodableEnum, CaseIterable {
+            case none = "NONE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
+        }
+
+        public enum ViolenceRealisticProlongedGraphicOrSadistic: String, CodableEnum, CaseIterable {
+            case none = "NONE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case frequentOrIntense = "FREQUENT_OR_INTENSE"
+
+            var allCases: [Self] {
+                [
+                    .none,
+                    .infrequentOrMild,
+                    .frequentOrIntense,
+                ]
+            }
         }
     }
 }

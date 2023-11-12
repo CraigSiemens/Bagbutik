@@ -36,7 +36,7 @@ public enum GetPromotedPurchaseV1 {
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])
 
-        public enum PromotedPurchaseImages: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchaseImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetToken
             case assetType
             case fileName
@@ -47,9 +47,24 @@ public enum GetPromotedPurchaseV1 {
             case state
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetToken,
+                    .assetType,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .promotedPurchase,
+                    .sourceFileChecksum,
+                    .state,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case enabled
             case inAppPurchaseV2
@@ -57,6 +72,18 @@ public enum GetPromotedPurchaseV1 {
             case state
             case subscription
             case visibleForAllUsers
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .enabled,
+                    .inAppPurchaseV2,
+                    .promotionImages,
+                    .state,
+                    .subscription,
+                    .visibleForAllUsers,
+                ]
+            }
         }
     }
 

@@ -33,15 +33,25 @@ public enum GetContentForInAppPurchasesV2 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum InAppPurchaseContents: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseContents: String, ParameterValue, CodableEnum, CaseIterable {
             case fileName
             case fileSize
             case inAppPurchaseV2
             case lastModifiedDate
             case url
+
+            var allCases: [Self] {
+                [
+                    .fileName,
+                    .fileSize,
+                    .inAppPurchaseV2,
+                    .lastModifiedDate,
+                    .url,
+                ]
+            }
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories
@@ -58,6 +68,27 @@ public enum GetContentForInAppPurchasesV2 {
             case promotedPurchase
             case reviewNote
             case state
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .content,
+                    .contentHosting,
+                    .familySharable,
+                    .iapPriceSchedule,
+                    .inAppPurchaseAvailability,
+                    .inAppPurchaseLocalizations,
+                    .inAppPurchaseType,
+                    .name,
+                    .pricePoints,
+                    .productId,
+                    .promotedPurchase,
+                    .reviewNote,
+                    .state,
+                ]
+            }
         }
     }
 

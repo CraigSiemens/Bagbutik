@@ -38,17 +38,34 @@ public enum GetCiXcodeVersionV1 {
         /// The fields to include for returned resources of type ciXcodeVersions
         case ciXcodeVersions([CiXcodeVersions])
 
-        public enum CiMacOsVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiMacOsVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case name
             case version
             case xcodeVersions
+
+            var allCases: [Self] {
+                [
+                    .name,
+                    .version,
+                    .xcodeVersions,
+                ]
+            }
         }
 
-        public enum CiXcodeVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiXcodeVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case macOsVersions
             case name
             case testDestinations
             case version
+
+            var allCases: [Self] {
+                [
+                    .macOsVersions,
+                    .name,
+                    .testDestinations,
+                    .version,
+                ]
+            }
         }
     }
 

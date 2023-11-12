@@ -85,19 +85,70 @@ public struct Device: Codable, Identifiable {
             self.udid = udid
         }
 
-        public enum DeviceClass: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            addedDate = try container.decodeIfPresent(Date.self, forKey: .addedDate)
+            deviceClass = try container.decodeIfPresent(DeviceClass.self, forKey: .deviceClass)
+            model = try container.decodeIfPresent(String.self, forKey: .model)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            platform = try container.decodeIfPresent(BundleIdPlatform.self, forKey: .platform)
+            status = try container.decodeIfPresent(Status.self, forKey: .status)
+            udid = try container.decodeIfPresent(String.self, forKey: .udid)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(addedDate, forKey: .addedDate)
+            try container.encodeIfPresent(deviceClass, forKey: .deviceClass)
+            try container.encodeIfPresent(model, forKey: .model)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(status, forKey: .status)
+            try container.encodeIfPresent(udid, forKey: .udid)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case addedDate
+            case deviceClass
+            case model
+            case name
+            case platform
+            case status
+            case udid
+        }
+
+        public enum DeviceClass: String, CodableEnum, CaseIterable {
             case appleWatch = "APPLE_WATCH"
             case iPad = "IPAD"
             case iPhone = "IPHONE"
             case iPod = "IPOD"
             case appleTV = "APPLE_TV"
             case mac = "MAC"
+
+            var allCases: [Self] {
+                [
+                    .appleWatch,
+                    .iPad,
+                    .iPhone,
+                    .iPod,
+                    .appleTV,
+                    .mac,
+                ]
+            }
         }
 
-        public enum Status: String, ParameterValue, Codable, CaseIterable {
+        public enum Status: String, ParameterValue, CodableEnum, CaseIterable {
             case enabled = "ENABLED"
             case disabled = "DISABLED"
             case processing = "PROCESSING"
+
+            var allCases: [Self] {
+                [
+                    .enabled,
+                    .disabled,
+                    .processing,
+                ]
+            }
         }
     }
 }

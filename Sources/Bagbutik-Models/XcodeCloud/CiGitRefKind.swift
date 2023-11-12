@@ -8,9 +8,16 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cigitrefkind>
  */
-public enum CiGitRefKind: String, Codable, CaseIterable {
+public enum CiGitRefKind: String, CodableEnum, CaseIterable {
     /// The Git reference represents a branch.
     case branch = "BRANCH"
     /// The Git reference represents a tag.
     case tag = "TAG"
+
+    var allCases: [Self] {
+        [
+            .branch,
+            .tag,
+        ]
+    }
 }

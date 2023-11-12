@@ -38,7 +38,7 @@ public enum GetAppEncryptionDeclarationV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, CodableEnum, CaseIterable {
             case appEncryptionDeclaration
             case assetDeliveryState
             case assetToken
@@ -48,9 +48,23 @@ public enum GetAppEncryptionDeclarationV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appEncryptionDeclaration,
+                    .assetDeliveryState,
+                    .assetToken,
+                    .downloadUrl,
+                    .fileName,
+                    .fileSize,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appDescription
             case appEncryptionDeclarationDocument
@@ -68,9 +82,31 @@ public enum GetAppEncryptionDeclarationV1 {
             case platform
             case uploadedDate
             case usesEncryption
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appDescription,
+                    .appEncryptionDeclarationDocument,
+                    .appEncryptionDeclarationState,
+                    .availableOnFrenchStore,
+                    .builds,
+                    .codeValue,
+                    .containsProprietaryCryptography,
+                    .containsThirdPartyCryptography,
+                    .createdDate,
+                    .documentName,
+                    .documentType,
+                    .documentUrl,
+                    .exempt,
+                    .platform,
+                    .uploadedDate,
+                    .usesEncryption,
+                ]
+            }
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -115,6 +151,55 @@ public enum GetAppEncryptionDeclarationV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
     }
 

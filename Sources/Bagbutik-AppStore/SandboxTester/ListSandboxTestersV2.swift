@@ -29,7 +29,7 @@ public enum ListSandboxTestersV2 {
         /// The fields to include for returned resources of type sandboxTesters
         case sandboxTesters([SandboxTesters])
 
-        public enum SandboxTesters: String, ParameterValue, Codable, CaseIterable {
+        public enum SandboxTesters: String, ParameterValue, CodableEnum, CaseIterable {
             case acAccountName
             case applePayCompatible
             case firstName
@@ -37,6 +37,18 @@ public enum ListSandboxTestersV2 {
             case lastName
             case subscriptionRenewalRate
             case territory
+
+            var allCases: [Self] {
+                [
+                    .acAccountName,
+                    .applePayCompatible,
+                    .firstName,
+                    .interruptPurchases,
+                    .lastName,
+                    .subscriptionRenewalRate,
+                    .territory,
+                ]
+            }
         }
     }
 }

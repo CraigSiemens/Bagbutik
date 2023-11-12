@@ -41,7 +41,7 @@ public enum ListReleasesForGameCenterLeaderboardV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -55,15 +55,41 @@ public enum ListReleasesForGameCenterLeaderboardV1 {
             case gameCenterLeaderboards
             case leaderboardReleases
             case leaderboardSetReleases
+
+            var allCases: [Self] {
+                [
+                    .achievementReleases,
+                    .app,
+                    .arcadeEnabled,
+                    .challengeEnabled,
+                    .defaultGroupLeaderboard,
+                    .defaultLeaderboard,
+                    .gameCenterAchievements,
+                    .gameCenterAppVersions,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboardSets,
+                    .gameCenterLeaderboards,
+                    .leaderboardReleases,
+                    .leaderboardSetReleases,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboard
             case live
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterLeaderboard,
+                    .live,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboards: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboards: String, ParameterValue, CodableEnum, CaseIterable {
             case archived
             case defaultFormatter
             case gameCenterDetail
@@ -81,6 +107,28 @@ public enum ListReleasesForGameCenterLeaderboardV1 {
             case scoreSortType
             case submissionType
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .archived,
+                    .defaultFormatter,
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboardSets,
+                    .groupLeaderboard,
+                    .localizations,
+                    .recurrenceDuration,
+                    .recurrenceRule,
+                    .recurrenceStartDate,
+                    .referenceName,
+                    .releases,
+                    .scoreRangeEnd,
+                    .scoreRangeStart,
+                    .scoreSortType,
+                    .submissionType,
+                    .vendorIdentifier,
+                ]
+            }
         }
     }
 

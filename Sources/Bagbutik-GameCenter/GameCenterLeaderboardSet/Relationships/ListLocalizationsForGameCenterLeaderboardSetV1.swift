@@ -38,7 +38,7 @@ public enum ListLocalizationsForGameCenterLeaderboardSetV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboardSets
         case gameCenterLeaderboardSets([GameCenterLeaderboardSets])
 
-        public enum GameCenterLeaderboardSetImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -46,16 +46,37 @@ public enum ListLocalizationsForGameCenterLeaderboardSetV1 {
             case imageAsset
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .gameCenterLeaderboardSetLocalization,
+                    .imageAsset,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardSetLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterLeaderboardSet
             case gameCenterLeaderboardSetImage
             case locale
             case name
+
+            var allCases: [Self] {
+                [
+                    .gameCenterLeaderboardSet,
+                    .gameCenterLeaderboardSetImage,
+                    .locale,
+                    .name,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSets: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboards
@@ -64,6 +85,19 @@ public enum ListLocalizationsForGameCenterLeaderboardSetV1 {
             case referenceName
             case releases
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboards,
+                    .groupLeaderboardSet,
+                    .localizations,
+                    .referenceName,
+                    .releases,
+                    .vendorIdentifier,
+                ]
+            }
         }
     }
 

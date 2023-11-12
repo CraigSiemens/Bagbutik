@@ -71,7 +71,27 @@ public struct PerfPowerMetric: Codable, Identifiable {
             self.platform = platform
         }
 
-        public enum MetricType: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            deviceType = try container.decodeIfPresent(String.self, forKey: .deviceType)
+            metricType = try container.decodeIfPresent(MetricType.self, forKey: .metricType)
+            platform = try container.decodeIfPresent(Platform.self, forKey: .platform)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(deviceType, forKey: .deviceType)
+            try container.encodeIfPresent(metricType, forKey: .metricType)
+            try container.encodeIfPresent(platform, forKey: .platform)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case deviceType
+            case metricType
+            case platform
+        }
+
+        public enum MetricType: String, CodableEnum, CaseIterable {
             case disk = "DISK"
             case hang = "HANG"
             case battery = "BATTERY"
@@ -79,10 +99,28 @@ public struct PerfPowerMetric: Codable, Identifiable {
             case memory = "MEMORY"
             case animation = "ANIMATION"
             case termination = "TERMINATION"
+
+            var allCases: [Self] {
+                [
+                    .disk,
+                    .hang,
+                    .battery,
+                    .launch,
+                    .memory,
+                    .animation,
+                    .termination,
+                ]
+            }
         }
 
-        public enum Platform: String, Codable, CaseIterable {
+        public enum Platform: String, CodableEnum, CaseIterable {
             case iOS = "IOS"
+
+            var allCases: [Self] {
+                [
+                    .iOS,
+                ]
+            }
         }
     }
 }

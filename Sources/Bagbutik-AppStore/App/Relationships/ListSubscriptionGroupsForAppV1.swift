@@ -44,22 +44,41 @@ public enum ListSubscriptionGroupsForAppV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionGroupLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGroupLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case customAppName
             case locale
             case name
             case state
             case subscriptionGroup
+
+            var allCases: [Self] {
+                [
+                    .customAppName,
+                    .locale,
+                    .name,
+                    .state,
+                    .subscriptionGroup,
+                ]
+            }
         }
 
-        public enum SubscriptionGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGroups: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .referenceName,
+                    .subscriptionGroupLocalizations,
+                    .subscriptions,
+                ]
+            }
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -78,6 +97,29 @@ public enum ListSubscriptionGroupsForAppV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .familySharable,
+                    .group,
+                    .groupLevel,
+                    .introductoryOffers,
+                    .name,
+                    .offerCodes,
+                    .pricePoints,
+                    .prices,
+                    .productId,
+                    .promotedPurchase,
+                    .promotionalOffers,
+                    .reviewNote,
+                    .state,
+                    .subscriptionAvailability,
+                    .subscriptionLocalizations,
+                    .subscriptionPeriod,
+                ]
+            }
         }
     }
 
@@ -90,7 +132,7 @@ public enum ListSubscriptionGroupsForAppV1 {
         /// Filter by attribute 'subscriptions.state'
         case subscriptions_state([SubscriptionsState])
 
-        public enum SubscriptionsState: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionsState: String, ParameterValue, CodableEnum, CaseIterable {
             case missingMetadata = "MISSING_METADATA"
             case readyToSubmit = "READY_TO_SUBMIT"
             case waitingForReview = "WAITING_FOR_REVIEW"
@@ -101,6 +143,21 @@ public enum ListSubscriptionGroupsForAppV1 {
             case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
             case removedFromSale = "REMOVED_FROM_SALE"
             case rejected = "REJECTED"
+
+            var allCases: [Self] {
+                [
+                    .missingMetadata,
+                    .readyToSubmit,
+                    .waitingForReview,
+                    .inReview,
+                    .developerActionNeeded,
+                    .pendingBinaryApproval,
+                    .approved,
+                    .developerRemovedFromSale,
+                    .removedFromSale,
+                    .rejected,
+                ]
+            }
         }
     }
 

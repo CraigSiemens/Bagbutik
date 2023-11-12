@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userrole>
  */
-public enum UserRole: String, ParameterValue, Codable, CaseIterable {
+public enum UserRole: String, ParameterValue, CodableEnum, CaseIterable {
     /// Role that serves as a secondary contact for teams and has many of the same responsibilities as the Account Holder role. Admins have access to all apps.
     case admin = "ADMIN"
     /// Role that manages financial information, including reports and tax forms. A user that has this role can view all apps in Payments and Financial Reports, Sales and Trends, and App Analytics.
@@ -36,4 +36,22 @@ public enum UserRole: String, ParameterValue, Codable, CaseIterable {
     case cloudManagedDeveloperId = "CLOUD_MANAGED_DEVELOPER_ID"
     /// Permission to submit requests for apps and software to be signed by a cloud-managed Apple Distribution certificate. App Store Connect automatically creates a certificate if one doesn’t exist. The system grants this permission by default to Account Holder and Admin roles. Account Holder, Admin, and App Manager roles may grant access to this permission to other users with App Manager or Developer roles. This permission requires that the user has access to Certificates, Identifiers & Profiles.
     case cloudManagedAppDistribution = "CLOUD_MANAGED_APP_DISTRIBUTION"
+
+    var allCases: [Self] {
+        [
+            .admin,
+            .finance,
+            .accountHolder,
+            .sales,
+            .marketing,
+            .appManager,
+            .developer,
+            .accessToReports,
+            .customerSupport,
+            .imageManager,
+            .createApps,
+            .cloudManagedDeveloperId,
+            .cloudManagedAppDistribution,
+        ]
+    }
 }

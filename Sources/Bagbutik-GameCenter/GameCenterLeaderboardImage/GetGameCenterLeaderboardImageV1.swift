@@ -31,7 +31,7 @@ public enum GetGameCenterLeaderboardImageV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboardImages
         case gameCenterLeaderboardImages([GameCenterLeaderboardImages])
 
-        public enum GameCenterLeaderboardImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -39,6 +39,18 @@ public enum GetGameCenterLeaderboardImageV1 {
             case imageAsset
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .gameCenterLeaderboardLocalization,
+                    .imageAsset,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 

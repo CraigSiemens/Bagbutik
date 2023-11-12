@@ -35,7 +35,7 @@ public enum ListCertificatesV1 {
         /// The fields to include for returned resources of type certificates
         case certificates([Certificates])
 
-        public enum Certificates: String, ParameterValue, Codable, CaseIterable {
+        public enum Certificates: String, ParameterValue, CodableEnum, CaseIterable {
             case certificateContent
             case certificateType
             case csrContent
@@ -44,6 +44,19 @@ public enum ListCertificatesV1 {
             case name
             case platform
             case serialNumber
+
+            var allCases: [Self] {
+                [
+                    .certificateContent,
+                    .certificateType,
+                    .csrContent,
+                    .displayName,
+                    .expirationDate,
+                    .name,
+                    .platform,
+                    .serialNumber,
+                ]
+            }
         }
     }
 

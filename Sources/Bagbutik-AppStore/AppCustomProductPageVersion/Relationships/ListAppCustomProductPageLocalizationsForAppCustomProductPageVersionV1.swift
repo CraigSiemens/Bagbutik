@@ -42,35 +42,74 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
         /// The fields to include for returned resources of type appScreenshotSets
         case appScreenshotSets([AppScreenshotSets])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
             case locale
             case promotionalText
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageVersion,
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .locale,
+                    .promotionalText,
+                ]
+            }
         }
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case state
             case version
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPage,
+                    .appCustomProductPageLocalizations,
+                    .state,
+                    .version,
+                ]
+            }
         }
 
-        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviewSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appPreviews,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .previewType,
+                ]
+            }
         }
 
-        public enum AppScreenshotSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshotSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appScreenshots
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appScreenshots,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .screenshotDisplayType,
+                ]
+            }
         }
     }
 

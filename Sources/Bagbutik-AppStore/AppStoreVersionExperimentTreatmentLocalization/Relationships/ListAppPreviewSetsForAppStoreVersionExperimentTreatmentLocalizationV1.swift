@@ -44,23 +44,43 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
             case locale
             case promotionalText
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageVersion,
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .locale,
+                    .promotionalText,
+                ]
+            }
         }
 
-        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviewSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appPreviews,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .previewType,
+                ]
+            }
         }
 
-        public enum AppPreviews: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviews: String, ParameterValue, CodableEnum, CaseIterable {
             case appPreviewSet
             case assetDeliveryState
             case fileName
@@ -72,16 +92,41 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case uploadOperations
             case uploaded
             case videoUrl
+
+            var allCases: [Self] {
+                [
+                    .appPreviewSet,
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .mimeType,
+                    .previewFrameTimeCode,
+                    .previewImage,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                    .videoUrl,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
+
+            var allCases: [Self] {
+                [
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .appStoreVersionExperimentTreatment,
+                    .locale,
+                ]
+            }
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion
@@ -92,6 +137,21 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case promotionalText
             case supportUrl
             case whatsNew
+
+            var allCases: [Self] {
+                [
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .appStoreVersion,
+                    .description,
+                    .keywords,
+                    .locale,
+                    .marketingUrl,
+                    .promotionalText,
+                    .supportUrl,
+                    .whatsNew,
+                ]
+            }
         }
     }
 

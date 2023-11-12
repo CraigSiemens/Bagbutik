@@ -55,7 +55,7 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -100,15 +100,72 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum GameCenterAchievementReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterAchievement
             case gameCenterDetail
             case live
+
+            var allCases: [Self] {
+                [
+                    .gameCenterAchievement,
+                    .gameCenterDetail,
+                    .live,
+                ]
+            }
         }
 
-        public enum GameCenterAchievements: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievements: String, ParameterValue, CodableEnum, CaseIterable {
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -120,15 +177,39 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case repeatable
             case showBeforeEarned
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .archived,
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .groupAchievement,
+                    .localizations,
+                    .points,
+                    .referenceName,
+                    .releases,
+                    .repeatable,
+                    .showBeforeEarned,
+                    .vendorIdentifier,
+                ]
+            }
         }
 
-        public enum GameCenterAppVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAppVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreVersion
             case compatibilityVersions
             case enabled
+
+            var allCases: [Self] {
+                [
+                    .appStoreVersion,
+                    .compatibilityVersions,
+                    .enabled,
+                ]
+            }
         }
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -142,29 +223,73 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case gameCenterLeaderboards
             case leaderboardReleases
             case leaderboardSetReleases
+
+            var allCases: [Self] {
+                [
+                    .achievementReleases,
+                    .app,
+                    .arcadeEnabled,
+                    .challengeEnabled,
+                    .defaultGroupLeaderboard,
+                    .defaultLeaderboard,
+                    .gameCenterAchievements,
+                    .gameCenterAppVersions,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboardSets,
+                    .gameCenterLeaderboards,
+                    .leaderboardReleases,
+                    .leaderboardSetReleases,
+                ]
+            }
         }
 
-        public enum GameCenterGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterGroups: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterAchievements
             case gameCenterDetails
             case gameCenterLeaderboardSets
             case gameCenterLeaderboards
             case referenceName
+
+            var allCases: [Self] {
+                [
+                    .gameCenterAchievements,
+                    .gameCenterDetails,
+                    .gameCenterLeaderboardSets,
+                    .gameCenterLeaderboards,
+                    .referenceName,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboard
             case live
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterLeaderboard,
+                    .live,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardSetReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboardSet
             case live
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterLeaderboardSet,
+                    .live,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSets: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboards
@@ -173,9 +298,22 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case referenceName
             case releases
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboards,
+                    .groupLeaderboardSet,
+                    .localizations,
+                    .referenceName,
+                    .releases,
+                    .vendorIdentifier,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboards: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboards: String, ParameterValue, CodableEnum, CaseIterable {
             case archived
             case defaultFormatter
             case gameCenterDetail
@@ -193,6 +331,28 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case scoreSortType
             case submissionType
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .archived,
+                    .defaultFormatter,
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboardSets,
+                    .groupLeaderboard,
+                    .localizations,
+                    .recurrenceDuration,
+                    .recurrenceRule,
+                    .recurrenceStartDate,
+                    .referenceName,
+                    .releases,
+                    .scoreRangeEnd,
+                    .scoreRangeStart,
+                    .scoreSortType,
+                    .submissionType,
+                    .vendorIdentifier,
+                ]
+            }
         }
     }
 

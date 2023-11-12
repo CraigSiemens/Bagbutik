@@ -37,7 +37,7 @@ public enum ListReviewSubmissionsV1 {
         /// The fields to include for returned resources of type reviewSubmissions
         case reviewSubmissions([ReviewSubmissions])
 
-        public enum ReviewSubmissionItems: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissionItems: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion
@@ -47,9 +47,23 @@ public enum ListReviewSubmissionsV1 {
             case resolved
             case reviewSubmission
             case state
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageVersion,
+                    .appEvent,
+                    .appStoreVersion,
+                    .appStoreVersionExperiment,
+                    .appStoreVersionExperimentV2,
+                    .removed,
+                    .resolved,
+                    .reviewSubmission,
+                    .state,
+                ]
+            }
         }
 
-        public enum ReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissions: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreVersionForReview
             case canceled
@@ -60,6 +74,21 @@ public enum ListReviewSubmissionsV1 {
             case submitted
             case submittedByActor
             case submittedDate
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreVersionForReview,
+                    .canceled,
+                    .items,
+                    .lastUpdatedByActor,
+                    .platform,
+                    .state,
+                    .submitted,
+                    .submittedByActor,
+                    .submittedDate,
+                ]
+            }
         }
     }
 

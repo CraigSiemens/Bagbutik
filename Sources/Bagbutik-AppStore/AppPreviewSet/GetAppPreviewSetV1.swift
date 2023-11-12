@@ -36,15 +36,25 @@ public enum GetAppPreviewSetV1 {
         /// The fields to include for returned resources of type appPreviews
         case appPreviews([AppPreviews])
 
-        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviewSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appPreviews,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .previewType,
+                ]
+            }
         }
 
-        public enum AppPreviews: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviews: String, ParameterValue, CodableEnum, CaseIterable {
             case appPreviewSet
             case assetDeliveryState
             case fileName
@@ -56,6 +66,22 @@ public enum GetAppPreviewSetV1 {
             case uploadOperations
             case uploaded
             case videoUrl
+
+            var allCases: [Self] {
+                [
+                    .appPreviewSet,
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .mimeType,
+                    .previewFrameTimeCode,
+                    .previewImage,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                    .videoUrl,
+                ]
+            }
         }
     }
 

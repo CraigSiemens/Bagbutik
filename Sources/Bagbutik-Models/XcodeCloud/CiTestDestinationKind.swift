@@ -8,9 +8,16 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestdestinationkind>
  */
-public enum CiTestDestinationKind: String, Codable, CaseIterable {
+public enum CiTestDestinationKind: String, CodableEnum, CaseIterable {
     /// The test destination is a simulated device.
     case simulator = "SIMULATOR"
     /// The test destination is a Mac.
     case mac = "MAC"
+
+    var allCases: [Self] {
+        [
+            .simulator,
+            .mac,
+        ]
+    }
 }

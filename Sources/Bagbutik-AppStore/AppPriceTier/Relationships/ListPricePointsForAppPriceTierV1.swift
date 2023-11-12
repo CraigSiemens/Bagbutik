@@ -42,19 +42,40 @@ public enum ListPricePointsForAppPriceTierV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum AppPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPricePoints: String, ParameterValue, CodableEnum, CaseIterable {
             case customerPrice
             case priceTier
             case proceeds
             case territory
+
+            var allCases: [Self] {
+                [
+                    .customerPrice,
+                    .priceTier,
+                    .proceeds,
+                    .territory,
+                ]
+            }
         }
 
-        public enum AppPriceTiers: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPriceTiers: String, ParameterValue, CodableEnum, CaseIterable {
             case pricePoints
+
+            var allCases: [Self] {
+                [
+                    .pricePoints,
+                ]
+            }
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, ParameterValue, CodableEnum, CaseIterable {
             case currency
+
+            var allCases: [Self] {
+                [
+                    .currency,
+                ]
+            }
         }
     }
 

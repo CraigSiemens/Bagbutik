@@ -38,22 +38,41 @@ public enum GetGameCenterAchievementV1 {
         /// The fields to include for returned resources of type gameCenterAchievements
         case gameCenterAchievements([GameCenterAchievements])
 
-        public enum GameCenterAchievementLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case afterEarnedDescription
             case beforeEarnedDescription
             case gameCenterAchievement
             case gameCenterAchievementImage
             case locale
             case name
+
+            var allCases: [Self] {
+                [
+                    .afterEarnedDescription,
+                    .beforeEarnedDescription,
+                    .gameCenterAchievement,
+                    .gameCenterAchievementImage,
+                    .locale,
+                    .name,
+                ]
+            }
         }
 
-        public enum GameCenterAchievementReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterAchievement
             case gameCenterDetail
             case live
+
+            var allCases: [Self] {
+                [
+                    .gameCenterAchievement,
+                    .gameCenterDetail,
+                    .live,
+                ]
+            }
         }
 
-        public enum GameCenterAchievements: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievements: String, ParameterValue, CodableEnum, CaseIterable {
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -65,6 +84,22 @@ public enum GetGameCenterAchievementV1 {
             case repeatable
             case showBeforeEarned
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .archived,
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .groupAchievement,
+                    .localizations,
+                    .points,
+                    .referenceName,
+                    .releases,
+                    .repeatable,
+                    .showBeforeEarned,
+                    .vendorIdentifier,
+                ]
+            }
         }
     }
 

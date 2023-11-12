@@ -36,15 +36,25 @@ public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum InAppPurchaseLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case description
             case inAppPurchaseV2
             case locale
             case name
             case state
+
+            var allCases: [Self] {
+                [
+                    .description,
+                    .inAppPurchaseV2,
+                    .locale,
+                    .name,
+                    .state,
+                ]
+            }
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories
@@ -61,6 +71,27 @@ public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2 {
             case promotedPurchase
             case reviewNote
             case state
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .content,
+                    .contentHosting,
+                    .familySharable,
+                    .iapPriceSchedule,
+                    .inAppPurchaseAvailability,
+                    .inAppPurchaseLocalizations,
+                    .inAppPurchaseType,
+                    .name,
+                    .pricePoints,
+                    .productId,
+                    .promotedPurchase,
+                    .reviewNote,
+                    .state,
+                ]
+            }
         }
     }
 

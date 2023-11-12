@@ -38,7 +38,7 @@ public enum GetPreReleaseVersionV1 {
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -83,9 +83,58 @@ public enum GetPreReleaseVersionV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -110,13 +159,51 @@ public enum GetPreReleaseVersionV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appEncryptionDeclaration,
+                    .appStoreVersion,
+                    .betaAppReviewSubmission,
+                    .betaBuildLocalizations,
+                    .betaGroups,
+                    .buildAudienceType,
+                    .buildBetaDetail,
+                    .buildBundles,
+                    .computedMinMacOsVersion,
+                    .diagnosticSignatures,
+                    .expirationDate,
+                    .expired,
+                    .iconAssetToken,
+                    .icons,
+                    .individualTesters,
+                    .lsMinimumSystemVersion,
+                    .minOsVersion,
+                    .perfPowerMetrics,
+                    .preReleaseVersion,
+                    .processingState,
+                    .uploadedDate,
+                    .usesNonExemptEncryption,
+                    .version,
+                ]
+            }
         }
 
-        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum PreReleaseVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case builds
             case platform
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .builds,
+                    .platform,
+                    .version,
+                ]
+            }
         }
     }
 

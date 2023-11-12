@@ -82,11 +82,46 @@ public struct GameCenterMatchmakingRule: Codable, Identifiable {
             self.weight = weight
         }
 
-        public enum AttributesType: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            description = try container.decodeIfPresent(String.self, forKey: .description)
+            expression = try container.decodeIfPresent(String.self, forKey: .expression)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+            type = try container.decode(AttributesType.self, forKey: .type)
+            weight = try container.decodeIfPresent(Double.self, forKey: .weight)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(description, forKey: .description)
+            try container.encodeIfPresent(expression, forKey: .expression)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+            try container.encode(type, forKey: .type)
+            try container.encodeIfPresent(weight, forKey: .weight)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case description
+            case expression
+            case referenceName
+            case type
+            case weight
+        }
+
+        public enum AttributesType: String, CodableEnum, CaseIterable {
             case compatible = "COMPATIBLE"
             case distance = "DISTANCE"
             case match = "MATCH"
             case team = "TEAM"
+
+            var allCases: [Self] {
+                [
+                    .compatible,
+                    .distance,
+                    .match,
+                    .team,
+                ]
+            }
         }
     }
 }

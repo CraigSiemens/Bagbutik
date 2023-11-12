@@ -38,7 +38,7 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
 
-        public enum AppStoreReviewAttachments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreReviewAttachments: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewDetail
             case assetDeliveryState
             case fileName
@@ -46,9 +46,21 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewDetail,
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum AppStoreReviewDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreReviewDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewAttachments
             case appStoreVersion
             case contactEmail
@@ -59,9 +71,24 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
             case demoAccountPassword
             case demoAccountRequired
             case notes
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewAttachments,
+                    .appStoreVersion,
+                    .contactEmail,
+                    .contactFirstName,
+                    .contactLastName,
+                    .contactPhone,
+                    .demoAccountName,
+                    .demoAccountPassword,
+                    .demoAccountRequired,
+                    .notes,
+                ]
+            }
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -82,6 +109,31 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
             case releaseType
             case routingAppCoverage
             case versionString
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appClipDefaultExperience,
+                    .appStoreReviewDetail,
+                    .appStoreState,
+                    .appStoreVersionExperiments,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersionLocalizations,
+                    .appStoreVersionPhasedRelease,
+                    .appStoreVersionSubmission,
+                    .build,
+                    .copyright,
+                    .createdDate,
+                    .customerReviews,
+                    .downloadable,
+                    .earliestReleaseDate,
+                    .platform,
+                    .releaseType,
+                    .routingAppCoverage,
+                    .versionString,
+                ]
+            }
         }
     }
 

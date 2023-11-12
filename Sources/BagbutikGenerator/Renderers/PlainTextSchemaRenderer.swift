@@ -1,6 +1,5 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
-import SwiftFormat
 
 /// A renderer which renders plain text schemas
 public class PlainTextSchemaRenderer: Renderer {
@@ -19,6 +18,19 @@ public class PlainTextSchemaRenderer: Renderer {
             public static func from(text: String) -> \(plainTextSchema.name) {
                 return Self.init(text: text)
             }
+
+            public init(text: String) {
+                self.text = text
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                self.text = try container.decode(String.self, forKey: .text)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case text = "text"
+            }
         }
         
         """
@@ -27,6 +39,6 @@ public class PlainTextSchemaRenderer: Renderer {
            let abstract = objectDocumentation.abstract {
             rendered = "/// \(abstract)\n" + rendered
         }
-        return try SwiftFormat.format(rendered)
+        return try format(rendered)
     }
 }

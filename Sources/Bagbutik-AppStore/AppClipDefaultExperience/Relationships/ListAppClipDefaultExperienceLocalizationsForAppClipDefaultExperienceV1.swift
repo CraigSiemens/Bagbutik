@@ -41,23 +41,43 @@ public enum ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperience
         /// The fields to include for returned resources of type appClipHeaderImages
         case appClipHeaderImages([AppClipHeaderImages])
 
-        public enum AppClipDefaultExperienceLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperienceLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appClipDefaultExperience
             case appClipHeaderImage
             case locale
             case subtitle
+
+            var allCases: [Self] {
+                [
+                    .appClipDefaultExperience,
+                    .appClipHeaderImage,
+                    .locale,
+                    .subtitle,
+                ]
+            }
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperiences: String, ParameterValue, CodableEnum, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
             case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
+
+            var allCases: [Self] {
+                [
+                    .action,
+                    .appClip,
+                    .appClipAppStoreReviewDetail,
+                    .appClipDefaultExperienceLocalizations,
+                    .appClipDefaultExperienceTemplate,
+                    .releaseWithAppStoreVersion,
+                ]
+            }
         }
 
-        public enum AppClipHeaderImages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipHeaderImages: String, ParameterValue, CodableEnum, CaseIterable {
             case appClipDefaultExperienceLocalization
             case assetDeliveryState
             case fileName
@@ -66,6 +86,19 @@ public enum ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperience
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appClipDefaultExperienceLocalization,
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 

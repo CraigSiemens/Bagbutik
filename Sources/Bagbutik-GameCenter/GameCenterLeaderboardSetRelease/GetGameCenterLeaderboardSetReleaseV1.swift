@@ -31,10 +31,18 @@ public enum GetGameCenterLeaderboardSetReleaseV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboardSetReleases
         case gameCenterLeaderboardSetReleases([GameCenterLeaderboardSetReleases])
 
-        public enum GameCenterLeaderboardSetReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboardSet
             case live
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterLeaderboardSet,
+                    .live,
+                ]
+            }
         }
     }
 

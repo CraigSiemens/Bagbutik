@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/screenshotdisplaytype>
  */
-public enum ScreenshotDisplayType: String, ParameterValue, Codable, CaseIterable {
+public enum ScreenshotDisplayType: String, ParameterValue, CodableEnum, CaseIterable {
     case appIphone67 = "APP_IPHONE_67"
     case appIphone61 = "APP_IPHONE_61"
     case appIphone65 = "APP_IPHONE_65"
@@ -40,4 +40,40 @@ public enum ScreenshotDisplayType: String, ParameterValue, Codable, CaseIterable
     case iMessageAppIpadPro129 = "IMESSAGE_APP_IPAD_PRO_129"
     case iMessageAppIpad105 = "IMESSAGE_APP_IPAD_105"
     case iMessageAppIpad97 = "IMESSAGE_APP_IPAD_97"
+
+    var allCases: [Self] {
+        [
+            .appIphone67,
+            .appIphone61,
+            .appIphone65,
+            .appIphone58,
+            .appIphone55,
+            .appIphone47,
+            .appIphone40,
+            .appIphone35,
+            .appIpadPro3Gen129,
+            .appIpadPro3Gen11,
+            .appIpadPro129,
+            .appIpad105,
+            .appIpad97,
+            .appDesktop,
+            .appWatchUltra,
+            .appWatchSeries7,
+            .appWatchSeries4,
+            .appWatchSeries3,
+            .appAppleTV,
+            .iMessageAppIphone67,
+            .iMessageAppIphone61,
+            .iMessageAppIphone65,
+            .iMessageAppIphone58,
+            .iMessageAppIphone55,
+            .iMessageAppIphone47,
+            .iMessageAppIphone40,
+            .iMessageAppIpadPro3Gen129,
+            .iMessageAppIpadPro3Gen11,
+            .iMessageAppIpadPro129,
+            .iMessageAppIpad105,
+            .iMessageAppIpad97,
+        ]
+    }
 }

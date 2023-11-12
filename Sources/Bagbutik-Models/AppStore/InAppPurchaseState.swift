@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public enum InAppPurchaseState: String, ParameterValue, Codable, CaseIterable {
+public enum InAppPurchaseState: String, ParameterValue, CodableEnum, CaseIterable {
     case missingMetadata = "MISSING_METADATA"
     case waitingForUpload = "WAITING_FOR_UPLOAD"
     case processingContent = "PROCESSING_CONTENT"
@@ -14,4 +14,21 @@ public enum InAppPurchaseState: String, ParameterValue, Codable, CaseIterable {
     case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
     case removedFromSale = "REMOVED_FROM_SALE"
     case rejected = "REJECTED"
+
+    var allCases: [Self] {
+        [
+            .missingMetadata,
+            .waitingForUpload,
+            .processingContent,
+            .readyToSubmit,
+            .waitingForReview,
+            .inReview,
+            .developerActionNeeded,
+            .pendingBinaryApproval,
+            .approved,
+            .developerRemovedFromSale,
+            .removedFromSale,
+            .rejected,
+        ]
+    }
 }

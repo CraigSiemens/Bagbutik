@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/previewtype>
  */
-public enum PreviewType: String, ParameterValue, Codable, CaseIterable {
+public enum PreviewType: String, ParameterValue, CodableEnum, CaseIterable {
     case iPhone67 = "IPHONE_67"
     case iPhone61 = "IPHONE_61"
     case iPhone65 = "IPHONE_65"
@@ -24,4 +24,24 @@ public enum PreviewType: String, ParameterValue, Codable, CaseIterable {
     case iPad97 = "IPAD_97"
     case desktop = "DESKTOP"
     case appleTV = "APPLE_TV"
+
+    var allCases: [Self] {
+        [
+            .iPhone67,
+            .iPhone61,
+            .iPhone65,
+            .iPhone58,
+            .iPhone55,
+            .iPhone47,
+            .iPhone40,
+            .iPhone35,
+            .iPadPro3Gen129,
+            .iPadPro3Gen11,
+            .iPadPro129,
+            .iPad105,
+            .iPad97,
+            .desktop,
+            .appleTV,
+        ]
+    }
 }

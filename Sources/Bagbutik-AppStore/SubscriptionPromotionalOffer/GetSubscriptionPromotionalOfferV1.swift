@@ -36,12 +36,19 @@ public enum GetSubscriptionPromotionalOfferV1 {
         /// The fields to include for returned resources of type subscriptionPromotionalOffers
         case subscriptionPromotionalOffers([SubscriptionPromotionalOffers])
 
-        public enum SubscriptionPromotionalOfferPrices: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPromotionalOfferPrices: String, ParameterValue, CodableEnum, CaseIterable {
             case subscriptionPricePoint
             case territory
+
+            var allCases: [Self] {
+                [
+                    .subscriptionPricePoint,
+                    .territory,
+                ]
+            }
         }
 
-        public enum SubscriptionPromotionalOffers: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPromotionalOffers: String, ParameterValue, CodableEnum, CaseIterable {
             case duration
             case name
             case numberOfPeriods
@@ -49,6 +56,18 @@ public enum GetSubscriptionPromotionalOfferV1 {
             case offerMode
             case prices
             case subscription
+
+            var allCases: [Self] {
+                [
+                    .duration,
+                    .name,
+                    .numberOfPeriods,
+                    .offerCode,
+                    .offerMode,
+                    .prices,
+                    .subscription,
+                ]
+            }
         }
     }
 

@@ -28,7 +28,7 @@ public enum GetAppClipAdvancedExperienceImageV1 {
         /// The fields to include for returned resources of type appClipAdvancedExperienceImages
         case appClipAdvancedExperienceImages([AppClipAdvancedExperienceImages])
 
-        public enum AppClipAdvancedExperienceImages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperienceImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -36,6 +36,18 @@ public enum GetAppClipAdvancedExperienceImageV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 }

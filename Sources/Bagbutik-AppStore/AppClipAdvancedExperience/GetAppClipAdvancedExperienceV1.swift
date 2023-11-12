@@ -34,7 +34,7 @@ public enum GetAppClipAdvancedExperienceV1 {
         /// The fields to include for returned resources of type appClipAdvancedExperiences
         case appClipAdvancedExperiences([AppClipAdvancedExperiences])
 
-        public enum AppClipAdvancedExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperiences: String, ParameterValue, CodableEnum, CaseIterable {
             case action
             case appClip
             case businessCategory
@@ -48,6 +48,24 @@ public enum GetAppClipAdvancedExperienceV1 {
             case removed
             case status
             case version
+
+            var allCases: [Self] {
+                [
+                    .action,
+                    .appClip,
+                    .businessCategory,
+                    .defaultLanguage,
+                    .headerImage,
+                    .isPoweredBy,
+                    .link,
+                    .localizations,
+                    .place,
+                    .placeStatus,
+                    .removed,
+                    .status,
+                    .version,
+                ]
+            }
         }
     }
 

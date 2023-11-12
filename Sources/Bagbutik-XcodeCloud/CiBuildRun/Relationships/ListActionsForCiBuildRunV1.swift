@@ -38,7 +38,7 @@ public enum ListActionsForCiBuildRunV1 {
         /// The fields to include for returned resources of type ciBuildRuns
         case ciBuildRuns([CiBuildRuns])
 
-        public enum CiBuildActions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildActions: String, ParameterValue, CodableEnum, CaseIterable {
             case actionType
             case artifacts
             case buildRun
@@ -51,9 +51,26 @@ public enum ListActionsForCiBuildRunV1 {
             case name
             case startedDate
             case testResults
+
+            var allCases: [Self] {
+                [
+                    .actionType,
+                    .artifacts,
+                    .buildRun,
+                    .completionStatus,
+                    .executionProgress,
+                    .finishedDate,
+                    .isRequiredToPass,
+                    .issueCounts,
+                    .issues,
+                    .name,
+                    .startedDate,
+                    .testResults,
+                ]
+            }
         }
 
-        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildRuns: String, ParameterValue, CodableEnum, CaseIterable {
             case actions
             case buildRun
             case builds
@@ -75,6 +92,32 @@ public enum ListActionsForCiBuildRunV1 {
             case startReason
             case startedDate
             case workflow
+
+            var allCases: [Self] {
+                [
+                    .actions,
+                    .buildRun,
+                    .builds,
+                    .cancelReason,
+                    .clean,
+                    .completionStatus,
+                    .createdDate,
+                    .destinationBranch,
+                    .destinationCommit,
+                    .executionProgress,
+                    .finishedDate,
+                    .isPullRequestBuild,
+                    .issueCounts,
+                    .number,
+                    .product,
+                    .pullRequest,
+                    .sourceBranchOrTag,
+                    .sourceCommit,
+                    .startReason,
+                    .startedDate,
+                    .workflow,
+                ]
+            }
         }
     }
 

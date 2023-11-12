@@ -31,7 +31,7 @@ public enum ListProfilesForBundleIdV1 {
         /// The fields to include for returned resources of type profiles
         case profiles([Profiles])
 
-        public enum Profiles: String, ParameterValue, Codable, CaseIterable {
+        public enum Profiles: String, ParameterValue, CodableEnum, CaseIterable {
             case bundleId
             case certificates
             case createdDate
@@ -43,6 +43,22 @@ public enum ListProfilesForBundleIdV1 {
             case profileState
             case profileType
             case uuid
+
+            var allCases: [Self] {
+                [
+                    .bundleId,
+                    .certificates,
+                    .createdDate,
+                    .devices,
+                    .expirationDate,
+                    .name,
+                    .platform,
+                    .profileContent,
+                    .profileState,
+                    .profileType,
+                    .uuid,
+                ]
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
         /// The fields to include for returned resources of type ageRatingDeclarations
         case ageRatingDeclarations([AgeRatingDeclarations])
 
-        public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AgeRatingDeclarations: String, ParameterValue, CodableEnum, CaseIterable {
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
@@ -48,6 +48,28 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
+
+            var allCases: [Self] {
+                [
+                    .alcoholTobaccoOrDrugUseOrReferences,
+                    .contests,
+                    .gambling,
+                    .gamblingAndContests,
+                    .gamblingSimulated,
+                    .horrorOrFearThemes,
+                    .kidsAgeBand,
+                    .matureOrSuggestiveThemes,
+                    .medicalOrTreatmentInformation,
+                    .profanityOrCrudeHumor,
+                    .seventeenPlus,
+                    .sexualContentGraphicAndNudity,
+                    .sexualContentOrNudity,
+                    .unrestrictedWebAccess,
+                    .violenceCartoonOrFantasy,
+                    .violenceRealistic,
+                    .violenceRealisticProlongedGraphicOrSadistic,
+                ]
+            }
         }
     }
 }

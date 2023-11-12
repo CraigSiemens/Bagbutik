@@ -39,7 +39,7 @@ public enum ListLocalizationsForAppEventV1 {
         /// The fields to include for returned resources of type appEvents
         case appEvents([AppEvents])
 
-        public enum AppEventLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appEvent
             case appEventScreenshots
             case appEventVideoClips
@@ -47,9 +47,21 @@ public enum ListLocalizationsForAppEventV1 {
             case longDescription
             case name
             case shortDescription
+
+            var allCases: [Self] {
+                [
+                    .appEvent,
+                    .appEventScreenshots,
+                    .appEventVideoClips,
+                    .locale,
+                    .longDescription,
+                    .name,
+                    .shortDescription,
+                ]
+            }
         }
 
-        public enum AppEventScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventScreenshots: String, ParameterValue, CodableEnum, CaseIterable {
             case appEventAssetType
             case appEventLocalization
             case assetDeliveryState
@@ -59,9 +71,23 @@ public enum ListLocalizationsForAppEventV1 {
             case imageAsset
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appEventAssetType,
+                    .appEventLocalization,
+                    .assetDeliveryState,
+                    .assetToken,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum AppEventVideoClips: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventVideoClips: String, ParameterValue, CodableEnum, CaseIterable {
             case appEventAssetType
             case appEventLocalization
             case assetDeliveryState
@@ -72,9 +98,24 @@ public enum ListLocalizationsForAppEventV1 {
             case uploadOperations
             case uploaded
             case videoUrl
+
+            var allCases: [Self] {
+                [
+                    .appEventAssetType,
+                    .appEventLocalization,
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .previewFrameTimeCode,
+                    .previewImage,
+                    .uploadOperations,
+                    .uploaded,
+                    .videoUrl,
+                ]
+            }
         }
 
-        public enum AppEvents: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEvents: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case archivedTerritorySchedules
             case badge
@@ -87,6 +128,23 @@ public enum ListLocalizationsForAppEventV1 {
             case purpose
             case referenceName
             case territorySchedules
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .archivedTerritorySchedules,
+                    .badge,
+                    .deepLink,
+                    .eventState,
+                    .localizations,
+                    .primaryLocale,
+                    .priority,
+                    .purchaseRequirement,
+                    .purpose,
+                    .referenceName,
+                    .territorySchedules,
+                ]
+            }
         }
     }
 

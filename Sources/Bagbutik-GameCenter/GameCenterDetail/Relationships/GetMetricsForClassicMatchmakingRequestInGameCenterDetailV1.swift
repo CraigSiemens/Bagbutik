@@ -60,16 +60,30 @@ public enum GetMetricsForClassicMatchmakingRequestInGameCenterDetailV1 {
     /**
      The granularity of the per-group dataset
      */
-    public enum Granularity: String, ParameterValue, Codable, CaseIterable {
+    public enum Granularity: String, ParameterValue, CodableEnum, CaseIterable {
         case P1D
         case PT1H
         case PT15M
+
+        var allCases: [Self] {
+            [
+                .P1D,
+                .PT1H,
+                .PT15M,
+            ]
+        }
     }
 
     /**
      The dimension by which to group the results
      */
-    public enum GroupBy: String, ParameterValue, Codable, CaseIterable {
+    public enum GroupBy: String, ParameterValue, CodableEnum, CaseIterable {
         case result
+
+        var allCases: [Self] {
+            [
+                .result,
+            ]
+        }
     }
 }

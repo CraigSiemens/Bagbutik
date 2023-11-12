@@ -42,7 +42,7 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
 
-        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, CodableEnum, CaseIterable {
             case appIcon
             case appIconName
             case appStoreVersionExperiment
@@ -50,9 +50,21 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
             case appStoreVersionExperimentV2
             case name
             case promotedDate
+
+            var allCases: [Self] {
+                [
+                    .appIcon,
+                    .appIconName,
+                    .appStoreVersionExperiment,
+                    .appStoreVersionExperimentTreatmentLocalizations,
+                    .appStoreVersionExperimentV2,
+                    .name,
+                    .promotedDate,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreVersion
             case appStoreVersionExperimentTreatments
             case endDate
@@ -62,9 +74,23 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
             case started
             case state
             case trafficProportion
+
+            var allCases: [Self] {
+                [
+                    .appStoreVersion,
+                    .appStoreVersionExperimentTreatments,
+                    .endDate,
+                    .name,
+                    .reviewRequired,
+                    .startDate,
+                    .started,
+                    .state,
+                    .trafficProportion,
+                ]
+            }
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -85,6 +111,31 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
             case releaseType
             case routingAppCoverage
             case versionString
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appClipDefaultExperience,
+                    .appStoreReviewDetail,
+                    .appStoreState,
+                    .appStoreVersionExperiments,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersionLocalizations,
+                    .appStoreVersionPhasedRelease,
+                    .appStoreVersionSubmission,
+                    .build,
+                    .copyright,
+                    .createdDate,
+                    .customerReviews,
+                    .downloadable,
+                    .earliestReleaseDate,
+                    .platform,
+                    .releaseType,
+                    .routingAppCoverage,
+                    .versionString,
+                ]
+            }
         }
     }
 
@@ -95,7 +146,7 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String, ParameterValue, CodableEnum, CaseIterable {
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"
@@ -105,6 +156,20 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
             case rejected = "REJECTED"
             case completed = "COMPLETED"
             case stopped = "STOPPED"
+
+            var allCases: [Self] {
+                [
+                    .prepareForSubmission,
+                    .readyForReview,
+                    .waitingForReview,
+                    .inReview,
+                    .accepted,
+                    .approved,
+                    .rejected,
+                    .completed,
+                    .stopped,
+                ]
+            }
         }
     }
 

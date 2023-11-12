@@ -37,7 +37,7 @@ public enum GetCiWorkflowV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildRuns: String, ParameterValue, CodableEnum, CaseIterable {
             case actions
             case buildRun
             case builds
@@ -59,9 +59,35 @@ public enum GetCiWorkflowV1 {
             case startReason
             case startedDate
             case workflow
+
+            var allCases: [Self] {
+                [
+                    .actions,
+                    .buildRun,
+                    .builds,
+                    .cancelReason,
+                    .clean,
+                    .completionStatus,
+                    .createdDate,
+                    .destinationBranch,
+                    .destinationCommit,
+                    .executionProgress,
+                    .finishedDate,
+                    .isPullRequestBuild,
+                    .issueCounts,
+                    .number,
+                    .product,
+                    .pullRequest,
+                    .sourceBranchOrTag,
+                    .sourceCommit,
+                    .startReason,
+                    .startedDate,
+                    .workflow,
+                ]
+            }
         }
 
-        public enum CiWorkflows: String, ParameterValue, Codable, CaseIterable {
+        public enum CiWorkflows: String, ParameterValue, CodableEnum, CaseIterable {
             case actions
             case branchStartCondition
             case buildRuns
@@ -79,9 +105,31 @@ public enum GetCiWorkflowV1 {
             case scheduledStartCondition
             case tagStartCondition
             case xcodeVersion
+
+            var allCases: [Self] {
+                [
+                    .actions,
+                    .branchStartCondition,
+                    .buildRuns,
+                    .clean,
+                    .containerFilePath,
+                    .description,
+                    .isEnabled,
+                    .isLockedForEditing,
+                    .lastModifiedDate,
+                    .macOsVersion,
+                    .name,
+                    .product,
+                    .pullRequestStartCondition,
+                    .repository,
+                    .scheduledStartCondition,
+                    .tagStartCondition,
+                    .xcodeVersion,
+                ]
+            }
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String, ParameterValue, CodableEnum, CaseIterable {
             case defaultBranch
             case gitReferences
             case httpCloneUrl
@@ -91,6 +139,20 @@ public enum GetCiWorkflowV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            var allCases: [Self] {
+                [
+                    .defaultBranch,
+                    .gitReferences,
+                    .httpCloneUrl,
+                    .lastAccessedDate,
+                    .ownerName,
+                    .pullRequests,
+                    .repositoryName,
+                    .scmProvider,
+                    .sshCloneUrl,
+                ]
+            }
         }
     }
 

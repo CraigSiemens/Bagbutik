@@ -40,13 +40,21 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
         /// The fields to include for returned resources of type gameCenterMatchmakingTeams
         case gameCenterMatchmakingTeams([GameCenterMatchmakingTeams])
 
-        public enum GameCenterMatchmakingQueues: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingQueues: String, ParameterValue, CodableEnum, CaseIterable {
             case experimentRuleSet
             case referenceName
             case ruleSet
+
+            var allCases: [Self] {
+                [
+                    .experimentRuleSet,
+                    .referenceName,
+                    .ruleSet,
+                ]
+            }
         }
 
-        public enum GameCenterMatchmakingRuleSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingRuleSets: String, ParameterValue, CodableEnum, CaseIterable {
             case matchmakingQueues
             case maxPlayers
             case minPlayers
@@ -54,22 +62,54 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
             case ruleLanguageVersion
             case rules
             case teams
+
+            var allCases: [Self] {
+                [
+                    .matchmakingQueues,
+                    .maxPlayers,
+                    .minPlayers,
+                    .referenceName,
+                    .ruleLanguageVersion,
+                    .rules,
+                    .teams,
+                ]
+            }
         }
 
-        public enum GameCenterMatchmakingRules: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingRules: String, ParameterValue, CodableEnum, CaseIterable {
             case description
             case expression
             case referenceName
             case ruleSet
             case type
             case weight
+
+            var allCases: [Self] {
+                [
+                    .description,
+                    .expression,
+                    .referenceName,
+                    .ruleSet,
+                    .type,
+                    .weight,
+                ]
+            }
         }
 
-        public enum GameCenterMatchmakingTeams: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingTeams: String, ParameterValue, CodableEnum, CaseIterable {
             case maxPlayers
             case minPlayers
             case referenceName
             case ruleSet
+
+            var allCases: [Self] {
+                [
+                    .maxPlayers,
+                    .minPlayers,
+                    .referenceName,
+                    .ruleSet,
+                ]
+            }
         }
     }
 

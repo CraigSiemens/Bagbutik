@@ -44,7 +44,7 @@ public enum ListAppInfosForAppV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AgeRatingDeclarations: String, ParameterValue, CodableEnum, CaseIterable {
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
@@ -62,15 +62,45 @@ public enum ListAppInfosForAppV1 {
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
+
+            var allCases: [Self] {
+                [
+                    .alcoholTobaccoOrDrugUseOrReferences,
+                    .contests,
+                    .gambling,
+                    .gamblingAndContests,
+                    .gamblingSimulated,
+                    .horrorOrFearThemes,
+                    .kidsAgeBand,
+                    .matureOrSuggestiveThemes,
+                    .medicalOrTreatmentInformation,
+                    .profanityOrCrudeHumor,
+                    .seventeenPlus,
+                    .sexualContentGraphicAndNudity,
+                    .sexualContentOrNudity,
+                    .unrestrictedWebAccess,
+                    .violenceCartoonOrFantasy,
+                    .violenceRealistic,
+                    .violenceRealisticProlongedGraphicOrSadistic,
+                ]
+            }
         }
 
-        public enum AppCategories: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCategories: String, ParameterValue, CodableEnum, CaseIterable {
             case parent
             case platforms
             case subcategories
+
+            var allCases: [Self] {
+                [
+                    .parent,
+                    .platforms,
+                    .subcategories,
+                ]
+            }
         }
 
-        public enum AppInfoLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfoLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appInfo
             case locale
             case name
@@ -78,9 +108,21 @@ public enum ListAppInfosForAppV1 {
             case privacyPolicyText
             case privacyPolicyUrl
             case subtitle
+
+            var allCases: [Self] {
+                [
+                    .appInfo,
+                    .locale,
+                    .name,
+                    .privacyChoicesUrl,
+                    .privacyPolicyText,
+                    .privacyPolicyUrl,
+                    .subtitle,
+                ]
+            }
         }
 
-        public enum AppInfos: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfos: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appInfoLocalizations
@@ -95,9 +137,28 @@ public enum ListAppInfosForAppV1 {
             case secondaryCategory
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appInfoLocalizations,
+                    .appStoreAgeRating,
+                    .appStoreState,
+                    .brazilAgeRating,
+                    .brazilAgeRatingV2,
+                    .kidsAgeBand,
+                    .primaryCategory,
+                    .primarySubcategoryOne,
+                    .primarySubcategoryTwo,
+                    .secondaryCategory,
+                    .secondarySubcategoryOne,
+                    .secondarySubcategoryTwo,
+                ]
+            }
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -142,6 +203,55 @@ public enum ListAppInfosForAppV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
     }
 

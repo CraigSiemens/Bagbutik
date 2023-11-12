@@ -70,7 +70,36 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
             self.trafficProportion = trafficProportion
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            endDate = try container.decodeIfPresent(Date.self, forKey: .endDate)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            reviewRequired = try container.decodeIfPresent(Bool.self, forKey: .reviewRequired)
+            startDate = try container.decodeIfPresent(Date.self, forKey: .startDate)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+            trafficProportion = try container.decodeIfPresent(Int.self, forKey: .trafficProportion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(endDate, forKey: .endDate)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(reviewRequired, forKey: .reviewRequired)
+            try container.encodeIfPresent(startDate, forKey: .startDate)
+            try container.encodeIfPresent(state, forKey: .state)
+            try container.encodeIfPresent(trafficProportion, forKey: .trafficProportion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case endDate
+            case name
+            case reviewRequired
+            case startDate
+            case state
+            case trafficProportion
+        }
+
+        public enum State: String, CodableEnum, CaseIterable {
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"
@@ -80,6 +109,20 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
             case rejected = "REJECTED"
             case completed = "COMPLETED"
             case stopped = "STOPPED"
+
+            var allCases: [Self] {
+                [
+                    .prepareForSubmission,
+                    .readyForReview,
+                    .waitingForReview,
+                    .inReview,
+                    .accepted,
+                    .approved,
+                    .rejected,
+                    .completed,
+                    .stopped,
+                ]
+            }
         }
     }
 
@@ -92,6 +135,23 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
         {
             self.appStoreVersion = appStoreVersion
             self.appStoreVersionExperimentTreatments = appStoreVersionExperimentTreatments
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: .appStoreVersion)
+            appStoreVersionExperimentTreatments = try container.decodeIfPresent(AppStoreVersionExperimentTreatments.self, forKey: .appStoreVersionExperimentTreatments)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
+            try container.encodeIfPresent(appStoreVersionExperimentTreatments, forKey: .appStoreVersionExperimentTreatments)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreVersion
+            case appStoreVersionExperimentTreatments
         }
 
         public struct AppStoreVersion: Codable {

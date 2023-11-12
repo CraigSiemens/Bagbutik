@@ -8,6 +8,20 @@ public struct InAppPurchaseV2CreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "inAppPurchases" }
         public let attributes: Attributes
@@ -79,6 +93,35 @@ public struct InAppPurchaseV2CreateRequest: Codable, RequestBody {
                 self.productId = productId
                 self.reviewNote = reviewNote
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                availableInAllTerritories = try container.decodeIfPresent(Bool.self, forKey: .availableInAllTerritories)
+                familySharable = try container.decodeIfPresent(Bool.self, forKey: .familySharable)
+                inAppPurchaseType = try container.decode(InAppPurchaseType.self, forKey: .inAppPurchaseType)
+                name = try container.decode(String.self, forKey: .name)
+                productId = try container.decode(String.self, forKey: .productId)
+                reviewNote = try container.decodeIfPresent(String.self, forKey: .reviewNote)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(availableInAllTerritories, forKey: .availableInAllTerritories)
+                try container.encodeIfPresent(familySharable, forKey: .familySharable)
+                try container.encode(inAppPurchaseType, forKey: .inAppPurchaseType)
+                try container.encode(name, forKey: .name)
+                try container.encode(productId, forKey: .productId)
+                try container.encodeIfPresent(reviewNote, forKey: .reviewNote)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case availableInAllTerritories
+                case familySharable
+                case inAppPurchaseType
+                case name
+                case productId
+                case reviewNote
+            }
         }
 
         public struct Relationships: Codable {
@@ -88,11 +131,39 @@ public struct InAppPurchaseV2CreateRequest: Codable, RequestBody {
                 self.app = app
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+            }
+
             public struct App: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

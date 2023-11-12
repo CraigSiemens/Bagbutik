@@ -38,7 +38,7 @@ public enum ListLocalizationsForGameCenterLeaderboardV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
-        public enum GameCenterLeaderboardImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -46,9 +46,21 @@ public enum ListLocalizationsForGameCenterLeaderboardV1 {
             case imageAsset
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .gameCenterLeaderboardLocalization,
+                    .imageAsset,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case formatterOverride
             case formatterSuffix
             case formatterSuffixSingular
@@ -56,9 +68,21 @@ public enum ListLocalizationsForGameCenterLeaderboardV1 {
             case gameCenterLeaderboardImage
             case locale
             case name
+
+            var allCases: [Self] {
+                [
+                    .formatterOverride,
+                    .formatterSuffix,
+                    .formatterSuffixSingular,
+                    .gameCenterLeaderboard,
+                    .gameCenterLeaderboardImage,
+                    .locale,
+                    .name,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboards: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboards: String, ParameterValue, CodableEnum, CaseIterable {
             case archived
             case defaultFormatter
             case gameCenterDetail
@@ -76,6 +100,28 @@ public enum ListLocalizationsForGameCenterLeaderboardV1 {
             case scoreSortType
             case submissionType
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .archived,
+                    .defaultFormatter,
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboardSets,
+                    .groupLeaderboard,
+                    .localizations,
+                    .recurrenceDuration,
+                    .recurrenceRule,
+                    .recurrenceStartDate,
+                    .referenceName,
+                    .releases,
+                    .scoreRangeEnd,
+                    .scoreRangeStart,
+                    .scoreSortType,
+                    .submissionType,
+                    .vendorIdentifier,
+                ]
+            }
         }
     }
 

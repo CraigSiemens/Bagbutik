@@ -28,12 +28,22 @@ public enum GetActorV1 {
         /// The fields to include for returned resources of type actors
         case actors([Actors])
 
-        public enum Actors: String, ParameterValue, Codable, CaseIterable {
+        public enum Actors: String, ParameterValue, CodableEnum, CaseIterable {
             case actorType
             case apiKeyId
             case userEmail
             case userFirstName
             case userLastName
+
+            var allCases: [Self] {
+                [
+                    .actorType,
+                    .apiKeyId,
+                    .userEmail,
+                    .userFirstName,
+                    .userLastName,
+                ]
+            }
         }
     }
 }

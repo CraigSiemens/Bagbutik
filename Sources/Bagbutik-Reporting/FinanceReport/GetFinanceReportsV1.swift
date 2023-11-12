@@ -35,9 +35,16 @@ public enum GetFinanceReportsV1 {
         /// Filter by attribute 'vendorNumber'
         case vendorNumber([String])
 
-        public enum ReportType: String, ParameterValue, Codable, CaseIterable {
+        public enum ReportType: String, ParameterValue, CodableEnum, CaseIterable {
             case financial = "FINANCIAL"
             case financeDetail = "FINANCE_DETAIL"
+
+            var allCases: [Self] {
+                [
+                    .financial,
+                    .financeDetail,
+                ]
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciactiontype>
  */
-public enum CiActionType: String, Codable, CaseIterable {
+public enum CiActionType: String, CodableEnum, CaseIterable {
     /// The action is a build action.
     case build = "BUILD"
     /// The action is an analyze action.
@@ -17,4 +17,13 @@ public enum CiActionType: String, Codable, CaseIterable {
     case test = "TEST"
     /// The action is an archive action.
     case archive = "ARCHIVE"
+
+    var allCases: [Self] {
+        [
+            .build,
+            .analyze,
+            .test,
+            .archive,
+        ]
+    }
 }

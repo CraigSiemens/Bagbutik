@@ -43,7 +43,7 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
 
-        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, CodableEnum, CaseIterable {
             case appEncryptionDeclaration
             case assetDeliveryState
             case assetToken
@@ -53,9 +53,23 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appEncryptionDeclaration,
+                    .assetDeliveryState,
+                    .assetToken,
+                    .downloadUrl,
+                    .fileName,
+                    .fileSize,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appDescription
             case appEncryptionDeclarationDocument
@@ -73,9 +87,31 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case platform
             case uploadedDate
             case usesEncryption
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appDescription,
+                    .appEncryptionDeclarationDocument,
+                    .appEncryptionDeclarationState,
+                    .availableOnFrenchStore,
+                    .builds,
+                    .codeValue,
+                    .containsProprietaryCryptography,
+                    .containsThirdPartyCryptography,
+                    .createdDate,
+                    .documentName,
+                    .documentType,
+                    .documentUrl,
+                    .exempt,
+                    .platform,
+                    .uploadedDate,
+                    .usesEncryption,
+                ]
+            }
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -120,9 +156,58 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -147,6 +232,35 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appEncryptionDeclaration,
+                    .appStoreVersion,
+                    .betaAppReviewSubmission,
+                    .betaBuildLocalizations,
+                    .betaGroups,
+                    .buildAudienceType,
+                    .buildBetaDetail,
+                    .buildBundles,
+                    .computedMinMacOsVersion,
+                    .diagnosticSignatures,
+                    .expirationDate,
+                    .expired,
+                    .iconAssetToken,
+                    .icons,
+                    .individualTesters,
+                    .lsMinimumSystemVersion,
+                    .minOsVersion,
+                    .perfPowerMetrics,
+                    .preReleaseVersion,
+                    .processingState,
+                    .uploadedDate,
+                    .usesNonExemptEncryption,
+                    .version,
+                ]
+            }
         }
     }
 

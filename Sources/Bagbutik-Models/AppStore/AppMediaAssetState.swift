@@ -22,10 +22,39 @@ public struct AppMediaAssetState: Codable {
         self.warnings = warnings
     }
 
-    public enum State: String, Codable, CaseIterable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        errors = try container.decodeIfPresent([AppMediaStateError].self, forKey: .errors)
+        state = try container.decodeIfPresent(State.self, forKey: .state)
+        warnings = try container.decodeIfPresent([AppMediaStateError].self, forKey: .warnings)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(errors, forKey: .errors)
+        try container.encodeIfPresent(state, forKey: .state)
+        try container.encodeIfPresent(warnings, forKey: .warnings)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case errors
+        case state
+        case warnings
+    }
+
+    public enum State: String, CodableEnum, CaseIterable {
         case awaitingUpload = "AWAITING_UPLOAD"
         case uploadComplete = "UPLOAD_COMPLETE"
         case complete = "COMPLETE"
         case failed = "FAILED"
+
+        var allCases: [Self] {
+            [
+                .awaitingUpload,
+                .uploadComplete,
+                .complete,
+                .failed,
+            ]
+        }
     }
 }

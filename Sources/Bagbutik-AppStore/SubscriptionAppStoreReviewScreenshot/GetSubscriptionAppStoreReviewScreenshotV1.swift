@@ -31,7 +31,7 @@ public enum GetSubscriptionAppStoreReviewScreenshotV1 {
         /// The fields to include for returned resources of type subscriptionAppStoreReviewScreenshots
         case subscriptionAppStoreReviewScreenshots([SubscriptionAppStoreReviewScreenshots])
 
-        public enum SubscriptionAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionAppStoreReviewScreenshots: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -42,6 +42,21 @@ public enum GetSubscriptionAppStoreReviewScreenshotV1 {
             case subscription
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .assetToken,
+                    .assetType,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .sourceFileChecksum,
+                    .subscription,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 

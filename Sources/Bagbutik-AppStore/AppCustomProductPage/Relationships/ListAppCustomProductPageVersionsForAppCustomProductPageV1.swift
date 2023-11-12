@@ -40,22 +40,41 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
         /// The fields to include for returned resources of type appCustomProductPages
         case appCustomProductPages([AppCustomProductPages])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
             case locale
             case promotionalText
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageVersion,
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .locale,
+                    .promotionalText,
+                ]
+            }
         }
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case state
             case version
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPage,
+                    .appCustomProductPageLocalizations,
+                    .state,
+                    .version,
+                ]
+            }
         }
 
-        public enum AppCustomProductPages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPages: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appCustomProductPageVersions
             case appStoreVersionTemplate
@@ -63,6 +82,18 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case name
             case url
             case visible
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appCustomProductPageVersions,
+                    .appStoreVersionTemplate,
+                    .customProductPageTemplate,
+                    .name,
+                    .url,
+                    .visible,
+                ]
+            }
         }
     }
 
@@ -73,7 +104,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String, ParameterValue, CodableEnum, CaseIterable {
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"
@@ -82,6 +113,19 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case approved = "APPROVED"
             case replacedWithNewVersion = "REPLACED_WITH_NEW_VERSION"
             case rejected = "REJECTED"
+
+            var allCases: [Self] {
+                [
+                    .prepareForSubmission,
+                    .readyForReview,
+                    .waitingForReview,
+                    .inReview,
+                    .accepted,
+                    .approved,
+                    .replacedWithNewVersion,
+                    .rejected,
+                ]
+            }
         }
     }
 

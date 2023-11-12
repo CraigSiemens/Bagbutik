@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public enum SubscriptionOfferDuration: String, Codable, CaseIterable {
+public enum SubscriptionOfferDuration: String, CodableEnum, CaseIterable {
     case oneDay = "ONE_DAY"
     case threeDays = "THREE_DAYS"
     case oneWeek = "ONE_WEEK"
@@ -11,4 +11,18 @@ public enum SubscriptionOfferDuration: String, Codable, CaseIterable {
     case threeMonths = "THREE_MONTHS"
     case sixMonths = "SIX_MONTHS"
     case oneYear = "ONE_YEAR"
+
+    var allCases: [Self] {
+        [
+            .oneDay,
+            .threeDays,
+            .oneWeek,
+            .twoWeeks,
+            .oneMonth,
+            .twoMonths,
+            .threeMonths,
+            .sixMonths,
+            .oneYear,
+        ]
+    }
 }

@@ -95,7 +95,42 @@ public struct Subscription: Codable, Identifiable {
             self.subscriptionPeriod = subscriptionPeriod
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            availableInAllTerritories = try container.decodeIfPresent(Bool.self, forKey: .availableInAllTerritories)
+            familySharable = try container.decodeIfPresent(Bool.self, forKey: .familySharable)
+            groupLevel = try container.decodeIfPresent(Int.self, forKey: .groupLevel)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            productId = try container.decodeIfPresent(String.self, forKey: .productId)
+            reviewNote = try container.decodeIfPresent(String.self, forKey: .reviewNote)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+            subscriptionPeriod = try container.decodeIfPresent(SubscriptionPeriod.self, forKey: .subscriptionPeriod)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(availableInAllTerritories, forKey: .availableInAllTerritories)
+            try container.encodeIfPresent(familySharable, forKey: .familySharable)
+            try container.encodeIfPresent(groupLevel, forKey: .groupLevel)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(productId, forKey: .productId)
+            try container.encodeIfPresent(reviewNote, forKey: .reviewNote)
+            try container.encodeIfPresent(state, forKey: .state)
+            try container.encodeIfPresent(subscriptionPeriod, forKey: .subscriptionPeriod)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case availableInAllTerritories
+            case familySharable
+            case groupLevel
+            case name
+            case productId
+            case reviewNote
+            case state
+            case subscriptionPeriod
+        }
+
+        public enum State: String, CodableEnum, CaseIterable {
             case missingMetadata = "MISSING_METADATA"
             case readyToSubmit = "READY_TO_SUBMIT"
             case waitingForReview = "WAITING_FOR_REVIEW"
@@ -106,15 +141,41 @@ public struct Subscription: Codable, Identifiable {
             case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
             case removedFromSale = "REMOVED_FROM_SALE"
             case rejected = "REJECTED"
+
+            var allCases: [Self] {
+                [
+                    .missingMetadata,
+                    .readyToSubmit,
+                    .waitingForReview,
+                    .inReview,
+                    .developerActionNeeded,
+                    .pendingBinaryApproval,
+                    .approved,
+                    .developerRemovedFromSale,
+                    .removedFromSale,
+                    .rejected,
+                ]
+            }
         }
 
-        public enum SubscriptionPeriod: String, Codable, CaseIterable {
+        public enum SubscriptionPeriod: String, CodableEnum, CaseIterable {
             case oneWeek = "ONE_WEEK"
             case oneMonth = "ONE_MONTH"
             case twoMonths = "TWO_MONTHS"
             case threeMonths = "THREE_MONTHS"
             case sixMonths = "SIX_MONTHS"
             case oneYear = "ONE_YEAR"
+
+            var allCases: [Self] {
+                [
+                    .oneWeek,
+                    .oneMonth,
+                    .twoMonths,
+                    .threeMonths,
+                    .sixMonths,
+                    .oneYear,
+                ]
+            }
         }
     }
 
@@ -148,6 +209,44 @@ public struct Subscription: Codable, Identifiable {
             self.promotionalOffers = promotionalOffers
             self.subscriptionAvailability = subscriptionAvailability
             self.subscriptionLocalizations = subscriptionLocalizations
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreReviewScreenshot = try container.decodeIfPresent(AppStoreReviewScreenshot.self, forKey: .appStoreReviewScreenshot)
+            group = try container.decodeIfPresent(Group.self, forKey: .group)
+            introductoryOffers = try container.decodeIfPresent(IntroductoryOffers.self, forKey: .introductoryOffers)
+            offerCodes = try container.decodeIfPresent(OfferCodes.self, forKey: .offerCodes)
+            prices = try container.decodeIfPresent(Prices.self, forKey: .prices)
+            promotedPurchase = try container.decodeIfPresent(PromotedPurchase.self, forKey: .promotedPurchase)
+            promotionalOffers = try container.decodeIfPresent(PromotionalOffers.self, forKey: .promotionalOffers)
+            subscriptionAvailability = try container.decodeIfPresent(SubscriptionAvailability.self, forKey: .subscriptionAvailability)
+            subscriptionLocalizations = try container.decodeIfPresent(SubscriptionLocalizations.self, forKey: .subscriptionLocalizations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreReviewScreenshot, forKey: .appStoreReviewScreenshot)
+            try container.encodeIfPresent(group, forKey: .group)
+            try container.encodeIfPresent(introductoryOffers, forKey: .introductoryOffers)
+            try container.encodeIfPresent(offerCodes, forKey: .offerCodes)
+            try container.encodeIfPresent(prices, forKey: .prices)
+            try container.encodeIfPresent(promotedPurchase, forKey: .promotedPurchase)
+            try container.encodeIfPresent(promotionalOffers, forKey: .promotionalOffers)
+            try container.encodeIfPresent(subscriptionAvailability, forKey: .subscriptionAvailability)
+            try container.encodeIfPresent(subscriptionLocalizations, forKey: .subscriptionLocalizations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreReviewScreenshot
+            case group
+            case introductoryOffers
+            case offerCodes
+            case prices
+            case promotedPurchase
+            case promotionalOffers
+            case subscriptionAvailability
+            case subscriptionLocalizations
         }
 
         public struct AppStoreReviewScreenshot: Codable {

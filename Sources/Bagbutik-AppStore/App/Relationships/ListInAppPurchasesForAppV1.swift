@@ -43,7 +43,7 @@ public enum ListInAppPurchasesForAppV1 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -88,14 +88,73 @@ public enum ListInAppPurchasesForAppV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case apps
             case inAppPurchaseType
             case productId
             case referenceName
             case state
+
+            var allCases: [Self] {
+                [
+                    .apps,
+                    .inAppPurchaseType,
+                    .productId,
+                    .referenceName,
+                    .state,
+                ]
+            }
         }
     }
 
@@ -108,12 +167,22 @@ public enum ListInAppPurchasesForAppV1 {
         /// Filter by attribute 'inAppPurchaseType'
         case inAppPurchaseType([InAppPurchaseType])
 
-        public enum InAppPurchaseType: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseType: String, ParameterValue, CodableEnum, CaseIterable {
             case automaticallyRenewableSubscription = "AUTOMATICALLY_RENEWABLE_SUBSCRIPTION"
             case nonConsumable = "NON_CONSUMABLE"
             case consumable = "CONSUMABLE"
             case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
             case freeSubscription = "FREE_SUBSCRIPTION"
+
+            var allCases: [Self] {
+                [
+                    .automaticallyRenewableSubscription,
+                    .nonConsumable,
+                    .consumable,
+                    .nonRenewingSubscription,
+                    .freeSubscription,
+                ]
+            }
         }
     }
 

@@ -43,7 +43,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppStoreVersionV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, CodableEnum, CaseIterable {
             case appIcon
             case appIconName
             case appStoreVersionExperiment
@@ -51,9 +51,21 @@ public enum ListAppStoreVersionExperimentsV2ForAppStoreVersionV1 {
             case appStoreVersionExperimentV2
             case name
             case promotedDate
+
+            var allCases: [Self] {
+                [
+                    .appIcon,
+                    .appIconName,
+                    .appStoreVersionExperiment,
+                    .appStoreVersionExperimentTreatmentLocalizations,
+                    .appStoreVersionExperimentV2,
+                    .name,
+                    .promotedDate,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreVersionExperimentTreatments
             case controlVersions
@@ -66,9 +78,26 @@ public enum ListAppStoreVersionExperimentsV2ForAppStoreVersionV1 {
             case started
             case state
             case trafficProportion
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreVersionExperimentTreatments,
+                    .controlVersions,
+                    .endDate,
+                    .latestControlVersion,
+                    .name,
+                    .platform,
+                    .reviewRequired,
+                    .startDate,
+                    .started,
+                    .state,
+                    .trafficProportion,
+                ]
+            }
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -89,9 +118,34 @@ public enum ListAppStoreVersionExperimentsV2ForAppStoreVersionV1 {
             case releaseType
             case routingAppCoverage
             case versionString
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appClipDefaultExperience,
+                    .appStoreReviewDetail,
+                    .appStoreState,
+                    .appStoreVersionExperiments,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersionLocalizations,
+                    .appStoreVersionPhasedRelease,
+                    .appStoreVersionSubmission,
+                    .build,
+                    .copyright,
+                    .createdDate,
+                    .customerReviews,
+                    .downloadable,
+                    .earliestReleaseDate,
+                    .platform,
+                    .releaseType,
+                    .routingAppCoverage,
+                    .versionString,
+                ]
+            }
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -136,6 +190,55 @@ public enum ListAppStoreVersionExperimentsV2ForAppStoreVersionV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
     }
 
@@ -146,7 +249,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppStoreVersionV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String, ParameterValue, CodableEnum, CaseIterable {
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"
@@ -156,6 +259,20 @@ public enum ListAppStoreVersionExperimentsV2ForAppStoreVersionV1 {
             case rejected = "REJECTED"
             case completed = "COMPLETED"
             case stopped = "STOPPED"
+
+            var allCases: [Self] {
+                [
+                    .prepareForSubmission,
+                    .readyForReview,
+                    .waitingForReview,
+                    .inReview,
+                    .accepted,
+                    .approved,
+                    .rejected,
+                    .completed,
+                    .stopped,
+                ]
+            }
         }
     }
 

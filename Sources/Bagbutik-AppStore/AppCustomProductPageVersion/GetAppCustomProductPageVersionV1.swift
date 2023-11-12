@@ -35,19 +35,38 @@ public enum GetAppCustomProductPageVersionV1 {
         /// The fields to include for returned resources of type appCustomProductPageVersions
         case appCustomProductPageVersions([AppCustomProductPageVersions])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
             case locale
             case promotionalText
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageVersion,
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .locale,
+                    .promotionalText,
+                ]
+            }
         }
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case state
             case version
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPage,
+                    .appCustomProductPageLocalizations,
+                    .state,
+                    .version,
+                ]
+            }
         }
     }
 

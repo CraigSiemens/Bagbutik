@@ -8,7 +8,14 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betainvitetype>
  */
-public enum BetaInviteType: String, ParameterValue, Codable, CaseIterable {
+public enum BetaInviteType: String, ParameterValue, CodableEnum, CaseIterable {
     case email = "EMAIL"
     case publicLink = "PUBLIC_LINK"
+
+    var allCases: [Self] {
+        [
+            .email,
+            .publicLink,
+        ]
+    }
 }

@@ -47,7 +47,7 @@ public enum ListBuildRunsForCiProductV1 {
         /// The fields to include for returned resources of type scmPullRequests
         case scmPullRequests([ScmPullRequests])
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -72,9 +72,38 @@ public enum ListBuildRunsForCiProductV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appEncryptionDeclaration,
+                    .appStoreVersion,
+                    .betaAppReviewSubmission,
+                    .betaBuildLocalizations,
+                    .betaGroups,
+                    .buildAudienceType,
+                    .buildBetaDetail,
+                    .buildBundles,
+                    .computedMinMacOsVersion,
+                    .diagnosticSignatures,
+                    .expirationDate,
+                    .expired,
+                    .iconAssetToken,
+                    .icons,
+                    .individualTesters,
+                    .lsMinimumSystemVersion,
+                    .minOsVersion,
+                    .perfPowerMetrics,
+                    .preReleaseVersion,
+                    .processingState,
+                    .uploadedDate,
+                    .usesNonExemptEncryption,
+                    .version,
+                ]
+            }
         }
 
-        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildRuns: String, ParameterValue, CodableEnum, CaseIterable {
             case actions
             case buildRun
             case builds
@@ -96,9 +125,35 @@ public enum ListBuildRunsForCiProductV1 {
             case startReason
             case startedDate
             case workflow
+
+            var allCases: [Self] {
+                [
+                    .actions,
+                    .buildRun,
+                    .builds,
+                    .cancelReason,
+                    .clean,
+                    .completionStatus,
+                    .createdDate,
+                    .destinationBranch,
+                    .destinationCommit,
+                    .executionProgress,
+                    .finishedDate,
+                    .isPullRequestBuild,
+                    .issueCounts,
+                    .number,
+                    .product,
+                    .pullRequest,
+                    .sourceBranchOrTag,
+                    .sourceCommit,
+                    .startReason,
+                    .startedDate,
+                    .workflow,
+                ]
+            }
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String, ParameterValue, CodableEnum, CaseIterable {
             case additionalRepositories
             case app
             case buildRuns
@@ -108,9 +163,23 @@ public enum ListBuildRunsForCiProductV1 {
             case primaryRepositories
             case productType
             case workflows
+
+            var allCases: [Self] {
+                [
+                    .additionalRepositories,
+                    .app,
+                    .buildRuns,
+                    .bundleId,
+                    .createdDate,
+                    .name,
+                    .primaryRepositories,
+                    .productType,
+                    .workflows,
+                ]
+            }
         }
 
-        public enum CiWorkflows: String, ParameterValue, Codable, CaseIterable {
+        public enum CiWorkflows: String, ParameterValue, CodableEnum, CaseIterable {
             case actions
             case branchStartCondition
             case buildRuns
@@ -128,17 +197,49 @@ public enum ListBuildRunsForCiProductV1 {
             case scheduledStartCondition
             case tagStartCondition
             case xcodeVersion
+
+            var allCases: [Self] {
+                [
+                    .actions,
+                    .branchStartCondition,
+                    .buildRuns,
+                    .clean,
+                    .containerFilePath,
+                    .description,
+                    .isEnabled,
+                    .isLockedForEditing,
+                    .lastModifiedDate,
+                    .macOsVersion,
+                    .name,
+                    .product,
+                    .pullRequestStartCondition,
+                    .repository,
+                    .scheduledStartCondition,
+                    .tagStartCondition,
+                    .xcodeVersion,
+                ]
+            }
         }
 
-        public enum ScmGitReferences: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmGitReferences: String, ParameterValue, CodableEnum, CaseIterable {
             case canonicalName
             case isDeleted
             case kind
             case name
             case repository
+
+            var allCases: [Self] {
+                [
+                    .canonicalName,
+                    .isDeleted,
+                    .kind,
+                    .name,
+                    .repository,
+                ]
+            }
         }
 
-        public enum ScmPullRequests: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmPullRequests: String, ParameterValue, CodableEnum, CaseIterable {
             case destinationBranchName
             case destinationRepositoryName
             case destinationRepositoryOwner
@@ -151,6 +252,23 @@ public enum ListBuildRunsForCiProductV1 {
             case sourceRepositoryOwner
             case title
             case webUrl
+
+            var allCases: [Self] {
+                [
+                    .destinationBranchName,
+                    .destinationRepositoryName,
+                    .destinationRepositoryOwner,
+                    .isClosed,
+                    .isCrossRepository,
+                    .number,
+                    .repository,
+                    .sourceBranchName,
+                    .sourceRepositoryName,
+                    .sourceRepositoryOwner,
+                    .title,
+                    .webUrl,
+                ]
+            }
         }
     }
 

@@ -38,7 +38,7 @@ public enum GetAppClipV1 {
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
 
-        public enum AppClipAdvancedExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperiences: String, ParameterValue, CodableEnum, CaseIterable {
             case action
             case appClip
             case businessCategory
@@ -52,22 +52,60 @@ public enum GetAppClipV1 {
             case removed
             case status
             case version
+
+            var allCases: [Self] {
+                [
+                    .action,
+                    .appClip,
+                    .businessCategory,
+                    .defaultLanguage,
+                    .headerImage,
+                    .isPoweredBy,
+                    .link,
+                    .localizations,
+                    .place,
+                    .placeStatus,
+                    .removed,
+                    .status,
+                    .version,
+                ]
+            }
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperiences: String, ParameterValue, CodableEnum, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
             case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
+
+            var allCases: [Self] {
+                [
+                    .action,
+                    .appClip,
+                    .appClipAppStoreReviewDetail,
+                    .appClipDefaultExperienceLocalizations,
+                    .appClipDefaultExperienceTemplate,
+                    .releaseWithAppStoreVersion,
+                ]
+            }
         }
 
-        public enum AppClips: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClips: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appClipAdvancedExperiences,
+                    .appClipDefaultExperiences,
+                    .bundleId,
+                ]
+            }
         }
     }
 

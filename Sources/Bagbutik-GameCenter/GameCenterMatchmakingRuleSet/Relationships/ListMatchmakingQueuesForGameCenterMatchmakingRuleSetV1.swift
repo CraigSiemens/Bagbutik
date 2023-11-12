@@ -36,13 +36,21 @@ public enum ListMatchmakingQueuesForGameCenterMatchmakingRuleSetV1 {
         /// The fields to include for returned resources of type gameCenterMatchmakingRuleSets
         case gameCenterMatchmakingRuleSets([GameCenterMatchmakingRuleSets])
 
-        public enum GameCenterMatchmakingQueues: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingQueues: String, ParameterValue, CodableEnum, CaseIterable {
             case experimentRuleSet
             case referenceName
             case ruleSet
+
+            var allCases: [Self] {
+                [
+                    .experimentRuleSet,
+                    .referenceName,
+                    .ruleSet,
+                ]
+            }
         }
 
-        public enum GameCenterMatchmakingRuleSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingRuleSets: String, ParameterValue, CodableEnum, CaseIterable {
             case matchmakingQueues
             case maxPlayers
             case minPlayers
@@ -50,6 +58,18 @@ public enum ListMatchmakingQueuesForGameCenterMatchmakingRuleSetV1 {
             case ruleLanguageVersion
             case rules
             case teams
+
+            var allCases: [Self] {
+                [
+                    .matchmakingQueues,
+                    .maxPlayers,
+                    .minPlayers,
+                    .referenceName,
+                    .ruleLanguageVersion,
+                    .rules,
+                    .teams,
+                ]
+            }
         }
     }
 

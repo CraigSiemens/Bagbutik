@@ -36,7 +36,7 @@ public enum ListPullRequestsForScmRepositoryV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum ScmPullRequests: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmPullRequests: String, ParameterValue, CodableEnum, CaseIterable {
             case destinationBranchName
             case destinationRepositoryName
             case destinationRepositoryOwner
@@ -49,9 +49,26 @@ public enum ListPullRequestsForScmRepositoryV1 {
             case sourceRepositoryOwner
             case title
             case webUrl
+
+            var allCases: [Self] {
+                [
+                    .destinationBranchName,
+                    .destinationRepositoryName,
+                    .destinationRepositoryOwner,
+                    .isClosed,
+                    .isCrossRepository,
+                    .number,
+                    .repository,
+                    .sourceBranchName,
+                    .sourceRepositoryName,
+                    .sourceRepositoryOwner,
+                    .title,
+                    .webUrl,
+                ]
+            }
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String, ParameterValue, CodableEnum, CaseIterable {
             case defaultBranch
             case gitReferences
             case httpCloneUrl
@@ -61,6 +78,20 @@ public enum ListPullRequestsForScmRepositoryV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            var allCases: [Self] {
+                [
+                    .defaultBranch,
+                    .gitReferences,
+                    .httpCloneUrl,
+                    .lastAccessedDate,
+                    .ownerName,
+                    .pullRequests,
+                    .repositoryName,
+                    .scmProvider,
+                    .sshCloneUrl,
+                ]
+            }
         }
     }
 

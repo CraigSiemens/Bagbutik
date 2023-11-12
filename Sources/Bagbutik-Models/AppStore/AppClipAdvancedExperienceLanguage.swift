@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelanguage>
  */
-public enum AppClipAdvancedExperienceLanguage: String, Codable, CaseIterable {
+public enum AppClipAdvancedExperienceLanguage: String, CodableEnum, CaseIterable {
     case ar = "AR"
     case ca = "CA"
     case cs = "CS"
@@ -41,4 +41,41 @@ public enum AppClipAdvancedExperienceLanguage: String, Codable, CaseIterable {
     case uk = "UK"
     case vi = "VI"
     case zh = "ZH"
+
+    var allCases: [Self] {
+        [
+            .ar,
+            .ca,
+            .cs,
+            .da,
+            .de,
+            .el,
+            .en,
+            .es,
+            .fi,
+            .fr,
+            .he,
+            .hi,
+            .hr,
+            .hu,
+            .id,
+            .it,
+            .ja,
+            .ko,
+            .ms,
+            .nl,
+            .no,
+            .pl,
+            .pt,
+            .ro,
+            .ru,
+            .sk,
+            .sv,
+            .th,
+            .tr,
+            .uk,
+            .vi,
+            .zh,
+        ]
+    }
 }

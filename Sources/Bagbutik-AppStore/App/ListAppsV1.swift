@@ -106,20 +106,37 @@ public enum ListAppsV1 {
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case territories([Territories])
 
-        public enum AppAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum AppAvailabilities: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case availableInNewTerritories
             case availableTerritories
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                ]
+            }
         }
 
-        public enum AppClips: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClips: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appClipAdvancedExperiences,
+                    .appClipDefaultExperiences,
+                    .bundleId,
+                ]
+            }
         }
 
-        public enum AppCustomProductPages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPages: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appCustomProductPageVersions
             case appStoreVersionTemplate
@@ -127,9 +144,21 @@ public enum ListAppsV1 {
             case name
             case url
             case visible
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appCustomProductPageVersions,
+                    .appStoreVersionTemplate,
+                    .customProductPageTemplate,
+                    .name,
+                    .url,
+                    .visible,
+                ]
+            }
         }
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appDescription
             case appEncryptionDeclarationDocument
@@ -147,9 +176,31 @@ public enum ListAppsV1 {
             case platform
             case uploadedDate
             case usesEncryption
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appDescription,
+                    .appEncryptionDeclarationDocument,
+                    .appEncryptionDeclarationState,
+                    .availableOnFrenchStore,
+                    .builds,
+                    .codeValue,
+                    .containsProprietaryCryptography,
+                    .containsThirdPartyCryptography,
+                    .createdDate,
+                    .documentName,
+                    .documentType,
+                    .documentUrl,
+                    .exempt,
+                    .platform,
+                    .uploadedDate,
+                    .usesEncryption,
+                ]
+            }
         }
 
-        public enum AppEvents: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEvents: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case archivedTerritorySchedules
             case badge
@@ -162,9 +213,26 @@ public enum ListAppsV1 {
             case purpose
             case referenceName
             case territorySchedules
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .archivedTerritorySchedules,
+                    .badge,
+                    .deepLink,
+                    .eventState,
+                    .localizations,
+                    .primaryLocale,
+                    .priority,
+                    .purchaseRequirement,
+                    .purpose,
+                    .referenceName,
+                    .territorySchedules,
+                ]
+            }
         }
 
-        public enum AppInfos: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfos: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appInfoLocalizations
@@ -179,36 +247,90 @@ public enum ListAppsV1 {
             case secondaryCategory
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appInfoLocalizations,
+                    .appStoreAgeRating,
+                    .appStoreState,
+                    .brazilAgeRating,
+                    .brazilAgeRatingV2,
+                    .kidsAgeBand,
+                    .primaryCategory,
+                    .primarySubcategoryOne,
+                    .primarySubcategoryTwo,
+                    .secondaryCategory,
+                    .secondarySubcategoryOne,
+                    .secondarySubcategoryTwo,
+                ]
+            }
         }
 
-        public enum AppPreOrders: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreOrders: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appReleaseDate
             case preOrderAvailableDate
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appReleaseDate,
+                    .preOrderAvailableDate,
+                ]
+            }
         }
 
-        public enum AppPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPricePoints: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case customerPrice
             case equalizations
             case priceTier
             case proceeds
             case territory
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .customerPrice,
+                    .equalizations,
+                    .priceTier,
+                    .proceeds,
+                    .territory,
+                ]
+            }
         }
 
-        public enum AppPriceSchedules: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPriceSchedules: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case automaticPrices
             case baseTerritory
             case manualPrices
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .automaticPrices,
+                    .baseTerritory,
+                    .manualPrices,
+                ]
+            }
         }
 
-        public enum AppPrices: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPrices: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case priceTier
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .priceTier,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreVersionExperimentTreatments
             case controlVersions
@@ -221,9 +343,26 @@ public enum ListAppsV1 {
             case started
             case state
             case trafficProportion
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreVersionExperimentTreatments,
+                    .controlVersions,
+                    .endDate,
+                    .latestControlVersion,
+                    .name,
+                    .platform,
+                    .reviewRequired,
+                    .startDate,
+                    .started,
+                    .state,
+                    .trafficProportion,
+                ]
+            }
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -244,9 +383,34 @@ public enum ListAppsV1 {
             case releaseType
             case routingAppCoverage
             case versionString
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appClipDefaultExperience,
+                    .appStoreReviewDetail,
+                    .appStoreState,
+                    .appStoreVersionExperiments,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersionLocalizations,
+                    .appStoreVersionPhasedRelease,
+                    .appStoreVersionSubmission,
+                    .build,
+                    .copyright,
+                    .createdDate,
+                    .customerReviews,
+                    .downloadable,
+                    .earliestReleaseDate,
+                    .platform,
+                    .releaseType,
+                    .routingAppCoverage,
+                    .versionString,
+                ]
+            }
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -291,9 +455,58 @@ public enum ListAppsV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum BetaAppLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaAppLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case description
             case feedbackEmail
@@ -301,9 +514,21 @@ public enum ListAppsV1 {
             case marketingUrl
             case privacyPolicyUrl
             case tvOsPrivacyPolicy
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .description,
+                    .feedbackEmail,
+                    .locale,
+                    .marketingUrl,
+                    .privacyPolicyUrl,
+                    .tvOsPrivacyPolicy,
+                ]
+            }
         }
 
-        public enum BetaAppReviewDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaAppReviewDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case contactEmail
             case contactFirstName
@@ -313,9 +538,23 @@ public enum ListAppsV1 {
             case demoAccountPassword
             case demoAccountRequired
             case notes
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .contactEmail,
+                    .contactFirstName,
+                    .contactLastName,
+                    .contactPhone,
+                    .demoAccountName,
+                    .demoAccountPassword,
+                    .demoAccountRequired,
+                    .notes,
+                ]
+            }
         }
 
-        public enum BetaGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaGroups: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case betaTesters
             case builds
@@ -330,14 +569,40 @@ public enum ListAppsV1 {
             case publicLinkId
             case publicLinkLimit
             case publicLinkLimitEnabled
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .betaTesters,
+                    .builds,
+                    .createdDate,
+                    .feedbackEnabled,
+                    .hasAccessToAllBuilds,
+                    .iosBuildsAvailableForAppleSiliconMac,
+                    .isInternalGroup,
+                    .name,
+                    .publicLink,
+                    .publicLinkEnabled,
+                    .publicLinkId,
+                    .publicLinkLimit,
+                    .publicLinkLimitEnabled,
+                ]
+            }
         }
 
-        public enum BetaLicenseAgreements: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaLicenseAgreements: String, ParameterValue, CodableEnum, CaseIterable {
             case agreementText
             case app
+
+            var allCases: [Self] {
+                [
+                    .agreementText,
+                    .app,
+                ]
+            }
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -362,9 +627,38 @@ public enum ListAppsV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appEncryptionDeclaration,
+                    .appStoreVersion,
+                    .betaAppReviewSubmission,
+                    .betaBuildLocalizations,
+                    .betaGroups,
+                    .buildAudienceType,
+                    .buildBetaDetail,
+                    .buildBundles,
+                    .computedMinMacOsVersion,
+                    .diagnosticSignatures,
+                    .expirationDate,
+                    .expired,
+                    .iconAssetToken,
+                    .icons,
+                    .individualTesters,
+                    .lsMinimumSystemVersion,
+                    .minOsVersion,
+                    .perfPowerMetrics,
+                    .preReleaseVersion,
+                    .processingState,
+                    .uploadedDate,
+                    .usesNonExemptEncryption,
+                    .version,
+                ]
+            }
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String, ParameterValue, CodableEnum, CaseIterable {
             case additionalRepositories
             case app
             case buildRuns
@@ -374,9 +668,23 @@ public enum ListAppsV1 {
             case primaryRepositories
             case productType
             case workflows
+
+            var allCases: [Self] {
+                [
+                    .additionalRepositories,
+                    .app,
+                    .buildRuns,
+                    .bundleId,
+                    .createdDate,
+                    .name,
+                    .primaryRepositories,
+                    .productType,
+                    .workflows,
+                ]
+            }
         }
 
-        public enum CustomerReviews: String, ParameterValue, Codable, CaseIterable {
+        public enum CustomerReviews: String, ParameterValue, CodableEnum, CaseIterable {
             case body
             case createdDate
             case rating
@@ -384,15 +692,35 @@ public enum ListAppsV1 {
             case reviewerNickname
             case territory
             case title
+
+            var allCases: [Self] {
+                [
+                    .body,
+                    .createdDate,
+                    .rating,
+                    .response,
+                    .reviewerNickname,
+                    .territory,
+                    .title,
+                ]
+            }
         }
 
-        public enum EndUserLicenseAgreements: String, ParameterValue, Codable, CaseIterable {
+        public enum EndUserLicenseAgreements: String, ParameterValue, CodableEnum, CaseIterable {
             case agreementText
             case app
             case territories
+
+            var allCases: [Self] {
+                [
+                    .agreementText,
+                    .app,
+                    .territories,
+                ]
+            }
         }
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -406,17 +734,45 @@ public enum ListAppsV1 {
             case gameCenterLeaderboards
             case leaderboardReleases
             case leaderboardSetReleases
+
+            var allCases: [Self] {
+                [
+                    .achievementReleases,
+                    .app,
+                    .arcadeEnabled,
+                    .challengeEnabled,
+                    .defaultGroupLeaderboard,
+                    .defaultLeaderboard,
+                    .gameCenterAchievements,
+                    .gameCenterAppVersions,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboardSets,
+                    .gameCenterLeaderboards,
+                    .leaderboardReleases,
+                    .leaderboardSetReleases,
+                ]
+            }
         }
 
-        public enum GameCenterEnabledVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterEnabledVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case compatibleVersions
             case iconAsset
             case platform
             case versionString
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .compatibleVersions,
+                    .iconAsset,
+                    .platform,
+                    .versionString,
+                ]
+            }
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case apps
@@ -435,22 +791,62 @@ public enum ListAppsV1 {
             case referenceName
             case reviewNote
             case state
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreReviewScreenshot,
+                    .apps,
+                    .availableInAllTerritories,
+                    .content,
+                    .contentHosting,
+                    .familySharable,
+                    .iapPriceSchedule,
+                    .inAppPurchaseAvailability,
+                    .inAppPurchaseLocalizations,
+                    .inAppPurchaseType,
+                    .name,
+                    .pricePoints,
+                    .productId,
+                    .promotedPurchase,
+                    .referenceName,
+                    .reviewNote,
+                    .state,
+                ]
+            }
         }
 
-        public enum PerfPowerMetrics: String, ParameterValue, Codable, CaseIterable {
+        public enum PerfPowerMetrics: String, ParameterValue, CodableEnum, CaseIterable {
             case deviceType
             case metricType
             case platform
+
+            var allCases: [Self] {
+                [
+                    .deviceType,
+                    .metricType,
+                    .platform,
+                ]
+            }
         }
 
-        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum PreReleaseVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case builds
             case platform
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .builds,
+                    .platform,
+                    .version,
+                ]
+            }
         }
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case enabled
             case inAppPurchaseV2
@@ -458,9 +854,21 @@ public enum ListAppsV1 {
             case state
             case subscription
             case visibleForAllUsers
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .enabled,
+                    .inAppPurchaseV2,
+                    .promotionImages,
+                    .state,
+                    .subscription,
+                    .visibleForAllUsers,
+                ]
+            }
         }
 
-        public enum ReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissions: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreVersionForReview
             case canceled
@@ -471,24 +879,63 @@ public enum ListAppsV1 {
             case submitted
             case submittedByActor
             case submittedDate
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreVersionForReview,
+                    .canceled,
+                    .items,
+                    .lastUpdatedByActor,
+                    .platform,
+                    .state,
+                    .submitted,
+                    .submittedByActor,
+                    .submittedDate,
+                ]
+            }
         }
 
-        public enum SubscriptionGracePeriods: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGracePeriods: String, ParameterValue, CodableEnum, CaseIterable {
             case duration
             case optIn
             case renewalType
             case sandboxOptIn
+
+            var allCases: [Self] {
+                [
+                    .duration,
+                    .optIn,
+                    .renewalType,
+                    .sandboxOptIn,
+                ]
+            }
         }
 
-        public enum SubscriptionGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGroups: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .referenceName,
+                    .subscriptionGroupLocalizations,
+                    .subscriptions,
+                ]
+            }
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, ParameterValue, CodableEnum, CaseIterable {
             case currency
+
+            var allCases: [Self] {
+                [
+                    .currency,
+                ]
+            }
         }
     }
 

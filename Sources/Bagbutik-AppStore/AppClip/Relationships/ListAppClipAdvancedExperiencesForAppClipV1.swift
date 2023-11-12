@@ -43,7 +43,7 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
 
-        public enum AppClipAdvancedExperienceImages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperienceImages: String, ParameterValue, CodableEnum, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -51,15 +51,35 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
 
-        public enum AppClipAdvancedExperienceLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperienceLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case language
             case subtitle
             case title
+
+            var allCases: [Self] {
+                [
+                    .language,
+                    .subtitle,
+                    .title,
+                ]
+            }
         }
 
-        public enum AppClipAdvancedExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperiences: String, ParameterValue, CodableEnum, CaseIterable {
             case action
             case appClip
             case businessCategory
@@ -73,13 +93,40 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case removed
             case status
             case version
+
+            var allCases: [Self] {
+                [
+                    .action,
+                    .appClip,
+                    .businessCategory,
+                    .defaultLanguage,
+                    .headerImage,
+                    .isPoweredBy,
+                    .link,
+                    .localizations,
+                    .place,
+                    .placeStatus,
+                    .removed,
+                    .status,
+                    .version,
+                ]
+            }
         }
 
-        public enum AppClips: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClips: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appClipAdvancedExperiences,
+                    .appClipDefaultExperiences,
+                    .bundleId,
+                ]
+            }
         }
     }
 
@@ -94,16 +141,32 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
         /// Filter by attribute 'status'
         case status([Status])
 
-        public enum PlaceStatus: String, ParameterValue, Codable, CaseIterable {
+        public enum PlaceStatus: String, ParameterValue, CodableEnum, CaseIterable {
             case pending = "PENDING"
             case matched = "MATCHED"
             case noMatch = "NO_MATCH"
+
+            var allCases: [Self] {
+                [
+                    .pending,
+                    .matched,
+                    .noMatch,
+                ]
+            }
         }
 
-        public enum Status: String, ParameterValue, Codable, CaseIterable {
+        public enum Status: String, ParameterValue, CodableEnum, CaseIterable {
             case received = "RECEIVED"
             case deactivated = "DEACTIVATED"
             case appTransferInProgress = "APP_TRANSFER_IN_PROGRESS"
+
+            var allCases: [Self] {
+                [
+                    .received,
+                    .deactivated,
+                    .appTransferInProgress,
+                ]
+            }
         }
     }
 

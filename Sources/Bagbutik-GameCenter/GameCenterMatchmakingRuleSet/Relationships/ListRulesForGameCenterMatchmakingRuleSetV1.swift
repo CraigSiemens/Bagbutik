@@ -31,13 +31,24 @@ public enum ListRulesForGameCenterMatchmakingRuleSetV1 {
         /// The fields to include for returned resources of type gameCenterMatchmakingRules
         case gameCenterMatchmakingRules([GameCenterMatchmakingRules])
 
-        public enum GameCenterMatchmakingRules: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingRules: String, ParameterValue, CodableEnum, CaseIterable {
             case description
             case expression
             case referenceName
             case ruleSet
             case type
             case weight
+
+            var allCases: [Self] {
+                [
+                    .description,
+                    .expression,
+                    .referenceName,
+                    .ruleSet,
+                    .type,
+                    .weight,
+                ]
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/platform>
  */
-public enum Platform: String, ParameterValue, Codable, CaseIterable {
+public enum Platform: String, ParameterValue, CodableEnum, CaseIterable {
     /// A string that represents iOS.
     case iOS = "IOS"
     /// A string that represents macOS.
@@ -17,4 +17,13 @@ public enum Platform: String, ParameterValue, Codable, CaseIterable {
     case tvOS = "TV_OS"
     /// A string that represents visionOS.
     case visionOS = "VISION_OS"
+
+    var allCases: [Self] {
+        [
+            .iOS,
+            .macOS,
+            .tvOS,
+            .visionOS,
+        ]
+    }
 }

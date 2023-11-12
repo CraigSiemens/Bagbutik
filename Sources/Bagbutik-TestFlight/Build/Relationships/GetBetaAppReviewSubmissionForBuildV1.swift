@@ -28,10 +28,18 @@ public enum GetBetaAppReviewSubmissionForBuildV1 {
         /// The fields to include for returned resources of type betaAppReviewSubmissions
         case betaAppReviewSubmissions([BetaAppReviewSubmissions])
 
-        public enum BetaAppReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaAppReviewSubmissions: String, ParameterValue, CodableEnum, CaseIterable {
             case betaReviewState
             case build
             case submittedDate
+
+            var allCases: [Self] {
+                [
+                    .betaReviewState,
+                    .build,
+                    .submittedDate,
+                ]
+            }
         }
     }
 }

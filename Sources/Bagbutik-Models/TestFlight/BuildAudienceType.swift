@@ -8,9 +8,16 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildaudiencetype>
  */
-public enum BuildAudienceType: String, ParameterValue, Codable, CaseIterable {
+public enum BuildAudienceType: String, ParameterValue, CodableEnum, CaseIterable {
     /// The build of your app is only available to members of your development team.
     case internalOnly = "INTERNAL_ONLY"
     /// The build of your app is eligible for submission and release on the App Store.
     case appStoreEligible = "APP_STORE_ELIGIBLE"
+
+    var allCases: [Self] {
+        [
+            .internalOnly,
+            .appStoreEligible,
+        ]
+    }
 }

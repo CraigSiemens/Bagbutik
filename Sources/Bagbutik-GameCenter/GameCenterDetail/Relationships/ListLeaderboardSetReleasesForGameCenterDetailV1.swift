@@ -41,7 +41,7 @@ public enum ListLeaderboardSetReleasesForGameCenterDetailV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboardSets
         case gameCenterLeaderboardSets([GameCenterLeaderboardSets])
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -55,15 +55,41 @@ public enum ListLeaderboardSetReleasesForGameCenterDetailV1 {
             case gameCenterLeaderboards
             case leaderboardReleases
             case leaderboardSetReleases
+
+            var allCases: [Self] {
+                [
+                    .achievementReleases,
+                    .app,
+                    .arcadeEnabled,
+                    .challengeEnabled,
+                    .defaultGroupLeaderboard,
+                    .defaultLeaderboard,
+                    .gameCenterAchievements,
+                    .gameCenterAppVersions,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboardSets,
+                    .gameCenterLeaderboards,
+                    .leaderboardReleases,
+                    .leaderboardSetReleases,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardSetReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterLeaderboardSet
             case live
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterLeaderboardSet,
+                    .live,
+                ]
+            }
         }
 
-        public enum GameCenterLeaderboardSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSets: String, ParameterValue, CodableEnum, CaseIterable {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboards
@@ -72,6 +98,19 @@ public enum ListLeaderboardSetReleasesForGameCenterDetailV1 {
             case referenceName
             case releases
             case vendorIdentifier
+
+            var allCases: [Self] {
+                [
+                    .gameCenterDetail,
+                    .gameCenterGroup,
+                    .gameCenterLeaderboards,
+                    .groupLeaderboardSet,
+                    .localizations,
+                    .referenceName,
+                    .releases,
+                    .vendorIdentifier,
+                ]
+            }
         }
     }
 

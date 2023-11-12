@@ -30,7 +30,7 @@ public enum GetAppEventScreenshotV1 {
         /// The fields to include for returned resources of type appEventScreenshots
         case appEventScreenshots([AppEventScreenshots])
 
-        public enum AppEventScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventScreenshots: String, ParameterValue, CodableEnum, CaseIterable {
             case appEventAssetType
             case appEventLocalization
             case assetDeliveryState
@@ -40,6 +40,20 @@ public enum GetAppEventScreenshotV1 {
             case imageAsset
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appEventAssetType,
+                    .appEventLocalization,
+                    .assetDeliveryState,
+                    .assetToken,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 

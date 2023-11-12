@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/capabilitytype>
  */
-public enum CapabilityType: String, Codable, CaseIterable {
+public enum CapabilityType: String, CodableEnum, CaseIterable {
     case iCloud = "ICLOUD"
     case inAppPurchase = "IN_APP_PURCHASE"
     case gameCenter = "GAME_CENTER"
@@ -37,4 +37,37 @@ public enum CapabilityType: String, Codable, CaseIterable {
     case systemExtensionInstall = "SYSTEM_EXTENSION_INSTALL"
     case userManagement = "USER_MANAGEMENT"
     case appleIdAuth = "APPLE_ID_AUTH"
+
+    var allCases: [Self] {
+        [
+            .iCloud,
+            .inAppPurchase,
+            .gameCenter,
+            .pushNotifications,
+            .wallet,
+            .interAppAudio,
+            .maps,
+            .associatedDomains,
+            .personalVpn,
+            .appGroups,
+            .healthKit,
+            .homeKit,
+            .wirelessAccessoryConfiguration,
+            .applePay,
+            .dataProtection,
+            .siriKit,
+            .networkExtensions,
+            .multipath,
+            .hotSpot,
+            .nfcTagReading,
+            .classKit,
+            .autofillCredentialProvider,
+            .accessWifiInformation,
+            .networkCustomProtocol,
+            .coremediaHlsLowLatency,
+            .systemExtensionInstall,
+            .userManagement,
+            .appleIdAuth,
+        ]
+    }
 }

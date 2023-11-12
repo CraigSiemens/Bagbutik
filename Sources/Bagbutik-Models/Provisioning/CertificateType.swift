@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificatetype>
  */
-public enum CertificateType: String, ParameterValue, Codable, CaseIterable {
+public enum CertificateType: String, ParameterValue, CodableEnum, CaseIterable {
     case iOSDevelopment = "IOS_DEVELOPMENT"
     case iOSDistribution = "IOS_DISTRIBUTION"
     case macAppDistribution = "MAC_APP_DISTRIBUTION"
@@ -20,4 +20,20 @@ public enum CertificateType: String, ParameterValue, Codable, CaseIterable {
     case distribution = "DISTRIBUTION"
     case passTypeId = "PASS_TYPE_ID"
     case passTypeIdWithNfc = "PASS_TYPE_ID_WITH_NFC"
+
+    var allCases: [Self] {
+        [
+            .iOSDevelopment,
+            .iOSDistribution,
+            .macAppDistribution,
+            .macInstallerDistribution,
+            .macAppDevelopment,
+            .developerIdKext,
+            .developerIdApplication,
+            .development,
+            .distribution,
+            .passTypeId,
+            .passTypeIdWithNfc,
+        ]
+    }
 }

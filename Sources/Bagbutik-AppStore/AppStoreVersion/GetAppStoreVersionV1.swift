@@ -56,7 +56,7 @@ public enum GetAppStoreVersionV1 {
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
-        public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AgeRatingDeclarations: String, ParameterValue, CodableEnum, CaseIterable {
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
@@ -74,18 +74,51 @@ public enum GetAppStoreVersionV1 {
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
+
+            var allCases: [Self] {
+                [
+                    .alcoholTobaccoOrDrugUseOrReferences,
+                    .contests,
+                    .gambling,
+                    .gamblingAndContests,
+                    .gamblingSimulated,
+                    .horrorOrFearThemes,
+                    .kidsAgeBand,
+                    .matureOrSuggestiveThemes,
+                    .medicalOrTreatmentInformation,
+                    .profanityOrCrudeHumor,
+                    .seventeenPlus,
+                    .sexualContentGraphicAndNudity,
+                    .sexualContentOrNudity,
+                    .unrestrictedWebAccess,
+                    .violenceCartoonOrFantasy,
+                    .violenceRealistic,
+                    .violenceRealisticProlongedGraphicOrSadistic,
+                ]
+            }
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperiences: String, ParameterValue, CodableEnum, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
             case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
+
+            var allCases: [Self] {
+                [
+                    .action,
+                    .appClip,
+                    .appClipAppStoreReviewDetail,
+                    .appClipDefaultExperienceLocalizations,
+                    .appClipDefaultExperienceTemplate,
+                    .releaseWithAppStoreVersion,
+                ]
+            }
         }
 
-        public enum AppStoreReviewDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreReviewDetails: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewAttachments
             case appStoreVersion
             case contactEmail
@@ -96,9 +129,24 @@ public enum GetAppStoreVersionV1 {
             case demoAccountPassword
             case demoAccountRequired
             case notes
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewAttachments,
+                    .appStoreVersion,
+                    .contactEmail,
+                    .contactFirstName,
+                    .contactLastName,
+                    .contactPhone,
+                    .demoAccountName,
+                    .demoAccountPassword,
+                    .demoAccountRequired,
+                    .notes,
+                ]
+            }
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appStoreVersion
             case appStoreVersionExperimentTreatments
@@ -112,9 +160,27 @@ public enum GetAppStoreVersionV1 {
             case started
             case state
             case trafficProportion
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appStoreVersion,
+                    .appStoreVersionExperimentTreatments,
+                    .controlVersions,
+                    .endDate,
+                    .latestControlVersion,
+                    .name,
+                    .platform,
+                    .reviewRequired,
+                    .startDate,
+                    .started,
+                    .state,
+                    .trafficProportion,
+                ]
+            }
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion
@@ -125,21 +191,52 @@ public enum GetAppStoreVersionV1 {
             case promotionalText
             case supportUrl
             case whatsNew
+
+            var allCases: [Self] {
+                [
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .appStoreVersion,
+                    .description,
+                    .keywords,
+                    .locale,
+                    .marketingUrl,
+                    .promotionalText,
+                    .supportUrl,
+                    .whatsNew,
+                ]
+            }
         }
 
-        public enum AppStoreVersionPhasedReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionPhasedReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreVersion
             case currentDayNumber
             case phasedReleaseState
             case startDate
             case totalPauseDuration
+
+            var allCases: [Self] {
+                [
+                    .appStoreVersion,
+                    .currentDayNumber,
+                    .phasedReleaseState,
+                    .startDate,
+                    .totalPauseDuration,
+                ]
+            }
         }
 
-        public enum AppStoreVersionSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionSubmissions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreVersion
+
+            var allCases: [Self] {
+                [
+                    .appStoreVersion,
+                ]
+            }
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -160,9 +257,34 @@ public enum GetAppStoreVersionV1 {
             case releaseType
             case routingAppCoverage
             case versionString
+
+            var allCases: [Self] {
+                [
+                    .ageRatingDeclaration,
+                    .app,
+                    .appClipDefaultExperience,
+                    .appStoreReviewDetail,
+                    .appStoreState,
+                    .appStoreVersionExperiments,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersionLocalizations,
+                    .appStoreVersionPhasedRelease,
+                    .appStoreVersionSubmission,
+                    .build,
+                    .copyright,
+                    .createdDate,
+                    .customerReviews,
+                    .downloadable,
+                    .earliestReleaseDate,
+                    .platform,
+                    .releaseType,
+                    .routingAppCoverage,
+                    .versionString,
+                ]
+            }
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -187,9 +309,38 @@ public enum GetAppStoreVersionV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appEncryptionDeclaration,
+                    .appStoreVersion,
+                    .betaAppReviewSubmission,
+                    .betaBuildLocalizations,
+                    .betaGroups,
+                    .buildAudienceType,
+                    .buildBetaDetail,
+                    .buildBundles,
+                    .computedMinMacOsVersion,
+                    .diagnosticSignatures,
+                    .expirationDate,
+                    .expired,
+                    .iconAssetToken,
+                    .icons,
+                    .individualTesters,
+                    .lsMinimumSystemVersion,
+                    .minOsVersion,
+                    .perfPowerMetrics,
+                    .preReleaseVersion,
+                    .processingState,
+                    .uploadedDate,
+                    .usesNonExemptEncryption,
+                    .version,
+                ]
+            }
         }
 
-        public enum CustomerReviews: String, ParameterValue, Codable, CaseIterable {
+        public enum CustomerReviews: String, ParameterValue, CodableEnum, CaseIterable {
             case body
             case createdDate
             case rating
@@ -197,9 +348,21 @@ public enum GetAppStoreVersionV1 {
             case reviewerNickname
             case territory
             case title
+
+            var allCases: [Self] {
+                [
+                    .body,
+                    .createdDate,
+                    .rating,
+                    .response,
+                    .reviewerNickname,
+                    .territory,
+                    .title,
+                ]
+            }
         }
 
-        public enum RoutingAppCoverages: String, ParameterValue, Codable, CaseIterable {
+        public enum RoutingAppCoverages: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreVersion
             case assetDeliveryState
             case fileName
@@ -207,6 +370,18 @@ public enum GetAppStoreVersionV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appStoreVersion,
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 

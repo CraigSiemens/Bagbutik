@@ -36,16 +36,27 @@ public enum ListOneTimeUseCodesForSubscriptionOfferCodeV1 {
         /// The fields to include for returned resources of type subscriptionOfferCodes
         case subscriptionOfferCodes([SubscriptionOfferCodes])
 
-        public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, CodableEnum, CaseIterable {
             case active
             case createdDate
             case expirationDate
             case numberOfCodes
             case offerCode
             case values
+
+            var allCases: [Self] {
+                [
+                    .active,
+                    .createdDate,
+                    .expirationDate,
+                    .numberOfCodes,
+                    .offerCode,
+                    .values,
+                ]
+            }
         }
 
-        public enum SubscriptionOfferCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodes: String, ParameterValue, CodableEnum, CaseIterable {
             case active
             case customCodes
             case customerEligibilities
@@ -58,6 +69,23 @@ public enum ListOneTimeUseCodesForSubscriptionOfferCodeV1 {
             case prices
             case subscription
             case totalNumberOfCodes
+
+            var allCases: [Self] {
+                [
+                    .active,
+                    .customCodes,
+                    .customerEligibilities,
+                    .duration,
+                    .name,
+                    .numberOfPeriods,
+                    .offerEligibility,
+                    .offerMode,
+                    .oneTimeUseCodes,
+                    .prices,
+                    .subscription,
+                    .totalNumberOfCodes,
+                ]
+            }
         }
     }
 

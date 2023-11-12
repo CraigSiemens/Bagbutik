@@ -42,13 +42,21 @@ public enum ListWorkflowsForCiProductV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum CiMacOsVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiMacOsVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case name
             case version
             case xcodeVersions
+
+            var allCases: [Self] {
+                [
+                    .name,
+                    .version,
+                    .xcodeVersions,
+                ]
+            }
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String, ParameterValue, CodableEnum, CaseIterable {
             case additionalRepositories
             case app
             case buildRuns
@@ -58,9 +66,23 @@ public enum ListWorkflowsForCiProductV1 {
             case primaryRepositories
             case productType
             case workflows
+
+            var allCases: [Self] {
+                [
+                    .additionalRepositories,
+                    .app,
+                    .buildRuns,
+                    .bundleId,
+                    .createdDate,
+                    .name,
+                    .primaryRepositories,
+                    .productType,
+                    .workflows,
+                ]
+            }
         }
 
-        public enum CiWorkflows: String, ParameterValue, Codable, CaseIterable {
+        public enum CiWorkflows: String, ParameterValue, CodableEnum, CaseIterable {
             case actions
             case branchStartCondition
             case buildRuns
@@ -78,16 +100,47 @@ public enum ListWorkflowsForCiProductV1 {
             case scheduledStartCondition
             case tagStartCondition
             case xcodeVersion
+
+            var allCases: [Self] {
+                [
+                    .actions,
+                    .branchStartCondition,
+                    .buildRuns,
+                    .clean,
+                    .containerFilePath,
+                    .description,
+                    .isEnabled,
+                    .isLockedForEditing,
+                    .lastModifiedDate,
+                    .macOsVersion,
+                    .name,
+                    .product,
+                    .pullRequestStartCondition,
+                    .repository,
+                    .scheduledStartCondition,
+                    .tagStartCondition,
+                    .xcodeVersion,
+                ]
+            }
         }
 
-        public enum CiXcodeVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiXcodeVersions: String, ParameterValue, CodableEnum, CaseIterable {
             case macOsVersions
             case name
             case testDestinations
             case version
+
+            var allCases: [Self] {
+                [
+                    .macOsVersions,
+                    .name,
+                    .testDestinations,
+                    .version,
+                ]
+            }
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String, ParameterValue, CodableEnum, CaseIterable {
             case defaultBranch
             case gitReferences
             case httpCloneUrl
@@ -97,6 +150,20 @@ public enum ListWorkflowsForCiProductV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            var allCases: [Self] {
+                [
+                    .defaultBranch,
+                    .gitReferences,
+                    .httpCloneUrl,
+                    .lastAccessedDate,
+                    .ownerName,
+                    .pullRequests,
+                    .repositoryName,
+                    .scmProvider,
+                    .sshCloneUrl,
+                ]
+            }
         }
     }
 

@@ -32,9 +32,16 @@ public enum GetAppPriceV1 {
         /// The fields to include for returned resources of type appPrices
         case appPrices([AppPrices])
 
-        public enum AppPrices: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPrices: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case priceTier
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .priceTier,
+                ]
+            }
         }
     }
 

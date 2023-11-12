@@ -43,7 +43,13 @@ public enum GetMetricsForBetaTesterUsageInBetaGroupV1 {
     /**
      The dimension by which to group the results
      */
-    public enum GroupBy: String, ParameterValue, Codable, CaseIterable {
+    public enum GroupBy: String, ParameterValue, CodableEnum, CaseIterable {
         case betaTesters
+
+        var allCases: [Self] {
+            [
+                .betaTesters,
+            ]
+        }
     }
 }

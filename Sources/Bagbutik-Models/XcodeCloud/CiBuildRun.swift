@@ -119,9 +119,63 @@ public struct CiBuildRun: Codable, Identifiable {
             self.startedDate = startedDate
         }
 
-        public enum CancelReason: String, Codable, CaseIterable {
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            cancelReason = try container.decodeIfPresent(CancelReason.self, forKey: .cancelReason)
+            completionStatus = try container.decodeIfPresent(CiCompletionStatus.self, forKey: .completionStatus)
+            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+            destinationCommit = try container.decodeIfPresent(DestinationCommit.self, forKey: .destinationCommit)
+            executionProgress = try container.decodeIfPresent(CiExecutionProgress.self, forKey: .executionProgress)
+            finishedDate = try container.decodeIfPresent(Date.self, forKey: .finishedDate)
+            isPullRequestBuild = try container.decodeIfPresent(Bool.self, forKey: .isPullRequestBuild)
+            issueCounts = try container.decodeIfPresent(CiIssueCounts.self, forKey: .issueCounts)
+            number = try container.decodeIfPresent(Int.self, forKey: .number)
+            sourceCommit = try container.decodeIfPresent(SourceCommit.self, forKey: .sourceCommit)
+            startReason = try container.decodeIfPresent(StartReason.self, forKey: .startReason)
+            startedDate = try container.decodeIfPresent(Date.self, forKey: .startedDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(cancelReason, forKey: .cancelReason)
+            try container.encodeIfPresent(completionStatus, forKey: .completionStatus)
+            try container.encodeIfPresent(createdDate, forKey: .createdDate)
+            try container.encodeIfPresent(destinationCommit, forKey: .destinationCommit)
+            try container.encodeIfPresent(executionProgress, forKey: .executionProgress)
+            try container.encodeIfPresent(finishedDate, forKey: .finishedDate)
+            try container.encodeIfPresent(isPullRequestBuild, forKey: .isPullRequestBuild)
+            try container.encodeIfPresent(issueCounts, forKey: .issueCounts)
+            try container.encodeIfPresent(number, forKey: .number)
+            try container.encodeIfPresent(sourceCommit, forKey: .sourceCommit)
+            try container.encodeIfPresent(startReason, forKey: .startReason)
+            try container.encodeIfPresent(startedDate, forKey: .startedDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case cancelReason
+            case completionStatus
+            case createdDate
+            case destinationCommit
+            case executionProgress
+            case finishedDate
+            case isPullRequestBuild
+            case issueCounts
+            case number
+            case sourceCommit
+            case startReason
+            case startedDate
+        }
+
+        public enum CancelReason: String, CodableEnum, CaseIterable {
             case automaticallyByNewerBuild = "AUTOMATICALLY_BY_NEWER_BUILD"
             case manuallyByUser = "MANUALLY_BY_USER"
+
+            var allCases: [Self] {
+                [
+                    .automaticallyByNewerBuild,
+                    .manuallyByUser,
+                ]
+            }
         }
 
         /**
@@ -154,6 +208,32 @@ public struct CiBuildRun: Codable, Identifiable {
                 self.committer = committer
                 self.message = message
                 self.webUrl = webUrl
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                author = try container.decodeIfPresent(CiGitUser.self, forKey: .author)
+                commitSha = try container.decodeIfPresent(String.self, forKey: .commitSha)
+                committer = try container.decodeIfPresent(CiGitUser.self, forKey: .committer)
+                message = try container.decodeIfPresent(String.self, forKey: .message)
+                webUrl = try container.decodeIfPresent(String.self, forKey: .webUrl)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(author, forKey: .author)
+                try container.encodeIfPresent(commitSha, forKey: .commitSha)
+                try container.encodeIfPresent(committer, forKey: .committer)
+                try container.encodeIfPresent(message, forKey: .message)
+                try container.encodeIfPresent(webUrl, forKey: .webUrl)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case author
+                case commitSha
+                case committer
+                case message
+                case webUrl
             }
         }
 
@@ -188,15 +268,52 @@ public struct CiBuildRun: Codable, Identifiable {
                 self.message = message
                 self.webUrl = webUrl
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                author = try container.decodeIfPresent(CiGitUser.self, forKey: .author)
+                commitSha = try container.decodeIfPresent(String.self, forKey: .commitSha)
+                committer = try container.decodeIfPresent(CiGitUser.self, forKey: .committer)
+                message = try container.decodeIfPresent(String.self, forKey: .message)
+                webUrl = try container.decodeIfPresent(String.self, forKey: .webUrl)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(author, forKey: .author)
+                try container.encodeIfPresent(commitSha, forKey: .commitSha)
+                try container.encodeIfPresent(committer, forKey: .committer)
+                try container.encodeIfPresent(message, forKey: .message)
+                try container.encodeIfPresent(webUrl, forKey: .webUrl)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case author
+                case commitSha
+                case committer
+                case message
+                case webUrl
+            }
         }
 
-        public enum StartReason: String, Codable, CaseIterable {
+        public enum StartReason: String, CodableEnum, CaseIterable {
             case gitRefChange = "GIT_REF_CHANGE"
             case manual = "MANUAL"
             case manualRebuild = "MANUAL_REBUILD"
             case pullRequestOpen = "PULL_REQUEST_OPEN"
             case pullRequestUpdate = "PULL_REQUEST_UPDATE"
             case schedule = "SCHEDULE"
+
+            var allCases: [Self] {
+                [
+                    .gitRefChange,
+                    .manual,
+                    .manualRebuild,
+                    .pullRequestOpen,
+                    .pullRequestUpdate,
+                    .schedule,
+                ]
+            }
         }
     }
 
@@ -234,6 +351,35 @@ public struct CiBuildRun: Codable, Identifiable {
             self.pullRequest = pullRequest
             self.sourceBranchOrTag = sourceBranchOrTag
             self.workflow = workflow
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            builds = try container.decodeIfPresent(Builds.self, forKey: .builds)
+            destinationBranch = try container.decodeIfPresent(DestinationBranch.self, forKey: .destinationBranch)
+            product = try container.decodeIfPresent(Product.self, forKey: .product)
+            pullRequest = try container.decodeIfPresent(PullRequest.self, forKey: .pullRequest)
+            sourceBranchOrTag = try container.decodeIfPresent(SourceBranchOrTag.self, forKey: .sourceBranchOrTag)
+            workflow = try container.decodeIfPresent(Workflow.self, forKey: .workflow)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(builds, forKey: .builds)
+            try container.encodeIfPresent(destinationBranch, forKey: .destinationBranch)
+            try container.encodeIfPresent(product, forKey: .product)
+            try container.encodeIfPresent(pullRequest, forKey: .pullRequest)
+            try container.encodeIfPresent(sourceBranchOrTag, forKey: .sourceBranchOrTag)
+            try container.encodeIfPresent(workflow, forKey: .workflow)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case builds
+            case destinationBranch
+            case product
+            case pullRequest
+            case sourceBranchOrTag
+            case workflow
         }
 
         /**

@@ -32,10 +32,18 @@ public enum GetAppPreOrderV1 {
         /// The fields to include for returned resources of type appPreOrders
         case appPreOrders([AppPreOrders])
 
-        public enum AppPreOrders: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreOrders: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case appReleaseDate
             case preOrderAvailableDate
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .appReleaseDate,
+                    .preOrderAvailableDate,
+                ]
+            }
         }
     }
 

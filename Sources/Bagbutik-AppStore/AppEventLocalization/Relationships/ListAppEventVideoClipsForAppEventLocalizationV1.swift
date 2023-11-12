@@ -35,7 +35,7 @@ public enum ListAppEventVideoClipsForAppEventLocalizationV1 {
         /// The fields to include for returned resources of type appEventVideoClips
         case appEventVideoClips([AppEventVideoClips])
 
-        public enum AppEventLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appEvent
             case appEventScreenshots
             case appEventVideoClips
@@ -43,9 +43,21 @@ public enum ListAppEventVideoClipsForAppEventLocalizationV1 {
             case longDescription
             case name
             case shortDescription
+
+            var allCases: [Self] {
+                [
+                    .appEvent,
+                    .appEventScreenshots,
+                    .appEventVideoClips,
+                    .locale,
+                    .longDescription,
+                    .name,
+                    .shortDescription,
+                ]
+            }
         }
 
-        public enum AppEventVideoClips: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventVideoClips: String, ParameterValue, CodableEnum, CaseIterable {
             case appEventAssetType
             case appEventLocalization
             case assetDeliveryState
@@ -56,6 +68,21 @@ public enum ListAppEventVideoClipsForAppEventLocalizationV1 {
             case uploadOperations
             case uploaded
             case videoUrl
+
+            var allCases: [Self] {
+                [
+                    .appEventAssetType,
+                    .appEventLocalization,
+                    .assetDeliveryState,
+                    .fileName,
+                    .fileSize,
+                    .previewFrameTimeCode,
+                    .previewImage,
+                    .uploadOperations,
+                    .uploaded,
+                    .videoUrl,
+                ]
+            }
         }
     }
 

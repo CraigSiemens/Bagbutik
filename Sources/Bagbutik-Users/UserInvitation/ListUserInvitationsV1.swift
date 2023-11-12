@@ -40,7 +40,7 @@ public enum ListUserInvitationsV1 {
         /// The fields to include for returned resources of type userInvitations
         case userInvitations([UserInvitations])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, ParameterValue, CodableEnum, CaseIterable {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -85,9 +85,58 @@ public enum ListUserInvitationsV1 {
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
+
+            var allCases: [Self] {
+                [
+                    .appAvailability,
+                    .appClips,
+                    .appCustomProductPages,
+                    .appEncryptionDeclarations,
+                    .appEvents,
+                    .appInfos,
+                    .appPricePoints,
+                    .appPriceSchedule,
+                    .appStoreVersionExperimentsV2,
+                    .appStoreVersions,
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .betaAppLocalizations,
+                    .betaAppReviewDetail,
+                    .betaGroups,
+                    .betaLicenseAgreement,
+                    .betaTesters,
+                    .builds,
+                    .bundleId,
+                    .ciProduct,
+                    .contentRightsDeclaration,
+                    .customerReviews,
+                    .endUserLicenseAgreement,
+                    .gameCenterDetail,
+                    .gameCenterEnabledVersions,
+                    .inAppPurchases,
+                    .inAppPurchasesV2,
+                    .isOrEverWasMadeForKids,
+                    .name,
+                    .perfPowerMetrics,
+                    .preOrder,
+                    .preReleaseVersions,
+                    .pricePoints,
+                    .prices,
+                    .primaryLocale,
+                    .promotedPurchases,
+                    .reviewSubmissions,
+                    .sku,
+                    .subscriptionGracePeriod,
+                    .subscriptionGroups,
+                    .subscriptionStatusUrl,
+                    .subscriptionStatusUrlForSandbox,
+                    .subscriptionStatusUrlVersion,
+                    .subscriptionStatusUrlVersionForSandbox,
+                ]
+            }
         }
 
-        public enum UserInvitations: String, ParameterValue, Codable, CaseIterable {
+        public enum UserInvitations: String, ParameterValue, CodableEnum, CaseIterable {
             case allAppsVisible
             case email
             case expirationDate
@@ -96,6 +145,19 @@ public enum ListUserInvitationsV1 {
             case provisioningAllowed
             case roles
             case visibleApps
+
+            var allCases: [Self] {
+                [
+                    .allAppsVisible,
+                    .email,
+                    .expirationDate,
+                    .firstName,
+                    .lastName,
+                    .provisioningAllowed,
+                    .roles,
+                    .visibleApps,
+                ]
+            }
         }
     }
 

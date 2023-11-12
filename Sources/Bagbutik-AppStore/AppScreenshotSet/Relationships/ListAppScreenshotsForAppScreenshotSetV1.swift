@@ -36,15 +36,25 @@ public enum ListAppScreenshotsForAppScreenshotSetV1 {
         /// The fields to include for returned resources of type appScreenshots
         case appScreenshots([AppScreenshots])
 
-        public enum AppScreenshotSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshotSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appScreenshots
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appScreenshots,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .screenshotDisplayType,
+                ]
+            }
         }
 
-        public enum AppScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshots: String, ParameterValue, CodableEnum, CaseIterable {
             case appScreenshotSet
             case assetDeliveryState
             case assetToken
@@ -55,6 +65,21 @@ public enum ListAppScreenshotsForAppScreenshotSetV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appScreenshotSet,
+                    .assetDeliveryState,
+                    .assetToken,
+                    .assetType,
+                    .fileName,
+                    .fileSize,
+                    .imageAsset,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 

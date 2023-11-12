@@ -28,12 +28,22 @@ public enum GetAppStoreVersionPhasedReleaseForAppStoreVersionV1 {
         /// The fields to include for returned resources of type appStoreVersionPhasedReleases
         case appStoreVersionPhasedReleases([AppStoreVersionPhasedReleases])
 
-        public enum AppStoreVersionPhasedReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionPhasedReleases: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreVersion
             case currentDayNumber
             case phasedReleaseState
             case startDate
             case totalPauseDuration
+
+            var allCases: [Self] {
+                [
+                    .appStoreVersion,
+                    .currentDayNumber,
+                    .phasedReleaseState,
+                    .startDate,
+                    .totalPauseDuration,
+                ]
+            }
         }
     }
 }

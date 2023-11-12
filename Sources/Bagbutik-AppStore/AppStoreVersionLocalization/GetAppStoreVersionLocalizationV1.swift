@@ -38,23 +38,43 @@ public enum GetAppStoreVersionLocalizationV1 {
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
-        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviewSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appPreviews,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .previewType,
+                ]
+            }
         }
 
-        public enum AppScreenshotSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshotSets: String, ParameterValue, CodableEnum, CaseIterable {
             case appCustomProductPageLocalization
             case appScreenshots
             case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
+
+            var allCases: [Self] {
+                [
+                    .appCustomProductPageLocalization,
+                    .appScreenshots,
+                    .appStoreVersionExperimentTreatmentLocalization,
+                    .appStoreVersionLocalization,
+                    .screenshotDisplayType,
+                ]
+            }
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, ParameterValue, CodableEnum, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion
@@ -65,6 +85,21 @@ public enum GetAppStoreVersionLocalizationV1 {
             case promotionalText
             case supportUrl
             case whatsNew
+
+            var allCases: [Self] {
+                [
+                    .appPreviewSets,
+                    .appScreenshotSets,
+                    .appStoreVersion,
+                    .description,
+                    .keywords,
+                    .locale,
+                    .marketingUrl,
+                    .promotionalText,
+                    .supportUrl,
+                    .whatsNew,
+                ]
+            }
         }
     }
 

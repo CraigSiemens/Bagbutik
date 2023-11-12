@@ -32,13 +32,21 @@ public enum GetScmProviderV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum ScmProviders: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmProviders: String, ParameterValue, CodableEnum, CaseIterable {
             case repositories
             case scmProviderType
             case url
+
+            var allCases: [Self] {
+                [
+                    .repositories,
+                    .scmProviderType,
+                    .url,
+                ]
+            }
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String, ParameterValue, CodableEnum, CaseIterable {
             case defaultBranch
             case gitReferences
             case httpCloneUrl
@@ -48,6 +56,20 @@ public enum GetScmProviderV1 {
             case repositoryName
             case scmProvider
             case sshCloneUrl
+
+            var allCases: [Self] {
+                [
+                    .defaultBranch,
+                    .gitReferences,
+                    .httpCloneUrl,
+                    .lastAccessedDate,
+                    .ownerName,
+                    .pullRequests,
+                    .repositoryName,
+                    .scmProvider,
+                    .sshCloneUrl,
+                ]
+            }
         }
     }
 }

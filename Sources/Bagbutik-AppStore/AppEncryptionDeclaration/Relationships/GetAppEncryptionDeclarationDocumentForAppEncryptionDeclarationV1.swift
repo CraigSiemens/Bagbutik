@@ -28,7 +28,7 @@ public enum GetAppEncryptionDeclarationDocumentForAppEncryptionDeclarationV1 {
         /// The fields to include for returned resources of type appEncryptionDeclarationDocuments
         case appEncryptionDeclarationDocuments([AppEncryptionDeclarationDocuments])
 
-        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, CodableEnum, CaseIterable {
             case appEncryptionDeclaration
             case assetDeliveryState
             case assetToken
@@ -38,6 +38,20 @@ public enum GetAppEncryptionDeclarationDocumentForAppEncryptionDeclarationV1 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+
+            var allCases: [Self] {
+                [
+                    .appEncryptionDeclaration,
+                    .assetDeliveryState,
+                    .assetToken,
+                    .downloadUrl,
+                    .fileName,
+                    .fileSize,
+                    .sourceFileChecksum,
+                    .uploadOperations,
+                    .uploaded,
+                ]
+            }
         }
     }
 }

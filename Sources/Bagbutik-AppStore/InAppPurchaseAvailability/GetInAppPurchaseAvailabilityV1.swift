@@ -36,14 +36,28 @@ public enum GetInAppPurchaseAvailabilityV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum InAppPurchaseAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseAvailabilities: String, ParameterValue, CodableEnum, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
             case inAppPurchase
+
+            var allCases: [Self] {
+                [
+                    .availableInNewTerritories,
+                    .availableTerritories,
+                    .inAppPurchase,
+                ]
+            }
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, ParameterValue, CodableEnum, CaseIterable {
             case currency
+
+            var allCases: [Self] {
+                [
+                    .currency,
+                ]
+            }
         }
     }
 

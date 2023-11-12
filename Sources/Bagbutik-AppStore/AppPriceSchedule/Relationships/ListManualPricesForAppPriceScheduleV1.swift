@@ -41,24 +41,50 @@ public enum ListManualPricesForAppPriceScheduleV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum AppPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPricePoints: String, ParameterValue, CodableEnum, CaseIterable {
             case app
             case customerPrice
             case equalizations
             case proceeds
             case territory
+
+            var allCases: [Self] {
+                [
+                    .app,
+                    .customerPrice,
+                    .equalizations,
+                    .proceeds,
+                    .territory,
+                ]
+            }
         }
 
-        public enum AppPrices: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPrices: String, ParameterValue, CodableEnum, CaseIterable {
             case appPricePoint
             case endDate
             case manual
             case startDate
             case territory
+
+            var allCases: [Self] {
+                [
+                    .appPricePoint,
+                    .endDate,
+                    .manual,
+                    .startDate,
+                    .territory,
+                ]
+            }
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, ParameterValue, CodableEnum, CaseIterable {
             case currency
+
+            var allCases: [Self] {
+                [
+                    .currency,
+                ]
+            }
         }
     }
 

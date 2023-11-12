@@ -43,7 +43,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum SubscriptionIntroductoryOffers: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionIntroductoryOffers: String, ParameterValue, CodableEnum, CaseIterable {
             case duration
             case endDate
             case numberOfPeriods
@@ -52,18 +52,42 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
             case subscription
             case subscriptionPricePoint
             case territory
+
+            var allCases: [Self] {
+                [
+                    .duration,
+                    .endDate,
+                    .numberOfPeriods,
+                    .offerMode,
+                    .startDate,
+                    .subscription,
+                    .subscriptionPricePoint,
+                    .territory,
+                ]
+            }
         }
 
-        public enum SubscriptionPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPricePoints: String, ParameterValue, CodableEnum, CaseIterable {
             case customerPrice
             case equalizations
             case proceeds
             case proceedsYear2
             case subscription
             case territory
+
+            var allCases: [Self] {
+                [
+                    .customerPrice,
+                    .equalizations,
+                    .proceeds,
+                    .proceedsYear2,
+                    .subscription,
+                    .territory,
+                ]
+            }
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, CodableEnum, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -82,10 +106,39 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+
+            var allCases: [Self] {
+                [
+                    .appStoreReviewScreenshot,
+                    .availableInAllTerritories,
+                    .familySharable,
+                    .group,
+                    .groupLevel,
+                    .introductoryOffers,
+                    .name,
+                    .offerCodes,
+                    .pricePoints,
+                    .prices,
+                    .productId,
+                    .promotedPurchase,
+                    .promotionalOffers,
+                    .reviewNote,
+                    .state,
+                    .subscriptionAvailability,
+                    .subscriptionLocalizations,
+                    .subscriptionPeriod,
+                ]
+            }
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, ParameterValue, CodableEnum, CaseIterable {
             case currency
+
+            var allCases: [Self] {
+                [
+                    .currency,
+                ]
+            }
         }
     }
 

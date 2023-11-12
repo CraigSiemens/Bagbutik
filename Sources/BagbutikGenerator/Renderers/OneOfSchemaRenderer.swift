@@ -1,6 +1,5 @@
 import BagbutikSpecDecoder
 import Foundation
-import SwiftFormat
 
 /// A renderer which renders one of schemas
 public class OneOfSchemaRenderer {
@@ -59,10 +58,10 @@ public class OneOfSchemaRenderer {
             }
 
             private enum CodingKeys: String, CodingKey {
-                case type
+                case type = "type"
             }
         }
         """
-        return try SwiftFormat.format(rendered)
+        return rendered
     }
 }
