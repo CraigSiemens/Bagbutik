@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchaseV2Response: Codable {
+public struct InAppPurchaseV2Response {
     public let data: InAppPurchaseV2
     public var included: [Included]?
     public let links: DocumentLinks
@@ -74,7 +74,7 @@ public struct InAppPurchaseV2Response: Codable {
         }.first { $0.id == data.relationships?.promotedPurchase?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case inAppPurchaseAppStoreReviewScreenshot(InAppPurchaseAppStoreReviewScreenshot)
         case inAppPurchaseAvailability(InAppPurchaseAvailability)
         case inAppPurchaseContent(InAppPurchaseContent)
@@ -82,49 +82,5 @@ public struct InAppPurchaseV2Response: Codable {
         case inAppPurchasePricePoint(InAppPurchasePricePoint)
         case inAppPurchasePriceSchedule(InAppPurchasePriceSchedule)
         case promotedPurchase(PromotedPurchase)
-
-        public init(from decoder: Decoder) throws {
-            if let inAppPurchaseAppStoreReviewScreenshot = try? InAppPurchaseAppStoreReviewScreenshot(from: decoder) {
-                self = .inAppPurchaseAppStoreReviewScreenshot(inAppPurchaseAppStoreReviewScreenshot)
-            } else if let inAppPurchaseAvailability = try? InAppPurchaseAvailability(from: decoder) {
-                self = .inAppPurchaseAvailability(inAppPurchaseAvailability)
-            } else if let inAppPurchaseContent = try? InAppPurchaseContent(from: decoder) {
-                self = .inAppPurchaseContent(inAppPurchaseContent)
-            } else if let inAppPurchaseLocalization = try? InAppPurchaseLocalization(from: decoder) {
-                self = .inAppPurchaseLocalization(inAppPurchaseLocalization)
-            } else if let inAppPurchasePricePoint = try? InAppPurchasePricePoint(from: decoder) {
-                self = .inAppPurchasePricePoint(inAppPurchasePricePoint)
-            } else if let inAppPurchasePriceSchedule = try? InAppPurchasePriceSchedule(from: decoder) {
-                self = .inAppPurchasePriceSchedule(inAppPurchasePriceSchedule)
-            } else if let promotedPurchase = try? PromotedPurchase(from: decoder) {
-                self = .promotedPurchase(promotedPurchase)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .inAppPurchaseAppStoreReviewScreenshot(value):
-                try value.encode(to: encoder)
-            case let .inAppPurchaseAvailability(value):
-                try value.encode(to: encoder)
-            case let .inAppPurchaseContent(value):
-                try value.encode(to: encoder)
-            case let .inAppPurchaseLocalization(value):
-                try value.encode(to: encoder)
-            case let .inAppPurchasePricePoint(value):
-                try value.encode(to: encoder)
-            case let .inAppPurchasePriceSchedule(value):
-                try value.encode(to: encoder)
-            case let .promotedPurchase(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

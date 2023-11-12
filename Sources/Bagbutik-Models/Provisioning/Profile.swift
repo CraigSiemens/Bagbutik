@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profile>
  */
-public struct Profile: Codable, Identifiable {
+public struct Profile: Identifiable {
     /// The opaque resource ID that uniquely identifies the resource
     public let id: String
     /// Navigational links that include the self-link.
@@ -31,34 +31,6 @@ public struct Profile: Codable, Identifiable {
         self.relationships = relationships
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
-    }
-
     /**
      # Profile.Attributes
      Attributes that describe a Profiles resource.
@@ -66,7 +38,7 @@ public struct Profile: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/profile/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         public var createdDate: Date?
         public var expirationDate: Date?
         public var name: String?
@@ -95,12 +67,12 @@ public struct Profile: Codable, Identifiable {
             self.uuid = uuid
         }
 
-        public enum ProfileState: String, ParameterValue, Codable, CaseIterable {
+        public enum ProfileState: String {
             case active = "ACTIVE"
             case invalid = "INVALID"
         }
 
-        public enum ProfileType: String, ParameterValue, Codable, CaseIterable {
+        public enum ProfileType: String {
             case iOSAppDevelopment = "IOS_APP_DEVELOPMENT"
             case iOSAppStore = "IOS_APP_STORE"
             case iOSAppAdhoc = "IOS_APP_ADHOC"
@@ -125,7 +97,7 @@ public struct Profile: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships {
         public var bundleId: BundleId?
         public var certificates: Certificates?
         public var devices: Devices?
@@ -146,7 +118,7 @@ public struct Profile: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid>
          */
-        public struct BundleId: Codable {
+        public struct BundleId {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -157,23 +129,6 @@ public struct Profile: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # Profile.Relationships.BundleId.Data
              The type and ID of a related resource.
@@ -181,31 +136,12 @@ public struct Profile: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "bundleIds" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -216,7 +152,7 @@ public struct Profile: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -225,23 +161,6 @@ public struct Profile: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }
@@ -253,7 +172,7 @@ public struct Profile: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates>
          */
-        public struct Certificates: Codable {
+        public struct Certificates {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -267,26 +186,6 @@ public struct Profile: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
             /**
              # Profile.Relationships.Certificates.Data
              The type and ID of a related resource.
@@ -294,31 +193,12 @@ public struct Profile: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "certificates" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -329,7 +209,7 @@ public struct Profile: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -338,23 +218,6 @@ public struct Profile: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }
@@ -366,7 +229,7 @@ public struct Profile: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices>
          */
-        public struct Devices: Codable {
+        public struct Devices {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -380,26 +243,6 @@ public struct Profile: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
             /**
              # Profile.Relationships.Devices.Data
              The type and ID of a related resource.
@@ -407,31 +250,12 @@ public struct Profile: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "devices" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -442,7 +266,7 @@ public struct Profile: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -451,23 +275,6 @@ public struct Profile: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }

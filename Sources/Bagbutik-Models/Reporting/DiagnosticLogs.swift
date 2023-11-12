@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogs>
  */
-public struct DiagnosticLogs: Codable {
+public struct DiagnosticLogs {
     /// An array of log data for a specific diagnostic signature.
     public var productData: [ProductData]?
     /// The version of the App Store Connect API.
@@ -28,7 +28,7 @@ public struct DiagnosticLogs: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogs/productdata>
      */
-    public struct ProductData: Codable {
+    public struct ProductData {
         /// An array of insights for a diagnostic signature.
         public var diagnosticInsights: [DiagnosticInsights]?
         /// An array of logs associated with a diagnostic signature.
@@ -52,7 +52,7 @@ public struct DiagnosticLogs: Codable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogs/productdata/diagnosticinsights>
          */
-        public struct DiagnosticInsights: Codable {
+        public struct DiagnosticInsights {
             /// The insight type.
             public var insightsCategory: String?
             /// The human-readable description of the insight.
@@ -77,7 +77,7 @@ public struct DiagnosticLogs: Codable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogs/productdata/diagnosticlogs>
          */
-        public struct DiagnosticLogs: Codable {
+        public struct DiagnosticLogs {
             /// The call stack representation of the diagnostic log.
             public var callStackTree: [CallStackTree]?
             /// Information about the diagnostic log the system captured.
@@ -97,7 +97,7 @@ public struct DiagnosticLogs: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogs/productdata/diagnosticlogs/callstacktree>
              */
-            public struct CallStackTree: Codable {
+            public struct CallStackTree {
                 /// A Boolean value that indicates whether the call stack representation supports multiple threads.
                 public var callStackPerThread: Bool?
                 /// The call stack representation of the diagnostic log.
@@ -117,7 +117,7 @@ public struct DiagnosticLogs: Codable {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogs/productdata/diagnosticlogs/callstacktree/callstacks>
                  */
-                public struct CallStacks: Codable {
+                public struct CallStacks {
                     /// An array of the root call stack frames that make up the diagnostic log.
                     public var callStackRootFrames: [DiagnosticLogCallStackNode]?
 
@@ -134,7 +134,7 @@ public struct DiagnosticLogs: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogs/productdata/diagnosticlogs/diagnosticmetadata>
              */
-            public struct DiagnosticMetaData: Codable {
+            public struct DiagnosticMetaData {
                 /// The app version.
                 public var appVersion: String?
                 /// The app build version.

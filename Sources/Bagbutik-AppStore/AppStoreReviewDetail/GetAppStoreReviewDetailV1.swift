@@ -36,7 +36,7 @@ public enum GetAppStoreReviewDetailV1 {
         /// The fields to include for returned resources of type appStoreReviewDetails
         case appStoreReviewDetails([AppStoreReviewDetails])
 
-        public enum AppStoreReviewAttachments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreReviewAttachments: String {
             case appStoreReviewDetail
             case assetDeliveryState
             case fileName
@@ -46,7 +46,7 @@ public enum GetAppStoreReviewDetailV1 {
             case uploaded
         }
 
-        public enum AppStoreReviewDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreReviewDetails: String {
             case appStoreReviewAttachments
             case appStoreVersion
             case contactEmail

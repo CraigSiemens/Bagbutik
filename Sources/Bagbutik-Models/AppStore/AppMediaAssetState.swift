@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appmediaassetstate>
  */
-public struct AppMediaAssetState: Codable {
+public struct AppMediaAssetState {
     public var errors: [AppMediaStateError]?
     public var state: State?
     public var warnings: [AppMediaStateError]?
@@ -22,7 +22,7 @@ public struct AppMediaAssetState: Codable {
         self.warnings = warnings
     }
 
-    public enum State: String, Codable, CaseIterable {
+    public enum State: String {
         case awaitingUpload = "AWAITING_UPLOAD"
         case uploadComplete = "UPLOAD_COMPLETE"
         case complete = "COMPLETE"

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct ActorsResponse: Codable, PagedResponse {
+public struct ActorsResponse: PagedResponse {
     public typealias Data = Actor
 
     public let data: [Actor]

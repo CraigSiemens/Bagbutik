@@ -35,14 +35,14 @@ public enum GetAppStoreVersionExperimentTreatmentV1 {
         /// The fields to include for returned resources of type appStoreVersionExperimentTreatments
         case appStoreVersionExperimentTreatments([AppStoreVersionExperimentTreatments])
 
-        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
         }
 
-        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatments: String {
             case appIcon
             case appIconName
             case appStoreVersionExperiment

@@ -39,14 +39,14 @@ public enum ListGameCenterLeaderboardSetMemberLocalizationsV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
-        public enum GameCenterLeaderboardSetMemberLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetMemberLocalizations: String {
             case gameCenterLeaderboard
             case gameCenterLeaderboardSet
             case locale
             case name
         }
 
-        public enum GameCenterLeaderboardSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSets: String {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboards
@@ -57,7 +57,7 @@ public enum ListGameCenterLeaderboardSetMemberLocalizationsV1 {
             case vendorIdentifier
         }
 
-        public enum GameCenterLeaderboards: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboards: String {
             case archived
             case defaultFormatter
             case gameCenterDetail

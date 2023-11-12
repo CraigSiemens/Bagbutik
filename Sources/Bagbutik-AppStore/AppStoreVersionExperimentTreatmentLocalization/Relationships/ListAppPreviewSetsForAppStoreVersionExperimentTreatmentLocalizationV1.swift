@@ -44,7 +44,7 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
@@ -52,7 +52,7 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case promotionalText
         }
 
-        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviewSets: String {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
@@ -60,7 +60,7 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case previewType
         }
 
-        public enum AppPreviews: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviews: String {
             case appPreviewSet
             case assetDeliveryState
             case fileName
@@ -74,14 +74,14 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case videoUrl
         }
 
-        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionLocalizations: String {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion

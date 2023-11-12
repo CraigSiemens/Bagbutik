@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest>
  */
-public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
+public struct AppStoreVersionUpdateRequest: RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -22,7 +22,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Identifiable {
         public let id: String
         public var type: String { "appStoreVersions" }
         public var attributes: Attributes?
@@ -37,31 +37,6 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-            try container.encodeIfPresent(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case id
-            case relationships
-            case type
-        }
-
         /**
          # AppStoreVersionUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
@@ -69,7 +44,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             public var copyright: String?
             public var downloadable: Bool?
             public var earliestReleaseDate: Date?
@@ -97,7 +72,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships {
             /// The related Default App Clip Experiences resource.
             public var appClipDefaultExperience: AppClipDefaultExperience?
             public var build: Build?
@@ -116,26 +91,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience>
              */
-            public struct AppClipDefaultExperience: Codable {
+            public struct AppClipDefaultExperience {
                 /// The ID and type of the related Default App Clip Experiences resource.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decodeIfPresent(Data.self, forKey: .data)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
                 }
 
                 /**
@@ -145,7 +106,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                     public let id: String
                     /// The resource type.
@@ -153,25 +114,6 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }
@@ -183,25 +125,11 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build>
              */
-            public struct Build: Codable {
+            public struct Build {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decodeIfPresent(Data.self, forKey: .data)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
                 }
 
                 /**
@@ -211,31 +139,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     public let id: String
                     public var type: String { "builds" }
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }

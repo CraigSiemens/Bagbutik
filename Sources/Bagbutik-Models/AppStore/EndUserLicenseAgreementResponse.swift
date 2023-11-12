@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementresponse>
  */
-public struct EndUserLicenseAgreementResponse: Codable {
+public struct EndUserLicenseAgreementResponse {
     public let data: EndUserLicenseAgreement
     public var included: [Included]?
     public let links: DocumentLinks
@@ -41,32 +41,8 @@ public struct EndUserLicenseAgreementResponse: Codable {
         return territories
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case app(App)
         case territory(Territory)
-
-        public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .app(value):
-                try value.encode(to: encoder)
-            case let .territory(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

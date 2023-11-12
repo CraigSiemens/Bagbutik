@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalizationresponse>
  */
-public struct GameCenterLeaderboardSetMemberLocalizationResponse: Codable {
+public struct GameCenterLeaderboardSetMemberLocalizationResponse {
     public let data: GameCenterLeaderboardSetMemberLocalization
     public var included: [Included]?
     public let links: DocumentLinks
@@ -36,32 +36,8 @@ public struct GameCenterLeaderboardSetMemberLocalizationResponse: Codable {
         }.first { $0.id == data.relationships?.gameCenterLeaderboardSet?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case gameCenterLeaderboard(GameCenterLeaderboard)
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
-
-        public init(from decoder: Decoder) throws {
-            if let gameCenterLeaderboard = try? GameCenterLeaderboard(from: decoder) {
-                self = .gameCenterLeaderboard(gameCenterLeaderboard)
-            } else if let gameCenterLeaderboardSet = try? GameCenterLeaderboardSet(from: decoder) {
-                self = .gameCenterLeaderboardSet(gameCenterLeaderboardSet)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .gameCenterLeaderboard(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboardSet(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

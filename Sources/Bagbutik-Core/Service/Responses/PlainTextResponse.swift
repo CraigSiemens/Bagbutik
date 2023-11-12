@@ -1,7 +1,7 @@
 import Foundation
 
 /// A response with plain text.
-public protocol PlainTextResponse: Decodable {
+public protocol PlainTextResponse {
     /// The plain text.
     var text: String { get }
 

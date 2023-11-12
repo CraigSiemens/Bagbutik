@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresultsresponse>
  */
-public struct CiTestResultsResponse: Codable, PagedResponse {
+public struct CiTestResultsResponse: PagedResponse {
     public typealias Data = CiTestResult
 
     /// The resource data.

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppPricesV2Response: Codable, PagedResponse {
+public struct AppPricesV2Response: PagedResponse {
     public typealias Data = AppPriceV2
 
     public let data: [AppPriceV2]
@@ -34,32 +34,8 @@ public struct AppPricesV2Response: Codable, PagedResponse {
         }.first { $0.id == appPriceV2.relationships?.territory?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appPricePointV3(AppPricePointV3)
         case territory(Territory)
-
-        public init(from decoder: Decoder) throws {
-            if let appPricePointV3 = try? AppPricePointV3(from: decoder) {
-                self = .appPricePointV3(appPricePointV3)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appPricePointV3(value):
-                try value.encode(to: encoder)
-            case let .territory(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

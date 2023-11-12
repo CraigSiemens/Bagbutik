@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppCustomProductPageLocalizationResponse: Codable {
+public struct AppCustomProductPageLocalizationResponse {
     public let data: AppCustomProductPageLocalization
     public var included: [Included]?
     public let links: DocumentLinks
@@ -46,37 +46,9 @@ public struct AppCustomProductPageLocalizationResponse: Codable {
         return appScreenshotSets
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appPreviewSet(AppPreviewSet)
         case appScreenshotSet(AppScreenshotSet)
-
-        public init(from decoder: Decoder) throws {
-            if let appCustomProductPageVersion = try? AppCustomProductPageVersion(from: decoder) {
-                self = .appCustomProductPageVersion(appCustomProductPageVersion)
-            } else if let appPreviewSet = try? AppPreviewSet(from: decoder) {
-                self = .appPreviewSet(appPreviewSet)
-            } else if let appScreenshotSet = try? AppScreenshotSet(from: decoder) {
-                self = .appScreenshotSet(appScreenshotSet)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appCustomProductPageVersion(value):
-                try value.encode(to: encoder)
-            case let .appPreviewSet(value):
-                try value.encode(to: encoder)
-            case let .appScreenshotSet(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

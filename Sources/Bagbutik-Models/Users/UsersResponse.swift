@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/usersresponse>
  */
-public struct UsersResponse: Codable, PagedResponse {
+public struct UsersResponse: PagedResponse {
     public typealias Data = User
 
     /// The resource data.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricetiersresponse>
  */
-public struct AppPriceTiersResponse: Codable, PagedResponse {
+public struct AppPriceTiersResponse: PagedResponse {
     public typealias Data = AppPriceTier
 
     /// The resource data.

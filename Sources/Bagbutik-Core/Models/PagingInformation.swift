@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/paginginformation>
  */
-public struct PagingInformation: Codable {
+public struct PagingInformation {
     /// The paging information details.
     public let paging: Paging
 
@@ -27,7 +27,7 @@ public struct PagingInformation: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/paginginformation/paging>
      */
-    public struct Paging: Codable {
+    public struct Paging {
         /// The maximum number of resources to return per page, from 0 to 200.
         public let limit: Int
         /// The total number of resources matching your request.

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppPriceScheduleResponse: Codable {
+public struct AppPriceScheduleResponse {
     public let data: AppPriceSchedule
     public var included: [Included]?
     public let links: DocumentLinks
@@ -53,37 +53,9 @@ public struct AppPriceScheduleResponse: Codable {
         return manualPrices
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case app(App)
         case appPriceV2(AppPriceV2)
         case territory(Territory)
-
-        public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appPriceV2 = try? AppPriceV2(from: decoder) {
-                self = .appPriceV2(appPriceV2)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .app(value):
-                try value.encode(to: encoder)
-            case let .appPriceV2(value):
-                try value.encode(to: encoder)
-            case let .territory(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

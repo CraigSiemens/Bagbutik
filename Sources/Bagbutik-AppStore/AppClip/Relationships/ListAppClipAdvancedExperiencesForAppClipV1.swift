@@ -43,7 +43,7 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
 
-        public enum AppClipAdvancedExperienceImages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperienceImages: String {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -53,13 +53,13 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case uploaded
         }
 
-        public enum AppClipAdvancedExperienceLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperienceLocalizations: String {
             case language
             case subtitle
             case title
         }
 
-        public enum AppClipAdvancedExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperiences: String {
             case action
             case appClip
             case businessCategory
@@ -75,7 +75,7 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case version
         }
 
-        public enum AppClips: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClips: String {
             case app
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
@@ -94,13 +94,13 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
         /// Filter by attribute 'status'
         case status([Status])
 
-        public enum PlaceStatus: String, ParameterValue, Codable, CaseIterable {
+        public enum PlaceStatus: String {
             case pending = "PENDING"
             case matched = "MATCHED"
             case noMatch = "NO_MATCH"
         }
 
-        public enum Status: String, ParameterValue, Codable, CaseIterable {
+        public enum Status: String {
             case received = "RECEIVED"
             case deactivated = "DEACTIVATED"
             case appTransferInProgress = "APP_TRANSFER_IN_PROGRESS"

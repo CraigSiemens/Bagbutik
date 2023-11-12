@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct BetaTestersWithoutIncludesResponse: Codable, PagedResponse {
+public struct BetaTestersWithoutIncludesResponse: PagedResponse {
     public typealias Data = Build
 
     public let data: [Build]

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionPromotionalOffersResponse: Codable, PagedResponse {
+public struct SubscriptionPromotionalOffersResponse: PagedResponse {
     public typealias Data = SubscriptionPromotionalOffer
 
     public let data: [SubscriptionPromotionalOffer]
@@ -39,32 +39,8 @@ public struct SubscriptionPromotionalOffersResponse: Codable, PagedResponse {
         }.first { $0.id == subscriptionPromotionalOffer.relationships?.subscription?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case subscription(Subscription)
         case subscriptionPromotionalOfferPrice(SubscriptionPromotionalOfferPrice)
-
-        public init(from decoder: Decoder) throws {
-            if let subscription = try? Subscription(from: decoder) {
-                self = .subscription(subscription)
-            } else if let subscriptionPromotionalOfferPrice = try? SubscriptionPromotionalOfferPrice(from: decoder) {
-                self = .subscriptionPromotionalOfferPrice(subscriptionPromotionalOfferPrice)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .subscription(value):
-                try value.encode(to: encoder)
-            case let .subscriptionPromotionalOfferPrice(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrule>
  */
-public struct GameCenterMatchmakingRule: Codable, Identifiable {
+public struct GameCenterMatchmakingRule: Identifiable {
     /// The unique identifier for the rule.
     public let id: String
     public var links: ResourceLinks?
@@ -25,31 +25,6 @@ public struct GameCenterMatchmakingRule: Codable, Identifiable {
         self.attributes = attributes
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
-    }
-
     /**
      # GameCenterMatchmakingRule.Attributes
      The attributes of a matchmaking rule.
@@ -57,7 +32,7 @@ public struct GameCenterMatchmakingRule: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrule/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         /// A human-readable description of the rule.
         public var description: String?
         /// Code that returns a Boolean or numeric value that the matchmaking rules algorithm executes to compare or filter match requests.
@@ -82,7 +57,7 @@ public struct GameCenterMatchmakingRule: Codable, Identifiable {
             self.weight = weight
         }
 
-        public enum AttributesType: String, Codable, CaseIterable {
+        public enum AttributesType: String {
             case compatible = "COMPATIBLE"
             case distance = "DISTANCE"
             case match = "MATCH"

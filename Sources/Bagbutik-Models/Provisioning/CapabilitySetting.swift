@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/capabilitysetting>
  */
-public struct CapabilitySetting: Codable {
+public struct CapabilitySetting {
     public var allowedInstances: AllowedInstances?
     public var description: String?
     public var enabledByDefault: Bool?
@@ -37,13 +37,13 @@ public struct CapabilitySetting: Codable {
         self.visible = visible
     }
 
-    public enum AllowedInstances: String, Codable, CaseIterable {
+    public enum AllowedInstances: String {
         case entry = "ENTRY"
         case single = "SINGLE"
         case multiple = "MULTIPLE"
     }
 
-    public enum Key: String, Codable, CaseIterable {
+    public enum Key: String {
         case iCloudVersion = "ICLOUD_VERSION"
         case dataProtectionPermissionLevel = "DATA_PROTECTION_PERMISSION_LEVEL"
         case appleIdAuthAppConsent = "APPLE_ID_AUTH_APP_CONSENT"

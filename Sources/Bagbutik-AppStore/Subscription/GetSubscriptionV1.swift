@@ -52,7 +52,7 @@ public enum GetSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String {
             case app
             case enabled
             case inAppPurchaseV2
@@ -62,7 +62,7 @@ public enum GetSubscriptionV1 {
             case visibleForAllUsers
         }
 
-        public enum SubscriptionAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionAppStoreReviewScreenshots: String {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -75,13 +75,13 @@ public enum GetSubscriptionV1 {
             case uploaded
         }
 
-        public enum SubscriptionAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionAvailabilities: String {
             case availableInNewTerritories
             case availableTerritories
             case subscription
         }
 
-        public enum SubscriptionIntroductoryOffers: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionIntroductoryOffers: String {
             case duration
             case endDate
             case numberOfPeriods
@@ -92,7 +92,7 @@ public enum GetSubscriptionV1 {
             case territory
         }
 
-        public enum SubscriptionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionLocalizations: String {
             case description
             case locale
             case name
@@ -100,7 +100,7 @@ public enum GetSubscriptionV1 {
             case subscription
         }
 
-        public enum SubscriptionOfferCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodes: String {
             case active
             case customCodes
             case customerEligibilities
@@ -115,7 +115,7 @@ public enum GetSubscriptionV1 {
             case totalNumberOfCodes
         }
 
-        public enum SubscriptionPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPricePoints: String {
             case customerPrice
             case equalizations
             case proceeds
@@ -124,7 +124,7 @@ public enum GetSubscriptionV1 {
             case territory
         }
 
-        public enum SubscriptionPrices: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPrices: String {
             case preserveCurrentPrice
             case preserved
             case startDate
@@ -133,7 +133,7 @@ public enum GetSubscriptionV1 {
             case territory
         }
 
-        public enum SubscriptionPromotionalOffers: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPromotionalOffers: String {
             case duration
             case name
             case numberOfPeriods
@@ -143,7 +143,7 @@ public enum GetSubscriptionV1 {
             case subscription
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable

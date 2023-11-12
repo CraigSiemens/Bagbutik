@@ -38,7 +38,7 @@ public enum GetPreReleaseVersionV1 {
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -85,7 +85,7 @@ public enum GetPreReleaseVersionV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -112,7 +112,7 @@ public enum GetPreReleaseVersionV1 {
             case version
         }
 
-        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum PreReleaseVersions: String {
             case app
             case builds
             case platform

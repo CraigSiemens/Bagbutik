@@ -45,7 +45,7 @@ public enum ListGameCenterAchievementsForGameCenterDetailV1 {
         /// The fields to include for returned resources of type gameCenterGroups
         case gameCenterGroups([GameCenterGroups])
 
-        public enum GameCenterAchievementLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementLocalizations: String {
             case afterEarnedDescription
             case beforeEarnedDescription
             case gameCenterAchievement
@@ -54,13 +54,13 @@ public enum ListGameCenterAchievementsForGameCenterDetailV1 {
             case name
         }
 
-        public enum GameCenterAchievementReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementReleases: String {
             case gameCenterAchievement
             case gameCenterDetail
             case live
         }
 
-        public enum GameCenterAchievements: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievements: String {
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -74,7 +74,7 @@ public enum ListGameCenterAchievementsForGameCenterDetailV1 {
             case vendorIdentifier
         }
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -90,7 +90,7 @@ public enum ListGameCenterAchievementsForGameCenterDetailV1 {
             case leaderboardSetReleases
         }
 
-        public enum GameCenterGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterGroups: String {
             case gameCenterAchievements
             case gameCenterDetails
             case gameCenterLeaderboardSets

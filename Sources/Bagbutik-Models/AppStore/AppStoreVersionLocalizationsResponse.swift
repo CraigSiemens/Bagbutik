@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationsresponse>
  */
-public struct AppStoreVersionLocalizationsResponse: Codable, PagedResponse {
+public struct AppStoreVersionLocalizationsResponse: PagedResponse {
     public typealias Data = AppStoreVersionLocalization
 
     public let data: [AppStoreVersionLocalization]
@@ -58,37 +58,9 @@ public struct AppStoreVersionLocalizationsResponse: Codable, PagedResponse {
         }.first { $0.id == appStoreVersionLocalization.relationships?.appStoreVersion?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appPreviewSet(AppPreviewSet)
         case appScreenshotSet(AppScreenshotSet)
         case appStoreVersion(AppStoreVersion)
-
-        public init(from decoder: Decoder) throws {
-            if let appPreviewSet = try? AppPreviewSet(from: decoder) {
-                self = .appPreviewSet(appPreviewSet)
-            } else if let appScreenshotSet = try? AppScreenshotSet(from: decoder) {
-                self = .appScreenshotSet(appScreenshotSet)
-            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appPreviewSet(value):
-                try value.encode(to: encoder)
-            case let .appScreenshotSet(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersion(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

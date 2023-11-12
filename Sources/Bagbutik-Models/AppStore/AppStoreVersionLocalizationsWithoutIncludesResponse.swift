@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionLocalizationsWithoutIncludesResponse: Codable, PagedResponse {
+public struct AppStoreVersionLocalizationsWithoutIncludesResponse: PagedResponse {
     public typealias Data = AppStoreVersion
 
     public let data: [AppStoreVersion]

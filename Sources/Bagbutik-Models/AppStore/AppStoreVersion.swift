@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion>
  */
-public struct AppStoreVersion: Codable, Identifiable {
+public struct AppStoreVersion: Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appStoreVersions" }
@@ -26,34 +26,6 @@ public struct AppStoreVersion: Codable, Identifiable {
         self.relationships = relationships
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
-    }
-
     /**
      # AppStoreVersion.Attributes
      Attributes that describe an App Store Versions resource.
@@ -61,7 +33,7 @@ public struct AppStoreVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         public var appStoreState: AppStoreVersionState?
         public var copyright: String?
         public var createdDate: Date?
@@ -90,7 +62,7 @@ public struct AppStoreVersion: Codable, Identifiable {
             self.versionString = versionString
         }
 
-        public enum ReleaseType: String, Codable, CaseIterable {
+        public enum ReleaseType: String {
             case manual = "MANUAL"
             case afterApproval = "AFTER_APPROVAL"
             case scheduled = "SCHEDULED"
@@ -104,7 +76,7 @@ public struct AppStoreVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var ageRatingDeclaration: AgeRatingDeclaration? = nil
         public var app: App?
@@ -175,7 +147,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration>
          */
-        public struct AgeRatingDeclaration: Codable {
+        public struct AgeRatingDeclaration {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -186,23 +158,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppStoreVersion.Relationships.AgeRatingDeclaration.Data
              The type and ID of a related resource.
@@ -210,31 +165,12 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "ageRatingDeclarations" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -245,7 +181,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -254,23 +190,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }
@@ -282,7 +201,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app>
          */
-        public struct App: Codable {
+        public struct App {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -293,23 +212,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppStoreVersion.Relationships.App.Data
              The type and ID of a related resource.
@@ -317,31 +219,12 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -352,7 +235,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -361,23 +244,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }
@@ -389,7 +255,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience>
          */
-        public struct AppClipDefaultExperience: Codable {
+        public struct AppClipDefaultExperience {
             /// The ID and type of the related Default App Clip Experiences resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -402,23 +268,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppStoreVersion.Relationships.AppClipDefaultExperience.Data
              The type and ID of a related Default App Clip Experiences resource.
@@ -426,7 +275,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
                 /// The resource type.
@@ -434,25 +283,6 @@ public struct AppStoreVersion: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -463,7 +293,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -475,23 +305,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                     self.related = related
                     self.itself = itself
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
-                }
             }
         }
 
@@ -502,7 +315,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail>
          */
-        public struct AppStoreReviewDetail: Codable {
+        public struct AppStoreReviewDetail {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -513,23 +326,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppStoreVersion.Relationships.AppStoreReviewDetail.Data
              The type and ID of a related resource.
@@ -537,31 +333,12 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewDetails" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -572,7 +349,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -582,27 +359,10 @@ public struct AppStoreVersion: Codable, Identifiable {
                     self.related = related
                     self.itself = itself
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
-                }
             }
         }
 
-        public struct AppStoreVersionExperiments: Codable {
+        public struct AppStoreVersionExperiments {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -616,55 +376,16 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperiments" }
 
                 public init(id: String) {
                     self.id = id
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
-                }
             }
 
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -674,27 +395,10 @@ public struct AppStoreVersion: Codable, Identifiable {
                     self.related = related
                     self.itself = itself
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
-                }
             }
         }
 
-        public struct AppStoreVersionExperimentsV2: Codable {
+        public struct AppStoreVersionExperimentsV2 {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -708,55 +412,16 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperiments" }
 
                 public init(id: String) {
                     self.id = id
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
-                }
             }
 
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -765,23 +430,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }
@@ -793,7 +441,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations>
          */
-        public struct AppStoreVersionLocalizations: Codable {
+        public struct AppStoreVersionLocalizations {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -807,26 +455,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
             /**
              # AppStoreVersion.Relationships.AppStoreVersionLocalizations.Data
              The type and ID of a related resource.
@@ -834,31 +462,12 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionLocalizations" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -869,7 +478,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -878,23 +487,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }
@@ -906,7 +498,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease>
          */
-        public struct AppStoreVersionPhasedRelease: Codable {
+        public struct AppStoreVersionPhasedRelease {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -917,23 +509,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease.Data
              The type and ID of a related resource.
@@ -941,31 +516,12 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionPhasedReleases" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -976,7 +532,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -985,23 +541,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }
@@ -1013,7 +552,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission>
          */
-        public struct AppStoreVersionSubmission: Codable {
+        public struct AppStoreVersionSubmission {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1024,23 +563,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppStoreVersion.Relationships.AppStoreVersionSubmission.Data
              The type and ID of a related resource.
@@ -1048,31 +570,12 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionSubmissions" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -1083,7 +586,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -1092,23 +595,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }
@@ -1120,7 +606,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build>
          */
-        public struct Build: Codable {
+        public struct Build {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1131,23 +617,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppStoreVersion.Relationships.Build.Data
              The type and ID of a related resource.
@@ -1155,31 +624,12 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "builds" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -1190,7 +640,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -1199,23 +649,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }
@@ -1227,7 +660,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage>
          */
-        public struct RoutingAppCoverage: Codable {
+        public struct RoutingAppCoverage {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1238,23 +671,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppStoreVersion.Relationships.RoutingAppCoverage.Data
              The type and ID of a related resource.
@@ -1262,31 +678,12 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "routingAppCoverages" }
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -1297,7 +694,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -1306,23 +703,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }

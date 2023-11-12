@@ -36,7 +36,7 @@ public enum ListAppScreenshotsForAppScreenshotSetV1 {
         /// The fields to include for returned resources of type appScreenshots
         case appScreenshots([AppScreenshots])
 
-        public enum AppScreenshotSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshotSets: String {
             case appCustomProductPageLocalization
             case appScreenshots
             case appStoreVersionExperimentTreatmentLocalization
@@ -44,7 +44,7 @@ public enum ListAppScreenshotsForAppScreenshotSetV1 {
             case screenshotDisplayType
         }
 
-        public enum AppScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum AppScreenshots: String {
             case appScreenshotSet
             case assetDeliveryState
             case assetToken

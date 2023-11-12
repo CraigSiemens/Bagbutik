@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public enum GameCenterLeaderboardFormatter: String, Codable, CaseIterable {
+public enum GameCenterLeaderboardFormatter: String {
     case integer = "INTEGER"
     case decimalPoint1Place = "DECIMAL_POINT_1_PLACE"
     case decimalPoint2Place = "DECIMAL_POINT_2_PLACE"

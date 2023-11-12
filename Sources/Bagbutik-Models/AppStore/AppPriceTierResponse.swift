@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricetierresponse>
  */
-public struct AppPriceTierResponse: Codable {
+public struct AppPriceTierResponse {
     /// The resource data.
     public let data: AppPriceTier
     /// The requested relationship data. Note: `AppPricePoint` is deprecated.

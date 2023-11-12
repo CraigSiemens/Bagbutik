@@ -42,7 +42,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatments: String {
             case appIcon
             case appIconName
             case appStoreVersionExperiment
@@ -52,7 +52,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case promotedDate
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String {
             case app
             case appStoreVersionExperimentTreatments
             case controlVersions
@@ -67,7 +67,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case trafficProportion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -90,7 +90,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -145,7 +145,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String {
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"

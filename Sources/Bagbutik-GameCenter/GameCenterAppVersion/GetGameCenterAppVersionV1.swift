@@ -36,7 +36,7 @@ public enum GetGameCenterAppVersionV1 {
         /// The fields to include for returned resources of type gameCenterAppVersions
         case gameCenterAppVersions([GameCenterAppVersions])
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -59,7 +59,7 @@ public enum GetGameCenterAppVersionV1 {
             case versionString
         }
 
-        public enum GameCenterAppVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAppVersions: String {
             case appStoreVersion
             case compatibilityVersions
             case enabled

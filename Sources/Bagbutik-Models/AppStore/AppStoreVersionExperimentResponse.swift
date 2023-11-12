@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperimentResponse: Codable {
+public struct AppStoreVersionExperimentResponse {
     public let data: AppStoreVersionExperiment
     public var included: [Included]?
     public let links: DocumentLinks
@@ -34,32 +34,8 @@ public struct AppStoreVersionExperimentResponse: Codable {
         return appStoreVersionExperimentTreatments
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appStoreVersion(AppStoreVersion)
         case appStoreVersionExperimentTreatment(AppStoreVersionExperimentTreatment)
-
-        public init(from decoder: Decoder) throws {
-            if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else if let appStoreVersionExperimentTreatment = try? AppStoreVersionExperimentTreatment(from: decoder) {
-                self = .appStoreVersionExperimentTreatment(appStoreVersionExperimentTreatment)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appStoreVersion(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperimentTreatment(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

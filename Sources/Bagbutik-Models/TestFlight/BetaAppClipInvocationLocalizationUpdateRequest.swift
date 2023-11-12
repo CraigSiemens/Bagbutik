@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationupdaterequest>
  */
-public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBody {
+public struct BetaAppClipInvocationLocalizationUpdateRequest: RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -23,7 +23,7 @@ public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBo
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Identifiable {
         /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
@@ -38,28 +38,6 @@ public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBo
             self.attributes = attributes
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case id
-            case type
-        }
-
         /**
          # BetaAppClipInvocationLocalizationUpdateRequest.Data.Attributes
          The attributes you set that describe the updated Beta App Clip Invocation Localizations resource.
@@ -67,7 +45,7 @@ public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBo
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
             public var title: String?
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse>
  */
-public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, PagedResponse {
+public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -29,7 +29,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
         /// The granularity of the data using the ISO 8601 format for durations.
@@ -51,7 +51,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/datapoints>
          */
-        public struct DataPoints: Codable {
+        public struct DataPoints {
             /// The time Game Center ends the data collection.
             public var end: Date?
             /// The time Game Center starts the data collection.
@@ -74,7 +74,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/datapoints/values>
              */
-            public struct Values: Codable {
+            public struct Values {
                 /// The average result of numeric rules.
                 public var averageResult: Double?
                 /// The number of rule results in the response.
@@ -104,7 +104,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/dimensions>
          */
-        public struct Dimensions: Codable {
+        public struct Dimensions {
             public var gameCenterMatchmakingQueue: GameCenterMatchmakingQueue?
 
             public init(gameCenterMatchmakingQueue: GameCenterMatchmakingQueue? = nil) {
@@ -118,7 +118,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/dimensions/gamecentermatchmakingqueue>
              */
-            public struct GameCenterMatchmakingQueue: Codable {
+            public struct GameCenterMatchmakingQueue {
                 public var links: Links?
 
                 public init(links: Links? = nil) {
@@ -132,7 +132,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/dimensions/gamecentermatchmakingqueue/links>
                  */
-                public struct Links: Codable {
+                public struct Links {
                     /// A string URI representation of the data that Game Center organizes by group.
                     public var groupBy: String?
                     /// A string URI representation of the related data.
@@ -148,7 +148,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
             }
         }
 
-        public enum Granularity: String, Codable, CaseIterable {
+        public enum Granularity: String {
             case P1D
             case PT1H
             case PT15M

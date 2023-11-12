@@ -36,7 +36,7 @@ public enum ListSubscriptionLocalizationsForSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionLocalizations: String {
             case description
             case locale
             case name
@@ -44,7 +44,7 @@ public enum ListSubscriptionLocalizationsForSubscriptionV1 {
             case subscription
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable

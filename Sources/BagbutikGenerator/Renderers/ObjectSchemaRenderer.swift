@@ -1,7 +1,6 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
-import SwiftFormat
 
 /// A renderer which renders object schemas
 public class ObjectSchemaRenderer: Renderer {
@@ -31,7 +30,7 @@ public class ObjectSchemaRenderer: Renderer {
                 return documentationContent.joined(separator: "\n\n")
             } + "\n"
         }
-        var protocols = ["Codable"]
+        var protocols: [String] = []
         if objectSchema.properties.keys.contains("id") {
             protocols.append("Identifiable")
         }
@@ -63,39 +62,37 @@ public class ObjectSchemaRenderer: Renderer {
                 structContent.append(renderInitializer(parameters: deprecatedPublicInitParameters, deprecated: true, content: { createInitContent(propertiesInfo.deprecatedPublicInitPropertyNames) }))
             }
             structContent.append(renderInitializer(parameters: propertiesInfo.publicInitParameters, content: { createInitContent(propertiesInfo.publicInitPropertyNames) }))
-            if propertiesInfo.needsCustomCoding {
-                structContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
-                    var functionContent = "let container = try decoder.container(keyedBy: CodingKeys.self)\n"
-                    functionContent += propertiesInfo.decodableProperties.map { decodableProperty in
-                        if decodableProperty.optional {
-                            return "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: .\(decodableProperty.name.safeName))"
-                        } else {
-                            return "\(decodableProperty.name.safeName) = try container.decode(\(decodableProperty.type).self, forKey: .\(decodableProperty.name.safeName))"
-                        }
-                    }.joined(separator: "\n")
-                    if propertiesInfo.hasTypeConstant {
-                        functionContent += #"""
-
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                        """#
-                    }
-                    return functionContent
-                }))
-                structContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
-                    var functionContent = "var container = encoder.container(keyedBy: CodingKeys.self)\n"
-                    functionContent += propertiesInfo.encodableProperties.map { encodableProperty in
-                        if encodableProperty.optional, !encodableProperty.nullCodable {
-                            return "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: .\(encodableProperty.name.safeName))"
-                        } else {
-                            return "try container.encode(\(encodableProperty.name.safeName), forKey: .\(encodableProperty.name.safeName))"
-                        }
-                    }.joined(separator: "\n")
-                    return functionContent
-                }))
-                structContent.append(renderEnum(named: "CodingKeys", access: "private", rawType: "String", protocols: ["CodingKey"], cases: propertiesInfo.codingKeys))
-            }
+//            structContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
+//                var functionContent = "let container = try decoder.container(keyedBy: CodingKeys.self)\n"
+//                functionContent += propertiesInfo.decodableProperties.map { decodableProperty in
+//                    if decodableProperty.optional {
+//                        return "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: .\(decodableProperty.name.safeName))"
+//                    } else {
+//                        return "\(decodableProperty.name.safeName) = try container.decode(\(decodableProperty.type).self, forKey: .\(decodableProperty.name.safeName))"
+//                    }
+//                }.joined(separator: "\n")
+//                if propertiesInfo.hasTypeConstant {
+//                    functionContent += #"""
+//
+//                    if try container.decode(String.self, forKey: .type) != type {
+//                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+//                    }
+//                    """#
+//                }
+//                return functionContent
+//            }))
+//            structContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
+//                var functionContent = "var container = encoder.container(keyedBy: CodingKeys.self)\n"
+//                functionContent += propertiesInfo.encodableProperties.map { encodableProperty in
+//                    if encodableProperty.optional, !encodableProperty.nullCodable {
+//                        return "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: .\(encodableProperty.name.safeName))"
+//                    } else {
+//                        return "try container.encode(\(encodableProperty.name.safeName), forKey: .\(encodableProperty.name.safeName))"
+//                    }
+//                }.joined(separator: "\n")
+//                return functionContent
+//            }))
+//            structContent.append(renderEnum(named: "CodingKeys", access: "private", rawType: "String", protocols: ["CodingKey"], cases: propertiesInfo.codingKeys))
             structContent.append(contentsOf: createIncludedGetters(for: objectSchema, otherSchemas: otherSchemas))
             structContent.append(contentsOf: objectSchema.subSchemas.map { subSchema -> String in
                 switch subSchema {
@@ -109,7 +106,7 @@ public class ObjectSchemaRenderer: Renderer {
             })
             return structContent.joined(separator: "\n\n")
         }
-        return try SwiftFormat.format(rendered)
+        return try format(rendered)
     }
 
     private struct PropertiesInfo {
@@ -122,7 +119,6 @@ public class ObjectSchemaRenderer: Renderer {
         let encodableProperties: [CodableProperty]
         let decodableProperties: [CodableProperty]
         let hasTypeConstant: Bool
-        let needsCustomCoding: Bool
 
         init(for objectSchema: ObjectSchema, documentation: ObjectDocumentation?, docsLoader: DocsLoader) {
             var objectSchema = objectSchema
@@ -136,7 +132,6 @@ public class ObjectSchemaRenderer: Renderer {
                 return $0.key < $1.key
             }
             let initParameters = sortedProperties.filter { !$0.value.type.isConstant }
-            var hasNullCodableWrappedProperty = false
             properties = sortedProperties.map { property -> RenderProperty in
                 let rendered: String
                 switch property.value.type {
@@ -155,7 +150,6 @@ public class ObjectSchemaRenderer: Renderer {
                     var wrapper = ""
                     if id == "data", type == "Data" || type == "[Data]" || type == "[Item]", isOptional {
                         wrapper += "@NullCodable "
-                        hasNullCodableWrappedProperty = true
                     }
                     rendered = wrapper + PropertyRenderer(docsLoader: docsLoader)
                         .renderProperty(id: id,
@@ -176,6 +170,8 @@ public class ObjectSchemaRenderer: Renderer {
                 let propertyName = PropertyName(idealName: $0.key)
                 return EnumCase(id: propertyName.safeName, value: propertyName.idealName)
             }
+            let hasTypeConstant = sortedProperties.contains(where: { $0.key == "type" && $0.value.type.isConstant })
+            self.hasTypeConstant = hasTypeConstant
             encodableProperties = sortedProperties.map {
                 let propertyName = PropertyName(idealName: $0.key)
                 let type = $0.value.type.description
@@ -185,9 +181,7 @@ public class ObjectSchemaRenderer: Renderer {
                     optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type",
                     nullCodable: propertyName.safeName == "data" && type == "Data" || type == "[Data]" || type == "[Item]")
             }
-            decodableProperties = encodableProperties.filter { $0.name.idealName != "type" }
-            hasTypeConstant = sortedProperties.contains(where: { $0.key == "type" && $0.value.type.isConstant })
-            needsCustomCoding = hasTypeConstant || hasNullCodableWrappedProperty || sortedProperties.contains(where: { PropertyName(idealName: $0.key).hasDifferentSafeName })
+            decodableProperties = encodableProperties.filter { !hasTypeConstant || $0.name.idealName != "type" }
         }
 
         private static func createFunctionParameters(from parameters: [Dictionary<String, Property>.Element], requiredProperties: [String]) -> [FunctionParameter] {

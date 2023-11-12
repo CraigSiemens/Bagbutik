@@ -50,13 +50,13 @@ public enum GetGameCenterDetailV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
-        public enum GameCenterAchievementReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementReleases: String {
             case gameCenterAchievement
             case gameCenterDetail
             case live
         }
 
-        public enum GameCenterAchievements: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievements: String {
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -70,13 +70,13 @@ public enum GetGameCenterDetailV1 {
             case vendorIdentifier
         }
 
-        public enum GameCenterAppVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAppVersions: String {
             case appStoreVersion
             case compatibilityVersions
             case enabled
         }
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -92,7 +92,7 @@ public enum GetGameCenterDetailV1 {
             case leaderboardSetReleases
         }
 
-        public enum GameCenterGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterGroups: String {
             case gameCenterAchievements
             case gameCenterDetails
             case gameCenterLeaderboardSets
@@ -100,19 +100,19 @@ public enum GetGameCenterDetailV1 {
             case referenceName
         }
 
-        public enum GameCenterLeaderboardReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardReleases: String {
             case gameCenterDetail
             case gameCenterLeaderboard
             case live
         }
 
-        public enum GameCenterLeaderboardSetReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetReleases: String {
             case gameCenterDetail
             case gameCenterLeaderboardSet
             case live
         }
 
-        public enum GameCenterLeaderboardSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSets: String {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboards
@@ -123,7 +123,7 @@ public enum GetGameCenterDetailV1 {
             case vendorIdentifier
         }
 
-        public enum GameCenterLeaderboards: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboards: String {
             case archived
             case defaultFormatter
             case gameCenterDetail

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupresponse>
  */
-public struct BetaGroupResponse: Codable {
+public struct BetaGroupResponse {
     /// The resource data.
     public let data: BetaGroup
     public var included: [Included]?
@@ -55,37 +55,9 @@ public struct BetaGroupResponse: Codable {
         return builds
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case app(App)
         case betaTester(BetaTester)
         case build(Build)
-
-        public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let betaTester = try? BetaTester(from: decoder) {
-                self = .betaTester(betaTester)
-            } else if let build = try? Build(from: decoder) {
-                self = .build(build)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .app(value):
-                try value.encode(to: encoder)
-            case let .betaTester(value):
-                try value.encode(to: encoder)
-            case let .build(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

@@ -1,6 +1,5 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
-import SwiftFormat
 
 /// A renderer which renders enum schemas
 public class EnumSchemaRenderer: Renderer {
@@ -29,11 +28,11 @@ public class EnumSchemaRenderer: Renderer {
             } + "\n"
         }
         let protocols = enumSchema.additionalProtocols
-            .union(["Codable", "CaseIterable"])
+            .union(["CodableEnum", "CaseIterable"])
             .sorted()
             .reversed()
             .joined(separator: ", ")
-        rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(protocols) {\n"
+        rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized) {\n"
         let cases = enumSchema.cases.map { enumCase -> EnumCase in
             var enumCase = enumCase
             enumCase.documentation = documentation?.cases[enumCase.value]
@@ -45,7 +44,12 @@ public class EnumSchemaRenderer: Renderer {
             }
             rendered += "case \($0.id) = \"\($0.value)\"\n"
         }
+//        rendered += "\nvar allCases: [Self] {\n[\n"
+//        cases.forEach {
+//            rendered += ".\($0.id),\n"
+//        }
+//        rendered += "]\n}\n"
         rendered += "}"
-        return try SwiftFormat.format(rendered)
+        return try format(rendered)
     }
 }

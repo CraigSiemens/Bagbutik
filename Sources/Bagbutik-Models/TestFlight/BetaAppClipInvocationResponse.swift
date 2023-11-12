@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationresponse>
  */
-public struct BetaAppClipInvocationResponse: Codable {
+public struct BetaAppClipInvocationResponse {
     /// The resource data.
     public let data: BetaAppClipInvocation
     /// The requested relationship data.

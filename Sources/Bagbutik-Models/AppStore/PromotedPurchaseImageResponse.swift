@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct PromotedPurchaseImageResponse: Codable {
+public struct PromotedPurchaseImageResponse {
     public let data: PromotedPurchaseImage
     public var included: [PromotedPurchase]?
     public let links: DocumentLinks

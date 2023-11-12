@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest>
  */
-public struct UserUpdateRequest: Codable, RequestBody {
+public struct UserUpdateRequest: RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -23,7 +23,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
@@ -42,31 +42,6 @@ public struct UserUpdateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-            try container.encodeIfPresent(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case id
-            case relationships
-            case type
-        }
-
         /**
          # UserUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
@@ -74,7 +49,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
             public var allAppsVisible: Bool?
             /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
@@ -99,7 +74,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships {
             public var visibleApps: VisibleApps?
 
             public init(visibleApps: VisibleApps? = nil) {
@@ -113,25 +88,11 @@ public struct UserUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/relationships/visibleapps>
              */
-            public struct VisibleApps: Codable {
+            public struct VisibleApps {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decodeIfPresent([Data].self, forKey: .data)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
                 }
 
                 /**
@@ -141,7 +102,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/relationships/visibleapps/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.
@@ -149,25 +110,6 @@ public struct UserUpdateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }

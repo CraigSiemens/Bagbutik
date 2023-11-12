@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/capabilitytype>
  */
-public enum CapabilityType: String, Codable, CaseIterable {
+public enum CapabilityType: String {
     case iCloud = "ICLOUD"
     case inAppPurchase = "IN_APP_PURCHASE"
     case gameCenter = "GAME_CENTER"

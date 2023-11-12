@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience>
  */
-public struct AppClipAdvancedExperience: Codable, Identifiable {
+public struct AppClipAdvancedExperience: Identifiable {
     /// The opaque resource ID that uniquely identifies an Advanced App Clip Experiences resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -31,34 +31,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
         self.relationships = relationships
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
-    }
-
     /**
      # AppClipAdvancedExperience.Attributes
      The attributes that describe an Advanced App Clip Experiences resource.
@@ -66,7 +38,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         /// The call-to-action verb that appears on the App Clip card.
         public var action: AppClipAction?
         /// The business category of an advanced App Clip experience; for example, `PARKING`
@@ -107,7 +79,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
             self.version = version
         }
 
-        public enum BusinessCategory: String, Codable, CaseIterable {
+        public enum BusinessCategory: String {
             case automotive = "AUTOMOTIVE"
             case beauty = "BEAUTY"
             case bikes = "BIKES"
@@ -144,7 +116,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place>
          */
-        public struct Place: Codable {
+        public struct Place {
             /// A list of categories for a place in Apple Maps you associate with the Advanced App Clip experience.
             public var categories: [String]?
             /// Coordinates of a place in Apple Maps you associate with an advanced App Clip experience.
@@ -192,7 +164,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/displaypoint>
              */
-            public struct DisplayPoint: Codable {
+            public struct DisplayPoint {
                 /// The GPS coordinates of a place in Apple Maps you associate with the Advanced App Clip experience.
                 public var coordinates: Coordinates?
                 /// A string that describes the means by which you captured the data for a display point.
@@ -212,7 +184,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/displaypoint/coordinates>
                  */
-                public struct Coordinates: Codable {
+                public struct Coordinates {
                     /// A number that represents the latitude of GPS coordinates of a place in Apple Maps.
                     public var latitude: Double?
                     /// A number that represents the longitude of GPS coordinates of a place in Apple Maps.
@@ -226,7 +198,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                     }
                 }
 
-                public enum Source: String, Codable, CaseIterable {
+                public enum Source: String {
                     case calculated = "CALCULATED"
                     case manuallyPlaced = "MANUALLY_PLACED"
                 }
@@ -239,7 +211,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/mainaddress>
              */
-            public struct MainAddress: Codable {
+            public struct MainAddress {
                 /// The address of a place in Apple Maps as a string.
                 public var fullAddress: String?
                 /// The structured address of a place in Apple Maps.
@@ -259,7 +231,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/mainaddress/structuredaddress>
                  */
-                public struct StructuredAddress: Codable {
+                public struct StructuredAddress {
                     /// The country code of a place in Apple Maps you associate with the Advanced App Clip experience.
                     public var countryCode: String?
                     /// The identifier of a floor in a building.
@@ -294,7 +266,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                 }
             }
 
-            public enum MapAction: String, Codable, CaseIterable {
+            public enum MapAction: String {
                 case buyTickets = "BUY_TICKETS"
                 case viewAvailability = "VIEW_AVAILABILITY"
                 case viewPricing = "VIEW_PRICING"
@@ -317,7 +289,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/phonenumber>
              */
-            public struct PhoneNumber: Codable {
+            public struct PhoneNumber {
                 /// A string that describes the operational purpose of the phone number; for example `Customer Service` or `Help Desk`
                 public var intent: String?
                 /// The phone number as a string.
@@ -334,7 +306,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                     self.type = type
                 }
 
-                public enum PhoneNumberType: String, Codable, CaseIterable {
+                public enum PhoneNumberType: String {
                     case fax = "FAX"
                     case landline = "LANDLINE"
                     case mobile = "MOBILE"
@@ -342,20 +314,20 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                 }
             }
 
-            public enum Relationship: String, Codable, CaseIterable {
+            public enum Relationship: String {
                 case owner = "OWNER"
                 case authorized = "AUTHORIZED"
                 case other = "OTHER"
             }
         }
 
-        public enum PlaceStatus: String, Codable, CaseIterable {
+        public enum PlaceStatus: String {
             case pending = "PENDING"
             case matched = "MATCHED"
             case noMatch = "NO_MATCH"
         }
 
-        public enum Status: String, Codable, CaseIterable {
+        public enum Status: String {
             case received = "RECEIVED"
             case deactivated = "DEACTIVATED"
             case appTransferInProgress = "APP_TRANSFER_IN_PROGRESS"
@@ -369,7 +341,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships {
         /// The related App Clips resource.
         public var appClip: AppClip?
         /// The related Advanced App Clip Experience Images resource.
@@ -393,7 +365,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/appclip>
          */
-        public struct AppClip: Codable {
+        public struct AppClip {
             /// The ID and type of the related App Clips resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -406,23 +378,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppClipAdvancedExperience.Relationships.AppClip.Data
              The type and ID of a related App Clips resource.
@@ -430,7 +385,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/appclip/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clips resource.
                 public let id: String
                 /// The resource type.
@@ -438,25 +393,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -467,7 +403,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/appclip/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -479,23 +415,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                     self.related = related
                     self.itself = itself
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
-                }
             }
         }
 
@@ -506,7 +425,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/headerimage>
          */
-        public struct HeaderImage: Codable {
+        public struct HeaderImage {
             /// The ID and type of the related App Clip Header Images resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -519,23 +438,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # AppClipAdvancedExperience.Relationships.HeaderImage.Data
              The type and ID of a related Header Images resource.
@@ -543,7 +445,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/headerimage/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Images resource.
                 public let id: String
                 /// The resource type.
@@ -551,25 +453,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -580,7 +463,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/headerimage/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -592,23 +475,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                     self.related = related
                     self.itself = itself
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
-                }
             }
         }
 
@@ -619,7 +485,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/localizations>
          */
-        public struct Localizations: Codable {
+        public struct Localizations {
             /// The ID and type of the related Advanced App Clip Experience Localizations resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -636,26 +502,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
             /**
              # AppClipAdvancedExperience.Relationships.Localizations.Data
              The type and ID of a related Localizations resource.
@@ -663,7 +509,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/localizations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Localizations resource.
                 public let id: String
                 /// The resource type.
@@ -671,25 +517,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -700,7 +527,7 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/localizations/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -711,23 +538,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }

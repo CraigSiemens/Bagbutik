@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationresponse>
  */
-public struct AppClipDefaultExperienceLocalizationResponse: Codable {
+public struct AppClipDefaultExperienceLocalizationResponse {
     /// The resource data.
     public let data: AppClipDefaultExperienceLocalization
     /// The requested relationship data.
@@ -39,32 +39,8 @@ public struct AppClipDefaultExperienceLocalizationResponse: Codable {
         }.first { $0.id == data.relationships?.appClipHeaderImage?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appClipDefaultExperience(AppClipDefaultExperience)
         case appClipHeaderImage(AppClipHeaderImage)
-
-        public init(from decoder: Decoder) throws {
-            if let appClipDefaultExperience = try? AppClipDefaultExperience(from: decoder) {
-                self = .appClipDefaultExperience(appClipDefaultExperience)
-            } else if let appClipHeaderImage = try? AppClipHeaderImage(from: decoder) {
-                self = .appClipHeaderImage(appClipHeaderImage)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appClipDefaultExperience(value):
-                try value.encode(to: encoder)
-            case let .appClipHeaderImage(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

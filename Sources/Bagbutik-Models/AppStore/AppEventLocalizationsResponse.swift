@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventLocalizationsResponse: Codable, PagedResponse {
+public struct AppEventLocalizationsResponse: PagedResponse {
     public typealias Data = AppEventLocalization
 
     public let data: [AppEventLocalization]
@@ -51,37 +51,9 @@ public struct AppEventLocalizationsResponse: Codable, PagedResponse {
         return appEventVideoClips
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appEvent(AppEvent)
         case appEventScreenshot(AppEventScreenshot)
         case appEventVideoClip(AppEventVideoClip)
-
-        public init(from decoder: Decoder) throws {
-            if let appEvent = try? AppEvent(from: decoder) {
-                self = .appEvent(appEvent)
-            } else if let appEventScreenshot = try? AppEventScreenshot(from: decoder) {
-                self = .appEventScreenshot(appEventScreenshot)
-            } else if let appEventVideoClip = try? AppEventVideoClip(from: decoder) {
-                self = .appEventVideoClip(appEventVideoClip)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appEvent(value):
-                try value.encode(to: encoder)
-            case let .appEventScreenshot(value):
-                try value.encode(to: encoder)
-            case let .appEventVideoClip(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

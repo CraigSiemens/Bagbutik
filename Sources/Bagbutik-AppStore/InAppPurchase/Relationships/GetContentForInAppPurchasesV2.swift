@@ -33,7 +33,7 @@ public enum GetContentForInAppPurchasesV2 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum InAppPurchaseContents: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseContents: String {
             case fileName
             case fileSize
             case inAppPurchaseV2
@@ -41,7 +41,7 @@ public enum GetContentForInAppPurchasesV2 {
             case url
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories

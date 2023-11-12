@@ -1,5 +1,4 @@
 import BagbutikSpecDecoder
-import SwiftFormat
 
 /// A renderer which renders binary schemas
 public class BinarySchemaRenderer: Renderer {
@@ -19,13 +18,12 @@ public class BinarySchemaRenderer: Renderer {
                 return Self.init(data: data)
             }
         }
-
         """
         if let url = binarySchema.url,
            case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
            let abstract = objectDocumentation.abstract {
             rendered = "/// \(abstract)\n" + rendered
         }
-        return try SwiftFormat.format(rendered)
+        return try format(rendered)
     }
 }

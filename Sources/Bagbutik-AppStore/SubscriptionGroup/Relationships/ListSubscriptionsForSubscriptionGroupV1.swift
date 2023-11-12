@@ -58,7 +58,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String {
             case app
             case enabled
             case inAppPurchaseV2
@@ -68,7 +68,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case visibleForAllUsers
         }
 
-        public enum SubscriptionAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionAppStoreReviewScreenshots: String {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -81,20 +81,20 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case uploaded
         }
 
-        public enum SubscriptionAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionAvailabilities: String {
             case availableInNewTerritories
             case availableTerritories
             case subscription
         }
 
-        public enum SubscriptionGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGroups: String {
             case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
         }
 
-        public enum SubscriptionIntroductoryOffers: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionIntroductoryOffers: String {
             case duration
             case endDate
             case numberOfPeriods
@@ -105,7 +105,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case territory
         }
 
-        public enum SubscriptionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionLocalizations: String {
             case description
             case locale
             case name
@@ -113,7 +113,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case subscription
         }
 
-        public enum SubscriptionOfferCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodes: String {
             case active
             case customCodes
             case customerEligibilities
@@ -128,7 +128,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case totalNumberOfCodes
         }
 
-        public enum SubscriptionPrices: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPrices: String {
             case preserveCurrentPrice
             case preserved
             case startDate
@@ -137,7 +137,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case territory
         }
 
-        public enum SubscriptionPromotionalOffers: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPromotionalOffers: String {
             case duration
             case name
             case numberOfPeriods
@@ -147,7 +147,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case subscription
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -180,7 +180,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String {
             case missingMetadata = "MISSING_METADATA"
             case readyToSubmit = "READY_TO_SUBMIT"
             case waitingForReview = "WAITING_FOR_REVIEW"

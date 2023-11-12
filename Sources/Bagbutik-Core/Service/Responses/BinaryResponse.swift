@@ -1,7 +1,7 @@
 import Foundation
 
 /// A response with binary data.
-public protocol BinaryResponse: Decodable {
+public protocol BinaryResponse {
     /// The gzipped data.
     var data: Data { get }
 

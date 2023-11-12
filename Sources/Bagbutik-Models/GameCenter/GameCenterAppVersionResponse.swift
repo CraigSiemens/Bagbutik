@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversionresponse>
  */
-public struct GameCenterAppVersionResponse: Codable {
+public struct GameCenterAppVersionResponse {
     public let data: GameCenterAppVersion
     public var included: [Included]?
     public let links: DocumentLinks
@@ -41,32 +41,8 @@ public struct GameCenterAppVersionResponse: Codable {
         return compatibilityVersions
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appStoreVersion(AppStoreVersion)
         case gameCenterAppVersion(GameCenterAppVersion)
-
-        public init(from decoder: Decoder) throws {
-            if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else if let gameCenterAppVersion = try? GameCenterAppVersion(from: decoder) {
-                self = .gameCenterAppVersion(gameCenterAppVersion)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appStoreVersion(value):
-                try value.encode(to: encoder)
-            case let .gameCenterAppVersion(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

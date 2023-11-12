@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetlocalizationsresponse>
  */
-public struct GameCenterLeaderboardSetLocalizationsResponse: Codable, PagedResponse {
+public struct GameCenterLeaderboardSetLocalizationsResponse: PagedResponse {
     public typealias Data = GameCenterLeaderboardSetLocalization
 
     public let data: [GameCenterLeaderboardSetLocalization]
@@ -41,32 +41,8 @@ public struct GameCenterLeaderboardSetLocalizationsResponse: Codable, PagedRespo
         }.first { $0.id == gameCenterLeaderboardSetLocalization.relationships?.gameCenterLeaderboardSetImage?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
         case gameCenterLeaderboardSetImage(GameCenterLeaderboardSetImage)
-
-        public init(from decoder: Decoder) throws {
-            if let gameCenterLeaderboardSet = try? GameCenterLeaderboardSet(from: decoder) {
-                self = .gameCenterLeaderboardSet(gameCenterLeaderboardSet)
-            } else if let gameCenterLeaderboardSetImage = try? GameCenterLeaderboardSetImage(from: decoder) {
-                self = .gameCenterLeaderboardSetImage(gameCenterLeaderboardSetImage)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .gameCenterLeaderboardSet(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboardSetImage(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/filelocation>
  */
-public struct FileLocation: Codable {
+public struct FileLocation {
     /// The line number of a file that contains code.
     public var lineNumber: Int?
     /// The path to the file that caused an issue.

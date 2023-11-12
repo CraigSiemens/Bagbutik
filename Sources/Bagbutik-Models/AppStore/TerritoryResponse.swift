@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryresponse>
  */
-public struct TerritoryResponse: Codable {
+public struct TerritoryResponse {
     public let data: Territory
     public let links: DocumentLinks
 

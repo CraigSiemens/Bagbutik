@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseresponse>
  */
-public struct AppStoreVersionPhasedReleaseResponse: Codable {
+public struct AppStoreVersionPhasedReleaseResponse {
     public let data: AppStoreVersionPhasedRelease
     public let links: DocumentLinks
 

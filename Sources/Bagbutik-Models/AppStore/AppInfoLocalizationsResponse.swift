@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationsresponse>
  */
-public struct AppInfoLocalizationsResponse: Codable, PagedResponse {
+public struct AppInfoLocalizationsResponse: PagedResponse {
     public typealias Data = AppInfoLocalization
 
     public let data: [AppInfoLocalization]

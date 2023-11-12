@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle>
  */
-public struct BuildBundle: Codable, Identifiable {
+public struct BuildBundle: Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Bundles resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -31,34 +31,6 @@ public struct BuildBundle: Codable, Identifiable {
         self.relationships = relationships
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
-    }
-
     /**
      # BuildBundle.Attributes
      The attributes that describe a Build Bundles resource.
@@ -66,7 +38,7 @@ public struct BuildBundle: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         /// The bundle ID of the build bundle.
         public var bundleId: String?
         /// The type of the build bundle.
@@ -139,7 +111,7 @@ public struct BuildBundle: Codable, Identifiable {
             self.usesLocationServices = usesLocationServices
         }
 
-        public enum BundleType: String, Codable, CaseIterable {
+        public enum BundleType: String {
             case app = "APP"
             case appClip = "APP_CLIP"
         }
@@ -152,7 +124,7 @@ public struct BuildBundle: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships {
         /// The related App Clip Domain Cache Statuses resource.
         public var appClipDomainCacheStatus: AppClipDomainCacheStatus?
         /// The related App Clip Domain Debug Statuses resource.
@@ -180,7 +152,7 @@ public struct BuildBundle: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus>
          */
-        public struct AppClipDomainCacheStatus: Codable {
+        public struct AppClipDomainCacheStatus {
             /// The ID and type of the related App Clip Domain Cache Status resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -193,23 +165,6 @@ public struct BuildBundle: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # BuildBundle.Relationships.AppClipDomainCacheStatus.Data
              The type and ID of a related App Clip Domain Cache Status resource.
@@ -217,7 +172,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clip Domain Cache Statuses resource.
                 public let id: String
                 /// The resource type.
@@ -225,25 +180,6 @@ public struct BuildBundle: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -254,7 +190,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -266,23 +202,6 @@ public struct BuildBundle: Codable, Identifiable {
                     self.related = related
                     self.itself = itself
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
-                }
             }
         }
 
@@ -293,7 +212,7 @@ public struct BuildBundle: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus>
          */
-        public struct AppClipDomainDebugStatus: Codable {
+        public struct AppClipDomainDebugStatus {
             /// The ID and type of the related App Clip Domain Debug Status resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -306,23 +225,6 @@ public struct BuildBundle: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # BuildBundle.Relationships.AppClipDomainDebugStatus.Data
              The type and ID of a related App Clip Domain Debug Status resource.
@@ -330,7 +232,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clip Domain Debug Statuses resource.
                 public let id: String
                 /// The resource type.
@@ -338,25 +240,6 @@ public struct BuildBundle: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -367,7 +250,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -379,23 +262,6 @@ public struct BuildBundle: Codable, Identifiable {
                     self.related = related
                     self.itself = itself
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
-                }
             }
         }
 
@@ -406,7 +272,7 @@ public struct BuildBundle: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations>
          */
-        public struct BetaAppClipInvocations: Codable {
+        public struct BetaAppClipInvocations {
             /// The ID and type of the related Beta App Clip Invocations resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -423,26 +289,6 @@ public struct BuildBundle: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
             /**
              # BuildBundle.Relationships.BetaAppClipInvocations.Data
              The type and ID of a related Beta App Clip Invocations resource.
@@ -450,7 +296,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocations resource.
                 public let id: String
                 /// The resource type.
@@ -458,25 +304,6 @@ public struct BuildBundle: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -487,7 +314,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -499,23 +326,6 @@ public struct BuildBundle: Codable, Identifiable {
                     self.related = related
                     self.itself = itself
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
-                }
             }
         }
 
@@ -526,7 +336,7 @@ public struct BuildBundle: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes>
          */
-        public struct BuildBundleFileSizes: Codable {
+        public struct BuildBundleFileSizes {
             /// The ID and type of the related Build Bundle File Sizes resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -543,26 +353,6 @@ public struct BuildBundle: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
             /**
              # BuildBundle.Relationships.BuildBundleFileSizes.Data
              The type and ID of a related Build Bundle File Sizes resource.
@@ -570,7 +360,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Build Bundle File Sizes resource.
                 public let id: String
                 /// The resource type.
@@ -578,25 +368,6 @@ public struct BuildBundle: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -607,7 +378,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -618,23 +389,6 @@ public struct BuildBundle: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }

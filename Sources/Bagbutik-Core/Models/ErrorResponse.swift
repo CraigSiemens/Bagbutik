@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse>
  */
-public struct ErrorResponse: Codable {
+public struct ErrorResponse {
     /// An array of one or more errors.
     public var errors: [Errors]?
 
@@ -24,7 +24,7 @@ public struct ErrorResponse: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse/errors>
      */
-    public struct Errors: Codable, Identifiable {
+    public struct Errors: Identifiable {
         /// A machine-readable code indicating the type of error. The code is a hierarchical value with levels of specificity separated by the '`.`' character. This value is parseable for programmatic error handling in code.
         public let code: String
         /// A detailed explanation of the error. Do not use this field for programmatic error handling.
@@ -57,7 +57,7 @@ public struct ErrorResponse: Codable {
             self.title = title
         }
 
-        public struct Meta: Codable {
+        public struct Meta {
             public var associatedErrors: [String: [Errors]]?
 
             public init(associatedErrors: [String: [Errors]]? = nil) {
@@ -65,33 +65,9 @@ public struct ErrorResponse: Codable {
             }
         }
 
-        public enum Source: Codable {
+        public enum Source {
             case jsonPointer(JsonPointer)
             case parameter(Parameter)
-
-            public init(from decoder: Decoder) throws {
-                if let jsonPointer = try? JsonPointer(from: decoder) {
-                    self = .jsonPointer(jsonPointer)
-                } else if let parameter = try? Parameter(from: decoder) {
-                    self = .parameter(parameter)
-                } else {
-                    throw DecodingError.typeMismatch(Source.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                        debugDescription: "Unknown Source"))
-                }
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                switch self {
-                case let .jsonPointer(value):
-                    try value.encode(to: encoder)
-                case let .parameter(value):
-                    try value.encode(to: encoder)
-                }
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case type
-            }
         }
     }
 }

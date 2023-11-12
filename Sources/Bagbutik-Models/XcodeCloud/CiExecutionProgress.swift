@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciexecutionprogress>
  */
-public enum CiExecutionProgress: String, Codable, CaseIterable {
+public enum CiExecutionProgress: String {
     /// Xcode Cloud hasn’t started the build.
     case pending = "PENDING"
     /// Xcode Cloud is performing the build.

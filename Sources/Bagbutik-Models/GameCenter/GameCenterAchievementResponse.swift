@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementresponse>
  */
-public struct GameCenterAchievementResponse: Codable {
+public struct GameCenterAchievementResponse {
     public let data: GameCenterAchievement
     public var included: [Included]?
     public let links: DocumentLinks
@@ -67,47 +67,11 @@ public struct GameCenterAchievementResponse: Codable {
         return releases
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterAchievementLocalization(GameCenterAchievementLocalization)
         case gameCenterAchievementRelease(GameCenterAchievementRelease)
         case gameCenterDetail(GameCenterDetail)
         case gameCenterGroup(GameCenterGroup)
-
-        public init(from decoder: Decoder) throws {
-            if let gameCenterAchievement = try? GameCenterAchievement(from: decoder) {
-                self = .gameCenterAchievement(gameCenterAchievement)
-            } else if let gameCenterAchievementLocalization = try? GameCenterAchievementLocalization(from: decoder) {
-                self = .gameCenterAchievementLocalization(gameCenterAchievementLocalization)
-            } else if let gameCenterAchievementRelease = try? GameCenterAchievementRelease(from: decoder) {
-                self = .gameCenterAchievementRelease(gameCenterAchievementRelease)
-            } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
-                self = .gameCenterDetail(gameCenterDetail)
-            } else if let gameCenterGroup = try? GameCenterGroup(from: decoder) {
-                self = .gameCenterGroup(gameCenterGroup)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .gameCenterAchievement(value):
-                try value.encode(to: encoder)
-            case let .gameCenterAchievementLocalization(value):
-                try value.encode(to: encoder)
-            case let .gameCenterAchievementRelease(value):
-                try value.encode(to: encoder)
-            case let .gameCenterDetail(value):
-                try value.encode(to: encoder)
-            case let .gameCenterGroup(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

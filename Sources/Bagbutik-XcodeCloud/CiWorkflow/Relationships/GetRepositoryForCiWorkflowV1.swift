@@ -37,7 +37,7 @@ public enum GetRepositoryForCiWorkflowV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum ScmGitReferences: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmGitReferences: String {
             case canonicalName
             case isDeleted
             case kind
@@ -45,13 +45,13 @@ public enum GetRepositoryForCiWorkflowV1 {
             case repository
         }
 
-        public enum ScmProviders: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmProviders: String {
             case repositories
             case scmProviderType
             case url
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String {
             case defaultBranch
             case gitReferences
             case httpCloneUrl

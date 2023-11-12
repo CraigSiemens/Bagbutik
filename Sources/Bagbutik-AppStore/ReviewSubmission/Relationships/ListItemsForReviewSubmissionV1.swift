@@ -42,14 +42,14 @@ public enum ListItemsForReviewSubmissionV1 {
         /// The fields to include for returned resources of type reviewSubmissionItems
         case reviewSubmissionItems([ReviewSubmissionItems])
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageVersions: String {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case state
             case version
         }
 
-        public enum AppEvents: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEvents: String {
             case app
             case archivedTerritorySchedules
             case badge
@@ -64,7 +64,7 @@ public enum ListItemsForReviewSubmissionV1 {
             case territorySchedules
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String {
             case app
             case appStoreVersion
             case appStoreVersionExperimentTreatments
@@ -80,7 +80,7 @@ public enum ListItemsForReviewSubmissionV1 {
             case trafficProportion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -103,7 +103,7 @@ public enum ListItemsForReviewSubmissionV1 {
             case versionString
         }
 
-        public enum ReviewSubmissionItems: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissionItems: String {
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion

@@ -42,13 +42,13 @@ public enum ListWorkflowsForCiProductV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum CiMacOsVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiMacOsVersions: String {
             case name
             case version
             case xcodeVersions
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String {
             case additionalRepositories
             case app
             case buildRuns
@@ -60,7 +60,7 @@ public enum ListWorkflowsForCiProductV1 {
             case workflows
         }
 
-        public enum CiWorkflows: String, ParameterValue, Codable, CaseIterable {
+        public enum CiWorkflows: String {
             case actions
             case branchStartCondition
             case buildRuns
@@ -80,14 +80,14 @@ public enum ListWorkflowsForCiProductV1 {
             case xcodeVersion
         }
 
-        public enum CiXcodeVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiXcodeVersions: String {
             case macOsVersions
             case name
             case testDestinations
             case version
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String {
             case defaultBranch
             case gitReferences
             case httpCloneUrl

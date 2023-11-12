@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct BetaAppReviewSubmissionWithoutIncludesResponse: Codable {
+public struct BetaAppReviewSubmissionWithoutIncludesResponse {
     public let data: Build
     public let links: DocumentLinks
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest>
  */
-public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
+public struct BetaAppClipInvocationCreateRequest: RequestBody {
     /// The resource data.
     public let data: Data
     /// The relationship data to include in the response.
@@ -28,7 +28,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data {
         /// The resource type.
         public var type: String { "betaAppClipInvocations" }
         /// The attributes that describes the request that creates a Beta App Clip Invocations resource.
@@ -43,28 +43,6 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
-        }
-
         /**
          # BetaAppClipInvocationCreateRequest.Data.Attributes
          The attributes you set that describe the new Beta App Clip Invocations resource.
@@ -72,7 +50,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
             public let url: String
 
@@ -88,7 +66,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships {
             /// The related Beta App Clip Invocation Localizations resource.
             public let betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations
             /// The related Build Bundles resource.
@@ -108,7 +86,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/betaappclipinvocationlocalizations>
              */
-            public struct BetaAppClipInvocationLocalizations: Codable {
+            public struct BetaAppClipInvocationLocalizations {
                 /// The ID and type of the related Beta App Clip Invocation Localizations resource.
                 public let data: [Data]
 
@@ -123,7 +101,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/betaappclipinvocationlocalizations/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocation Localizations resource.
                     public let id: String
                     /// The resource type.
@@ -131,25 +109,6 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }
@@ -161,7 +120,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/buildbundle>
              */
-            public struct BuildBundle: Codable {
+            public struct BuildBundle {
                 /// The ID and type of the related Build Bundles resource.
                 public let data: Data
 
@@ -176,7 +135,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/buildbundle/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Build Bundles resource.
                     public let id: String
                     /// The resource type.
@@ -184,25 +143,6 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }

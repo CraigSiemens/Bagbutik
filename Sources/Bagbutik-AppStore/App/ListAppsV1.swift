@@ -106,20 +106,20 @@ public enum ListAppsV1 {
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case territories([Territories])
 
-        public enum AppAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum AppAvailabilities: String {
             case app
             case availableInNewTerritories
             case availableTerritories
         }
 
-        public enum AppClips: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClips: String {
             case app
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
         }
 
-        public enum AppCustomProductPages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPages: String {
             case app
             case appCustomProductPageVersions
             case appStoreVersionTemplate
@@ -129,7 +129,7 @@ public enum ListAppsV1 {
             case visible
         }
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String {
             case app
             case appDescription
             case appEncryptionDeclarationDocument
@@ -149,7 +149,7 @@ public enum ListAppsV1 {
             case usesEncryption
         }
 
-        public enum AppEvents: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEvents: String {
             case app
             case archivedTerritorySchedules
             case badge
@@ -164,7 +164,7 @@ public enum ListAppsV1 {
             case territorySchedules
         }
 
-        public enum AppInfos: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfos: String {
             case ageRatingDeclaration
             case app
             case appInfoLocalizations
@@ -181,13 +181,13 @@ public enum ListAppsV1 {
             case secondarySubcategoryTwo
         }
 
-        public enum AppPreOrders: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreOrders: String {
             case app
             case appReleaseDate
             case preOrderAvailableDate
         }
 
-        public enum AppPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPricePoints: String {
             case app
             case customerPrice
             case equalizations
@@ -196,19 +196,19 @@ public enum ListAppsV1 {
             case territory
         }
 
-        public enum AppPriceSchedules: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPriceSchedules: String {
             case app
             case automaticPrices
             case baseTerritory
             case manualPrices
         }
 
-        public enum AppPrices: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPrices: String {
             case app
             case priceTier
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String {
             case app
             case appStoreVersionExperimentTreatments
             case controlVersions
@@ -223,7 +223,7 @@ public enum ListAppsV1 {
             case trafficProportion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -246,7 +246,7 @@ public enum ListAppsV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -293,7 +293,7 @@ public enum ListAppsV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BetaAppLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaAppLocalizations: String {
             case app
             case description
             case feedbackEmail
@@ -303,7 +303,7 @@ public enum ListAppsV1 {
             case tvOsPrivacyPolicy
         }
 
-        public enum BetaAppReviewDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaAppReviewDetails: String {
             case app
             case contactEmail
             case contactFirstName
@@ -315,7 +315,7 @@ public enum ListAppsV1 {
             case notes
         }
 
-        public enum BetaGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaGroups: String {
             case app
             case betaTesters
             case builds
@@ -332,12 +332,12 @@ public enum ListAppsV1 {
             case publicLinkLimitEnabled
         }
 
-        public enum BetaLicenseAgreements: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaLicenseAgreements: String {
             case agreementText
             case app
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -364,7 +364,7 @@ public enum ListAppsV1 {
             case version
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String {
             case additionalRepositories
             case app
             case buildRuns
@@ -376,7 +376,7 @@ public enum ListAppsV1 {
             case workflows
         }
 
-        public enum CustomerReviews: String, ParameterValue, Codable, CaseIterable {
+        public enum CustomerReviews: String {
             case body
             case createdDate
             case rating
@@ -386,13 +386,13 @@ public enum ListAppsV1 {
             case title
         }
 
-        public enum EndUserLicenseAgreements: String, ParameterValue, Codable, CaseIterable {
+        public enum EndUserLicenseAgreements: String {
             case agreementText
             case app
             case territories
         }
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -408,7 +408,7 @@ public enum ListAppsV1 {
             case leaderboardSetReleases
         }
 
-        public enum GameCenterEnabledVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterEnabledVersions: String {
             case app
             case compatibleVersions
             case iconAsset
@@ -416,7 +416,7 @@ public enum ListAppsV1 {
             case versionString
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String {
             case app
             case appStoreReviewScreenshot
             case apps
@@ -437,20 +437,20 @@ public enum ListAppsV1 {
             case state
         }
 
-        public enum PerfPowerMetrics: String, ParameterValue, Codable, CaseIterable {
+        public enum PerfPowerMetrics: String {
             case deviceType
             case metricType
             case platform
         }
 
-        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum PreReleaseVersions: String {
             case app
             case builds
             case platform
             case version
         }
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String {
             case app
             case enabled
             case inAppPurchaseV2
@@ -460,7 +460,7 @@ public enum ListAppsV1 {
             case visibleForAllUsers
         }
 
-        public enum ReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissions: String {
             case app
             case appStoreVersionForReview
             case canceled
@@ -473,21 +473,21 @@ public enum ListAppsV1 {
             case submittedDate
         }
 
-        public enum SubscriptionGracePeriods: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGracePeriods: String {
             case duration
             case optIn
             case renewalType
             case sandboxOptIn
         }
 
-        public enum SubscriptionGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGroups: String {
             case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String {
             case currency
         }
     }

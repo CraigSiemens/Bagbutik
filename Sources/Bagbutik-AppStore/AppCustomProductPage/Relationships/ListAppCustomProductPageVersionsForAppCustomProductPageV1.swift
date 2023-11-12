@@ -40,7 +40,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
         /// The fields to include for returned resources of type appCustomProductPages
         case appCustomProductPages([AppCustomProductPages])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
@@ -48,14 +48,14 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case promotionalText
         }
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageVersions: String {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case state
             case version
         }
 
-        public enum AppCustomProductPages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPages: String {
             case app
             case appCustomProductPageVersions
             case appStoreVersionTemplate
@@ -73,7 +73,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String {
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"

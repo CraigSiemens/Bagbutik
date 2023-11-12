@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
+public struct InAppPurchasePriceScheduleCreateRequest: RequestBody {
     public let data: Data
     public var included: [Included]?
 
@@ -12,7 +12,7 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
         self.included = included
     }
 
-    public struct Data: Codable {
+    public struct Data {
         public var type: String { "inAppPurchasePriceSchedules" }
         public let relationships: Relationships
 
@@ -20,26 +20,7 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case relationships
-            case type
-        }
-
-        public struct Relationships: Codable {
+        public struct Relationships {
             public var baseTerritory: BaseTerritory?
             public let inAppPurchase: InAppPurchase
             public let manualPrices: ManualPrices
@@ -53,156 +34,61 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
                 self.manualPrices = manualPrices
             }
 
-            public struct BaseTerritory: Codable {
+            public struct BaseTerritory {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decodeIfPresent(Data.self, forKey: .data)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
-                }
-
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     public let id: String
                     public var type: String { "territories" }
 
                     public init(id: String) {
                         self.id = id
                     }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
-                    }
                 }
             }
 
-            public struct InAppPurchase: Codable {
+            public struct InAppPurchase {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     public let id: String
                     public var type: String { "inAppPurchases" }
 
                     public init(id: String) {
                         self.id = id
                     }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
-                    }
                 }
             }
 
-            public struct ManualPrices: Codable {
+            public struct ManualPrices {
                 public let data: [Data]
 
                 public init(data: [Data]) {
                     self.data = data
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     public let id: String
                     public var type: String { "inAppPurchasePrices" }
 
                     public init(id: String) {
                         self.id = id
                     }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
-                    }
                 }
             }
         }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case inAppPurchasePriceInlineCreate(InAppPurchasePriceInlineCreate)
         case territoryInlineCreate(TerritoryInlineCreate)
-
-        public init(from decoder: Decoder) throws {
-            if let inAppPurchasePriceInlineCreate = try? InAppPurchasePriceInlineCreate(from: decoder) {
-                self = .inAppPurchasePriceInlineCreate(inAppPurchasePriceInlineCreate)
-            } else if let territoryInlineCreate = try? TerritoryInlineCreate(from: decoder) {
-                self = .territoryInlineCreate(territoryInlineCreate)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .inAppPurchasePriceInlineCreate(value):
-                try value.encode(to: encoder)
-            case let .territoryInlineCreate(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

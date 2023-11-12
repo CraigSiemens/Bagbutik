@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionsResponse: Codable, PagedResponse {
+public struct SubscriptionsResponse: PagedResponse {
     public typealias Data = Subscription
 
     public let data: [Subscription]
@@ -108,7 +108,7 @@ public struct SubscriptionsResponse: Codable, PagedResponse {
         return subscriptionLocalizations
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case promotedPurchase(PromotedPurchase)
         case subscriptionAppStoreReviewScreenshot(SubscriptionAppStoreReviewScreenshot)
         case subscriptionAvailability(SubscriptionAvailability)
@@ -118,57 +118,5 @@ public struct SubscriptionsResponse: Codable, PagedResponse {
         case subscriptionOfferCode(SubscriptionOfferCode)
         case subscriptionPrice(SubscriptionPrice)
         case subscriptionPromotionalOffer(SubscriptionPromotionalOffer)
-
-        public init(from decoder: Decoder) throws {
-            if let promotedPurchase = try? PromotedPurchase(from: decoder) {
-                self = .promotedPurchase(promotedPurchase)
-            } else if let subscriptionAppStoreReviewScreenshot = try? SubscriptionAppStoreReviewScreenshot(from: decoder) {
-                self = .subscriptionAppStoreReviewScreenshot(subscriptionAppStoreReviewScreenshot)
-            } else if let subscriptionAvailability = try? SubscriptionAvailability(from: decoder) {
-                self = .subscriptionAvailability(subscriptionAvailability)
-            } else if let subscriptionGroup = try? SubscriptionGroup(from: decoder) {
-                self = .subscriptionGroup(subscriptionGroup)
-            } else if let subscriptionIntroductoryOffer = try? SubscriptionIntroductoryOffer(from: decoder) {
-                self = .subscriptionIntroductoryOffer(subscriptionIntroductoryOffer)
-            } else if let subscriptionLocalization = try? SubscriptionLocalization(from: decoder) {
-                self = .subscriptionLocalization(subscriptionLocalization)
-            } else if let subscriptionOfferCode = try? SubscriptionOfferCode(from: decoder) {
-                self = .subscriptionOfferCode(subscriptionOfferCode)
-            } else if let subscriptionPrice = try? SubscriptionPrice(from: decoder) {
-                self = .subscriptionPrice(subscriptionPrice)
-            } else if let subscriptionPromotionalOffer = try? SubscriptionPromotionalOffer(from: decoder) {
-                self = .subscriptionPromotionalOffer(subscriptionPromotionalOffer)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .promotedPurchase(value):
-                try value.encode(to: encoder)
-            case let .subscriptionAppStoreReviewScreenshot(value):
-                try value.encode(to: encoder)
-            case let .subscriptionAvailability(value):
-                try value.encode(to: encoder)
-            case let .subscriptionGroup(value):
-                try value.encode(to: encoder)
-            case let .subscriptionIntroductoryOffer(value):
-                try value.encode(to: encoder)
-            case let .subscriptionLocalization(value):
-                try value.encode(to: encoder)
-            case let .subscriptionOfferCode(value):
-                try value.encode(to: encoder)
-            case let .subscriptionPrice(value):
-                try value.encode(to: encoder)
-            case let .subscriptionPromotionalOffer(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

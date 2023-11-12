@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointresponse>
  */
-public struct AppPricePointResponse: Codable {
+public struct AppPricePointResponse {
     public let data: AppPricePoint
     public var included: [Included]?
     public let links: DocumentLinks
@@ -36,32 +36,8 @@ public struct AppPricePointResponse: Codable {
         }.first { $0.id == data.relationships?.territory?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appPriceTier(AppPriceTier)
         case territory(Territory)
-
-        public init(from decoder: Decoder) throws {
-            if let appPriceTier = try? AppPriceTier(from: decoder) {
-                self = .appPriceTier(appPriceTier)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appPriceTier(value):
-                try value.encode(to: encoder)
-            case let .territory(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

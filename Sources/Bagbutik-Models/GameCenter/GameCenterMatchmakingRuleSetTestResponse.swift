@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestresponse>
  */
-public struct GameCenterMatchmakingRuleSetTestResponse: Codable {
+public struct GameCenterMatchmakingRuleSetTestResponse {
     public let data: GameCenterMatchmakingRuleSetTest
     public let links: DocumentLinks
 

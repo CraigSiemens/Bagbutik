@@ -62,7 +62,7 @@ public enum ListBuildsForCiBuildRunV1 {
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String {
             case app
             case appDescription
             case appEncryptionDeclarationDocument
@@ -82,7 +82,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case usesEncryption
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -105,7 +105,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -152,19 +152,19 @@ public enum ListBuildsForCiBuildRunV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BetaAppReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaAppReviewSubmissions: String {
             case betaReviewState
             case build
             case submittedDate
         }
 
-        public enum BetaBuildLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaBuildLocalizations: String {
             case build
             case locale
             case whatsNew
         }
 
-        public enum BetaGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaGroups: String {
             case app
             case betaTesters
             case builds
@@ -181,7 +181,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case publicLinkLimitEnabled
         }
 
-        public enum BetaTesters: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaTesters: String {
             case apps
             case betaGroups
             case builds
@@ -191,14 +191,14 @@ public enum ListBuildsForCiBuildRunV1 {
             case lastName
         }
 
-        public enum BuildBetaDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum BuildBetaDetails: String {
             case autoNotifyEnabled
             case build
             case externalBuildState
             case internalBuildState
         }
 
-        public enum BuildBundles: String, ParameterValue, Codable, CaseIterable {
+        public enum BuildBundles: String {
             case appClipDomainCacheStatus
             case appClipDomainDebugStatus
             case betaAppClipInvocations
@@ -222,13 +222,13 @@ public enum ListBuildsForCiBuildRunV1 {
             case usesLocationServices
         }
 
-        public enum BuildIcons: String, ParameterValue, Codable, CaseIterable {
+        public enum BuildIcons: String {
             case iconAsset
             case iconType
             case name
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -255,7 +255,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case version
         }
 
-        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum PreReleaseVersions: String {
             case app
             case builds
             case platform
@@ -294,7 +294,7 @@ public enum ListBuildsForCiBuildRunV1 {
         /// Filter by attribute 'version'
         case version([String])
 
-        public enum ProcessingState: String, ParameterValue, Codable, CaseIterable {
+        public enum ProcessingState: String {
             case processing = "PROCESSING"
             case failed = "FAILED"
             case invalid = "INVALID"

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperimentTreatmentsResponse: Codable, PagedResponse {
+public struct AppStoreVersionExperimentTreatmentsResponse: PagedResponse {
     public typealias Data = AppStoreVersionExperimentTreatment
 
     public let data: [AppStoreVersionExperimentTreatment]
@@ -46,37 +46,9 @@ public struct AppStoreVersionExperimentTreatmentsResponse: Codable, PagedRespons
         }.first { $0.id == appStoreVersionExperimentTreatment.relationships?.appStoreVersionExperimentV2?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appStoreVersionExperiment(AppStoreVersionExperiment)
         case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)
         case appStoreVersionExperimentV2(AppStoreVersionExperimentV2)
-
-        public init(from decoder: Decoder) throws {
-            if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
-                self = .appStoreVersionExperiment(appStoreVersionExperiment)
-            } else if let appStoreVersionExperimentTreatmentLocalization = try? AppStoreVersionExperimentTreatmentLocalization(from: decoder) {
-                self = .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization)
-            } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
-                self = .appStoreVersionExperimentV2(appStoreVersionExperimentV2)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appStoreVersionExperiment(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperimentTreatmentLocalization(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperimentV2(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

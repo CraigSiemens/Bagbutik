@@ -33,11 +33,11 @@ public enum GetAppStoreVersionSubmissionForAppStoreVersionV1 {
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
 
-        public enum AppStoreVersionSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionSubmissions: String {
             case appStoreVersion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience

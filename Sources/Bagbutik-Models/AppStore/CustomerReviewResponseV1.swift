@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1>
  */
-public struct CustomerReviewResponseV1: Codable, Identifiable {
+public struct CustomerReviewResponseV1: Identifiable {
     /// The opaque resource ID that uniquely identifies the `CustomerReviewResponses` resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -31,34 +31,6 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
         self.relationships = relationships
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
-    }
-
     /**
      # CustomerReviewResponseV1.Attributes
      The attributes of the response to a customer’s review including its content.
@@ -66,7 +38,7 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         /// The date and time you last modified your response to the customer’s review.
         public var lastModifiedDate: Date?
         /// The text of the response that you wrote to the customer’s review.
@@ -83,7 +55,7 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
             self.state = state
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String {
             case published = "PUBLISHED"
             case pendingPublish = "PENDING_PUBLISH"
         }
@@ -96,7 +68,7 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships {
         /// The customer review related to your response.
         public var review: Review?
 
@@ -111,7 +83,7 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/relationships/review>
          */
-        public struct Review: Codable {
+        public struct Review {
             /// The type and ID of a resource that you’re relating with the resource you’re updating.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship’s self-link.
@@ -124,23 +96,6 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
                 self.links = links
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-
             /**
              # CustomerReviewResponseV1.Relationships.Review.Data
              The type and ID of a resource that you’re relating with the resource you’re updating.
@@ -148,7 +103,7 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/relationships/review/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the `customerReviews` resource.
                 public let id: String
                 /// The resource type.
@@ -156,25 +111,6 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -185,7 +121,7 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/relationships/review/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to the related data.
                 public var related: String?
                 /// The relashionship’s self-link.
@@ -196,23 +132,6 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }

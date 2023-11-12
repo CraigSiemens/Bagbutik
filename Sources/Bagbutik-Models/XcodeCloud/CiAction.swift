@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciaction>
  */
-public struct CiAction: Codable {
+public struct CiAction {
     /// The type of the action.
     public var actionType: CiActionType?
     /// A type that indicates whether a build’s artifact is eligible for release on the App Store.
@@ -45,7 +45,7 @@ public struct CiAction: Codable {
         self.testConfiguration = testConfiguration
     }
 
-    public enum Destination: String, Codable, CaseIterable {
+    public enum Destination: String {
         case anyIosDevice = "ANY_IOS_DEVICE"
         case anyIosSimulator = "ANY_IOS_SIMULATOR"
         case anyTvosDevice = "ANY_TVOS_DEVICE"
@@ -56,7 +56,7 @@ public struct CiAction: Codable {
         case anyMacCatalyst = "ANY_MAC_CATALYST"
     }
 
-    public enum Platform: String, Codable, CaseIterable {
+    public enum Platform: String {
         case macOS = "MACOS"
         case iOS = "IOS"
         case tvOS = "TVOS"
@@ -70,7 +70,7 @@ public struct CiAction: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciaction/testconfiguration>
      */
-    public struct TestConfiguration: Codable {
+    public struct TestConfiguration {
         /// A string that describes whether the test action uses the scheme’s default tests or a specific test plan.
         public var kind: Kind?
         /// A list of destination information for the test configuration.
@@ -87,7 +87,7 @@ public struct CiAction: Codable {
             self.testPlanName = testPlanName
         }
 
-        public enum Kind: String, Codable, CaseIterable {
+        public enum Kind: String {
             case useSchemeSettings = "USE_SCHEME_SETTINGS"
             case specificTestPlans = "SPECIFIC_TEST_PLANS"
         }

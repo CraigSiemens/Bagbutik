@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/iconassettype>
  */
-public enum IconAssetType: String, Codable, CaseIterable {
+public enum IconAssetType: String {
     case appStore = "APP_STORE"
     case messagesAppStore = "MESSAGES_APP_STORE"
     case watchAppStore = "WATCH_APP_STORE"

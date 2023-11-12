@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissue>
  */
-public struct CiIssue: Codable, Identifiable {
+public struct CiIssue: Identifiable {
     /// The opaque resource ID that uniquely identifies an Issues resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -27,31 +27,6 @@ public struct CiIssue: Codable, Identifiable {
         self.attributes = attributes
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
-    }
-
     /**
      # CiIssue.Attributes
      The attributes that describe an Issues resource.
@@ -59,7 +34,7 @@ public struct CiIssue: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciissue/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         /// ​A string representing the issue’s category; for example, the name of the build phase where the issue occurred.
         public var category: String?
         /// The file and line number where Xcode Cloud encountered an issue.
@@ -80,7 +55,7 @@ public struct CiIssue: Codable, Identifiable {
             self.message = message
         }
 
-        public enum IssueType: String, Codable, CaseIterable {
+        public enum IssueType: String {
             case analyzerWarning = "ANALYZER_WARNING"
             case error = "ERROR"
             case testFailure = "TEST_FAILURE"

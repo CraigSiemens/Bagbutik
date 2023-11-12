@@ -40,7 +40,7 @@ public enum ListPromotedPurchasesForAppV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories
@@ -59,7 +59,7 @@ public enum ListPromotedPurchasesForAppV1 {
             case state
         }
 
-        public enum PromotedPurchaseImages: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchaseImages: String {
             case assetToken
             case assetType
             case fileName
@@ -72,7 +72,7 @@ public enum ListPromotedPurchasesForAppV1 {
             case uploaded
         }
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String {
             case app
             case enabled
             case inAppPurchaseV2
@@ -82,7 +82,7 @@ public enum ListPromotedPurchasesForAppV1 {
             case visibleForAllUsers
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable

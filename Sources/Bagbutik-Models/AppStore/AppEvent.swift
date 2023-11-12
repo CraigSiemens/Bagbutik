@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEvent: Codable, Identifiable {
+public struct AppEvent: Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appEvents" }
@@ -19,35 +19,7 @@ public struct AppEvent: Codable, Identifiable {
         self.relationships = relationships
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
-    }
-
-    public struct Attributes: Codable {
+    public struct Attributes {
         public var archivedTerritorySchedules: [ArchivedTerritorySchedules]?
         public var badge: Badge?
         public var deepLink: String?
@@ -82,7 +54,7 @@ public struct AppEvent: Codable, Identifiable {
             self.territorySchedules = territorySchedules
         }
 
-        public struct ArchivedTerritorySchedules: Codable {
+        public struct ArchivedTerritorySchedules {
             public var eventEnd: Date?
             public var eventStart: Date?
             public var publishStart: Date?
@@ -100,7 +72,7 @@ public struct AppEvent: Codable, Identifiable {
             }
         }
 
-        public enum Badge: String, Codable, CaseIterable {
+        public enum Badge: String {
             case liveEvent = "LIVE_EVENT"
             case premiere = "PREMIERE"
             case challenge = "CHALLENGE"
@@ -110,7 +82,7 @@ public struct AppEvent: Codable, Identifiable {
             case specialEvent = "SPECIAL_EVENT"
         }
 
-        public enum EventState: String, Codable, CaseIterable {
+        public enum EventState: String {
             case draft = "DRAFT"
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"
@@ -123,12 +95,12 @@ public struct AppEvent: Codable, Identifiable {
             case archived = "ARCHIVED"
         }
 
-        public enum Priority: String, Codable, CaseIterable {
+        public enum Priority: String {
             case high = "HIGH"
             case normal = "NORMAL"
         }
 
-        public enum PurchaseRequirement: String, Codable, CaseIterable {
+        public enum PurchaseRequirement: String {
             case noCostAssociated = "NO_COST_ASSOCIATED"
             case inAppPurchase = "IN_APP_PURCHASE"
             case subscription = "SUBSCRIPTION"
@@ -136,14 +108,14 @@ public struct AppEvent: Codable, Identifiable {
             case inAppPurchaseOrSubscription = "IN_APP_PURCHASE_OR_SUBSCRIPTION"
         }
 
-        public enum Purpose: String, Codable, CaseIterable {
+        public enum Purpose: String {
             case appropriateForAllUsers = "APPROPRIATE_FOR_ALL_USERS"
             case attractNewUsers = "ATTRACT_NEW_USERS"
             case keepActiveUsersInformed = "KEEP_ACTIVE_USERS_INFORMED"
             case bringBackLapsedUsers = "BRING_BACK_LAPSED_USERS"
         }
 
-        public struct TerritorySchedules: Codable {
+        public struct TerritorySchedules {
             public var eventEnd: Date?
             public var eventStart: Date?
             public var publishStart: Date?
@@ -162,14 +134,14 @@ public struct AppEvent: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships {
         public var localizations: Localizations?
 
         public init(localizations: Localizations? = nil) {
             self.localizations = localizations
         }
 
-        public struct Localizations: Codable {
+        public struct Localizations {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -183,55 +155,16 @@ public struct AppEvent: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 public let id: String
                 public var type: String { "appEventLocalizations" }
 
                 public init(id: String) {
                     self.id = id
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
-                }
             }
 
-            public struct Links: Codable {
+            public struct Links {
                 public var related: String?
                 public var itself: String?
 
@@ -240,23 +173,6 @@ public struct AppEvent: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }

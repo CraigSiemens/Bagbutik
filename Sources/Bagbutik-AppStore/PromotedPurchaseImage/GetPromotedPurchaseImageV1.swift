@@ -31,7 +31,7 @@ public enum GetPromotedPurchaseImageV1 {
         /// The fields to include for returned resources of type promotedPurchaseImages
         case promotedPurchaseImages([PromotedPurchaseImages])
 
-        public enum PromotedPurchaseImages: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchaseImages: String {
             case assetToken
             case assetType
             case fileName

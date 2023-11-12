@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate>
  */
-public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiable {
+public struct GameCenterMatchmakingTestRequestInlineCreate: Identifiable {
     /// A unique identifier for the match request.
     public var id: String?
     /// The type of resource object.
@@ -27,31 +27,6 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
         self.relationships = relationships
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decodeIfPresent(String.self, forKey: .id)
-        attributes = try container.decode(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(type, forKey: .type)
-        try container.encode(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case relationships
-        case type
-    }
-
     /**
      # GameCenterMatchmakingTestRequestInlineCreate.Attributes
      The attributes for a sample match request.
@@ -59,7 +34,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         /// The app version of the game that makes the request.
         public let appVersion: String
         /// The bundle ID of the game that makes the request.
@@ -104,7 +79,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
             self.secondsInQueue = secondsInQueue
         }
 
-        public enum Locale: String, Codable, CaseIterable {
+        public enum Locale: String {
             case AR_SA = "AR-SA"
             case CA_ES = "CA-ES"
             case CS_CZ = "CS-CZ"
@@ -154,7 +129,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships {
         public var matchmakingPlayerProperties: MatchmakingPlayerProperties?
 
         public init(matchmakingPlayerProperties: MatchmakingPlayerProperties? = nil) {
@@ -168,25 +143,11 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/relationships/matchmakingplayerproperties>
          */
-        public struct MatchmakingPlayerProperties: Codable {
+        public struct MatchmakingPlayerProperties {
             @NullCodable public var data: [Data]?
 
             public init(data: [Data]? = nil) {
                 self.data = data
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
             }
 
             /**
@@ -196,7 +157,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/relationships/matchmakingplayerproperties/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The identifier for a ``GameCenterMatchmakingTestPlayerPropertyInlineCreate`` resource object that you add to the `included` field of the request.
                 public let id: String
                 /// The type of resource object.
@@ -204,25 +165,6 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
         }

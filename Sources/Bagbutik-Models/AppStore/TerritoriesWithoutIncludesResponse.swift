@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct TerritoriesWithoutIncludesResponse: Codable, PagedResponse {
+public struct TerritoriesWithoutIncludesResponse: PagedResponse {
     public typealias Data = EndUserLicenseAgreement
 
     public let data: [EndUserLicenseAgreement]

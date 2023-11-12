@@ -41,7 +41,7 @@ public enum ListLeaderboardReleasesForGameCenterDetailV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -57,13 +57,13 @@ public enum ListLeaderboardReleasesForGameCenterDetailV1 {
             case leaderboardSetReleases
         }
 
-        public enum GameCenterLeaderboardReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardReleases: String {
             case gameCenterDetail
             case gameCenterLeaderboard
             case live
         }
 
-        public enum GameCenterLeaderboards: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboards: String {
             case archived
             case defaultFormatter
             case gameCenterDetail

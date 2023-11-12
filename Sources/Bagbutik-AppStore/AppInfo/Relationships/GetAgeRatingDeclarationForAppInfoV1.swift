@@ -30,7 +30,7 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
         /// The fields to include for returned resources of type ageRatingDeclarations
         case ageRatingDeclarations([AgeRatingDeclarations])
 
-        public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AgeRatingDeclarations: String {
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling

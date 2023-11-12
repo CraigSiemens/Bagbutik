@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionresponse>
  */
-public struct AppStoreVersionResponse: Codable {
+public struct AppStoreVersionResponse {
     public let data: AppStoreVersion
     public var included: [Included]?
     public let links: DocumentLinks
@@ -107,7 +107,7 @@ public struct AppStoreVersionResponse: Codable {
         }.first { $0.id == data.relationships?.routingAppCoverage?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case ageRatingDeclaration(AgeRatingDeclaration)
         case app(App)
         case appClipDefaultExperience(AppClipDefaultExperience)
@@ -119,65 +119,5 @@ public struct AppStoreVersionResponse: Codable {
         case appStoreVersionSubmission(AppStoreVersionSubmission)
         case build(Build)
         case routingAppCoverage(RoutingAppCoverage)
-
-        public init(from decoder: Decoder) throws {
-            if let ageRatingDeclaration = try? AgeRatingDeclaration(from: decoder) {
-                self = .ageRatingDeclaration(ageRatingDeclaration)
-            } else if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appClipDefaultExperience = try? AppClipDefaultExperience(from: decoder) {
-                self = .appClipDefaultExperience(appClipDefaultExperience)
-            } else if let appStoreReviewDetail = try? AppStoreReviewDetail(from: decoder) {
-                self = .appStoreReviewDetail(appStoreReviewDetail)
-            } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
-                self = .appStoreVersionExperiment(appStoreVersionExperiment)
-            } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
-                self = .appStoreVersionExperimentV2(appStoreVersionExperimentV2)
-            } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
-                self = .appStoreVersionLocalization(appStoreVersionLocalization)
-            } else if let appStoreVersionPhasedRelease = try? AppStoreVersionPhasedRelease(from: decoder) {
-                self = .appStoreVersionPhasedRelease(appStoreVersionPhasedRelease)
-            } else if let appStoreVersionSubmission = try? AppStoreVersionSubmission(from: decoder) {
-                self = .appStoreVersionSubmission(appStoreVersionSubmission)
-            } else if let build = try? Build(from: decoder) {
-                self = .build(build)
-            } else if let routingAppCoverage = try? RoutingAppCoverage(from: decoder) {
-                self = .routingAppCoverage(routingAppCoverage)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .ageRatingDeclaration(value):
-                try value.encode(to: encoder)
-            case let .app(value):
-                try value.encode(to: encoder)
-            case let .appClipDefaultExperience(value):
-                try value.encode(to: encoder)
-            case let .appStoreReviewDetail(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperiment(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperimentV2(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionLocalization(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionPhasedRelease(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionSubmission(value):
-                try value.encode(to: encoder)
-            case let .build(value):
-                try value.encode(to: encoder)
-            case let .routingAppCoverage(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

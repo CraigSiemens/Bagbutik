@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimagecreaterequest>
  */
-public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody {
+public struct AppClipAdvancedExperienceImageCreateRequest: RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -23,7 +23,7 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimagecreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data {
         /// The resource type.
         public var type: String { "appClipAdvancedExperienceImages" }
         /// The attributes that describe the request that creates an Advanced App Clip Experience Images resource.
@@ -33,25 +33,6 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
             self.attributes = attributes
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case type
-        }
-
         /**
          # AppClipAdvancedExperienceImageCreateRequest.Data.Attributes
          The attributes you set that describe the new Advanced App Clip Experience Images resource.
@@ -59,7 +40,7 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimagecreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             /// The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.
             public let fileName: String
             /// The size of the image asset that appears on the App Clip card for the advanced App Clip experience.

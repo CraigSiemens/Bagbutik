@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize>
  */
-public struct BuildBundleFileSize: Codable, Identifiable {
+public struct BuildBundleFileSize: Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Bundles File Sizes resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -27,31 +27,6 @@ public struct BuildBundleFileSize: Codable, Identifiable {
         self.attributes = attributes
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
-    }
-
     /**
      # BuildBundleFileSize.Attributes
      The attributes that describe a Build Bundle File Sizes resource.
@@ -59,7 +34,7 @@ public struct BuildBundleFileSize: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         /// A string that identifies the Apple device model.
         public var deviceModel: String?
         /// An integer value that represents the download size of the build bundle in bytes.

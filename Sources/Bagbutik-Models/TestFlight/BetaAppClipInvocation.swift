@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation>
  */
-public struct BetaAppClipInvocation: Codable, Identifiable {
+public struct BetaAppClipInvocation: Identifiable {
     /// The opaque resource ID that uniquely identifies a Beta App Clip Invocations resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -31,34 +31,6 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
         self.relationships = relationships
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
-    }
-
     /**
      # BetaAppClipInvocation.Attributes
      The attributes that describe a Beta App Clip Invocations resource.
@@ -66,7 +38,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
         public var url: String?
 
@@ -82,7 +54,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships {
         /// The related Beta App Clip Invocation Localizations resource.
         public var betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations?
 
@@ -97,7 +69,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations>
          */
-        public struct BetaAppClipInvocationLocalizations: Codable {
+        public struct BetaAppClipInvocationLocalizations {
             /// The ID and type of the related Beta App Clip Invocation Localizations resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -114,26 +86,6 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
                 self.meta = meta
             }
 
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
-            }
-
             /**
              # BetaAppClipInvocation.Relationships.BetaAppClipInvocationLocalizations.Data
              The type and ID of a related Beta App Clip Invocation Localizations resource.
@@ -141,7 +93,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocation Localizations resource.
                 public let id: String
                 /// The resource type.
@@ -149,25 +101,6 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 
@@ -178,7 +111,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations/links>
              */
-            public struct Links: Codable {
+            public struct Links {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -189,23 +122,6 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
                 {
                     self.related = related
                     self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
                 }
             }
         }

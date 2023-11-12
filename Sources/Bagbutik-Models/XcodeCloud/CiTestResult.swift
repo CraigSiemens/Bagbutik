@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresult>
  */
-public struct CiTestResult: Codable, Identifiable {
+public struct CiTestResult: Identifiable {
     /// The opaque resource ID that uniquely identifies a Test Results resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -27,31 +27,6 @@ public struct CiTestResult: Codable, Identifiable {
         self.attributes = attributes
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
-    }
-
     /**
      # CiTestResult.Attributes
      The attributes that describe a Test Results resource.
@@ -59,7 +34,7 @@ public struct CiTestResult: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/citestresult/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes {
         /// The name of the class that contained the tests Xcode Cloud performed.
         public var className: String?
         /// Information about the test results for a specific test destination.
@@ -95,7 +70,7 @@ public struct CiTestResult: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/citestresult/attributes/destinationtestresults>
          */
-        public struct DestinationTestResults: Codable {
+        public struct DestinationTestResults {
             /// The name of the simulated device used for tests.
             public var deviceName: String?
             /// The time it took to perform a test on a specific simulated device.

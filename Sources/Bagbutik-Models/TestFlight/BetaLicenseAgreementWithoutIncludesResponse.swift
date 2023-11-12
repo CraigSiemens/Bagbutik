@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct BetaLicenseAgreementWithoutIncludesResponse: Codable {
+public struct BetaLicenseAgreementWithoutIncludesResponse {
     public let data: App
     public let links: DocumentLinks
 

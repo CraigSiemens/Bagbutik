@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct PreReleaseVersionsWithoutIncludesResponse: Codable, PagedResponse {
+public struct PreReleaseVersionsWithoutIncludesResponse: PagedResponse {
     public typealias Data = App
 
     public let data: [App]

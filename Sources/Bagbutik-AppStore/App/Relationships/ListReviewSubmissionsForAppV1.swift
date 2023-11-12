@@ -45,7 +45,7 @@ public enum ListReviewSubmissionsForAppV1 {
         /// The fields to include for returned resources of type reviewSubmissions
         case reviewSubmissions([ReviewSubmissions])
 
-        public enum Actors: String, ParameterValue, Codable, CaseIterable {
+        public enum Actors: String {
             case actorType
             case apiKeyId
             case userEmail
@@ -53,7 +53,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case userLastName
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -76,7 +76,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -123,7 +123,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum ReviewSubmissionItems: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissionItems: String {
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion
@@ -135,7 +135,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case state
         }
 
-        public enum ReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissions: String {
             case app
             case appStoreVersionForReview
             case canceled
@@ -158,7 +158,7 @@ public enum ListReviewSubmissionsForAppV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String {
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"
             case inReview = "IN_REVIEW"

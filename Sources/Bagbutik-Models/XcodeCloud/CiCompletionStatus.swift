@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cicompletionstatus>
  */
-public enum CiCompletionStatus: String, Codable, CaseIterable {
+public enum CiCompletionStatus: String {
     /// Xcode Cloud successfully completed a build.
     case succeeded = "SUCCEEDED"
     /// The Xcode Cloud build failed; for example, if you configure the Required to Pass setting for a test action and a unit test fails. For more information, see Add a Test Action in [Configuring your Xcode Cloud workflow’s actions](https://developer.apple.com/documentation/xcode/configuring-your-xcode-cloud-workflow-s-actions).

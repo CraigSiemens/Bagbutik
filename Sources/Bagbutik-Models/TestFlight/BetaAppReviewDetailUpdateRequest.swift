@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest>
  */
-public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
+public struct BetaAppReviewDetailUpdateRequest: RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -23,7 +23,7 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
@@ -38,28 +38,6 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
             self.attributes = attributes
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case id
-            case type
-        }
-
         /**
          # BetaAppReviewDetailUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
@@ -67,7 +45,7 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             /// Email address of contact in case communication is needed with the beta app review.
             public var contactEmail: String?
             /// First name of contact in case communication is needed with the beta app review.

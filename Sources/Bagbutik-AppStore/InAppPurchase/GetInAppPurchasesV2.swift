@@ -48,7 +48,7 @@ public enum GetInAppPurchasesV2 {
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])
 
-        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseAppStoreReviewScreenshots: String {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -61,13 +61,13 @@ public enum GetInAppPurchasesV2 {
             case uploaded
         }
 
-        public enum InAppPurchaseAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseAvailabilities: String {
             case availableInNewTerritories
             case availableTerritories
             case inAppPurchase
         }
 
-        public enum InAppPurchaseContents: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseContents: String {
             case fileName
             case fileSize
             case inAppPurchaseV2
@@ -75,7 +75,7 @@ public enum GetInAppPurchasesV2 {
             case url
         }
 
-        public enum InAppPurchaseLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseLocalizations: String {
             case description
             case inAppPurchaseV2
             case locale
@@ -83,7 +83,7 @@ public enum GetInAppPurchasesV2 {
             case state
         }
 
-        public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchasePricePoints: String {
             case customerPrice
             case inAppPurchaseV2
             case priceTier
@@ -91,14 +91,14 @@ public enum GetInAppPurchasesV2 {
             case territory
         }
 
-        public enum InAppPurchasePriceSchedules: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchasePriceSchedules: String {
             case automaticPrices
             case baseTerritory
             case inAppPurchase
             case manualPrices
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories
@@ -117,7 +117,7 @@ public enum GetInAppPurchasesV2 {
             case state
         }
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String {
             case app
             case enabled
             case inAppPurchaseV2

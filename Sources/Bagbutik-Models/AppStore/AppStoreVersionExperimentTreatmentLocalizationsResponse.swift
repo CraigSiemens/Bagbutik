@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperimentTreatmentLocalizationsResponse: Codable, PagedResponse {
+public struct AppStoreVersionExperimentTreatmentLocalizationsResponse: PagedResponse {
     public typealias Data = AppStoreVersionExperimentTreatmentLocalization
 
     public let data: [AppStoreVersionExperimentTreatmentLocalization]
@@ -51,37 +51,9 @@ public struct AppStoreVersionExperimentTreatmentLocalizationsResponse: Codable, 
         }.first { $0.id == appStoreVersionExperimentTreatmentLocalization.relationships?.appStoreVersionExperimentTreatment?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appPreviewSet(AppPreviewSet)
         case appScreenshotSet(AppScreenshotSet)
         case appStoreVersionExperimentTreatment(AppStoreVersionExperimentTreatment)
-
-        public init(from decoder: Decoder) throws {
-            if let appPreviewSet = try? AppPreviewSet(from: decoder) {
-                self = .appPreviewSet(appPreviewSet)
-            } else if let appScreenshotSet = try? AppScreenshotSet(from: decoder) {
-                self = .appScreenshotSet(appScreenshotSet)
-            } else if let appStoreVersionExperimentTreatment = try? AppStoreVersionExperimentTreatment(from: decoder) {
-                self = .appStoreVersionExperimentTreatment(appStoreVersionExperimentTreatment)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appPreviewSet(value):
-                try value.encode(to: encoder)
-            case let .appScreenshotSet(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperimentTreatment(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

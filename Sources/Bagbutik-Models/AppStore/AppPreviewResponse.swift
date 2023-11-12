@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewresponse>
  */
-public struct AppPreviewResponse: Codable {
+public struct AppPreviewResponse {
     public let data: AppPreview
     public var included: [AppPreviewSet]?
     public let links: DocumentLinks

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetsresponse>
  */
-public struct AppScreenshotSetsResponse: Codable, PagedResponse {
+public struct AppScreenshotSetsResponse: PagedResponse {
     public typealias Data = AppScreenshotSet
 
     public let data: [AppScreenshotSet]
@@ -60,42 +60,10 @@ public struct AppScreenshotSetsResponse: Codable, PagedResponse {
         }.first { $0.id == appScreenshotSet.relationships?.appStoreVersionLocalization?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appCustomProductPageLocalization(AppCustomProductPageLocalization)
         case appScreenshot(AppScreenshot)
         case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
-
-        public init(from decoder: Decoder) throws {
-            if let appCustomProductPageLocalization = try? AppCustomProductPageLocalization(from: decoder) {
-                self = .appCustomProductPageLocalization(appCustomProductPageLocalization)
-            } else if let appScreenshot = try? AppScreenshot(from: decoder) {
-                self = .appScreenshot(appScreenshot)
-            } else if let appStoreVersionExperimentTreatmentLocalization = try? AppStoreVersionExperimentTreatmentLocalization(from: decoder) {
-                self = .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization)
-            } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
-                self = .appStoreVersionLocalization(appStoreVersionLocalization)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appCustomProductPageLocalization(value):
-                try value.encode(to: encoder)
-            case let .appScreenshot(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperimentTreatmentLocalization(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionLocalization(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

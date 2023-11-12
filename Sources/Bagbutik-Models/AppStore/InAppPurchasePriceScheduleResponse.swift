@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchasePriceScheduleResponse: Codable {
+public struct InAppPurchasePriceScheduleResponse {
     public let data: InAppPurchasePriceSchedule
     public var included: [Included]?
     public let links: DocumentLinks
@@ -53,37 +53,9 @@ public struct InAppPurchasePriceScheduleResponse: Codable {
         return manualPrices
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case inAppPurchasePrice(InAppPurchasePrice)
         case inAppPurchaseV2(InAppPurchaseV2)
         case territory(Territory)
-
-        public init(from decoder: Decoder) throws {
-            if let inAppPurchasePrice = try? InAppPurchasePrice(from: decoder) {
-                self = .inAppPurchasePrice(inAppPurchasePrice)
-            } else if let inAppPurchaseV2 = try? InAppPurchaseV2(from: decoder) {
-                self = .inAppPurchaseV2(inAppPurchaseV2)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .inAppPurchasePrice(value):
-                try value.encode(to: encoder)
-            case let .inAppPurchaseV2(value):
-                try value.encode(to: encoder)
-            case let .territory(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

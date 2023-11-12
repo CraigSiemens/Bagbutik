@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsresponse>
  */
-public struct GameCenterLeaderboardsResponse: Codable, PagedResponse {
+public struct GameCenterLeaderboardsResponse: PagedResponse {
     public typealias Data = GameCenterLeaderboard
 
     public let data: [GameCenterLeaderboard]
@@ -84,52 +84,12 @@ public struct GameCenterLeaderboardsResponse: Codable, PagedResponse {
         return releases
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case gameCenterDetail(GameCenterDetail)
         case gameCenterGroup(GameCenterGroup)
         case gameCenterLeaderboard(GameCenterLeaderboard)
         case gameCenterLeaderboardLocalization(GameCenterLeaderboardLocalization)
         case gameCenterLeaderboardRelease(GameCenterLeaderboardRelease)
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
-
-        public init(from decoder: Decoder) throws {
-            if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
-                self = .gameCenterDetail(gameCenterDetail)
-            } else if let gameCenterGroup = try? GameCenterGroup(from: decoder) {
-                self = .gameCenterGroup(gameCenterGroup)
-            } else if let gameCenterLeaderboard = try? GameCenterLeaderboard(from: decoder) {
-                self = .gameCenterLeaderboard(gameCenterLeaderboard)
-            } else if let gameCenterLeaderboardLocalization = try? GameCenterLeaderboardLocalization(from: decoder) {
-                self = .gameCenterLeaderboardLocalization(gameCenterLeaderboardLocalization)
-            } else if let gameCenterLeaderboardRelease = try? GameCenterLeaderboardRelease(from: decoder) {
-                self = .gameCenterLeaderboardRelease(gameCenterLeaderboardRelease)
-            } else if let gameCenterLeaderboardSet = try? GameCenterLeaderboardSet(from: decoder) {
-                self = .gameCenterLeaderboardSet(gameCenterLeaderboardSet)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .gameCenterDetail(value):
-                try value.encode(to: encoder)
-            case let .gameCenterGroup(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboard(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboardLocalization(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboardRelease(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboardSet(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffermode>
  */
-public enum SubscriptionOfferMode: String, Codable, CaseIterable {
+public enum SubscriptionOfferMode: String {
     /// A constant that indicates a subscription offer is billed over multiple billing periods.
     case payAsYouGo = "PAY_AS_YOU_GO"
     /// A constant that indicates a subscription offer is billed one time, up front.

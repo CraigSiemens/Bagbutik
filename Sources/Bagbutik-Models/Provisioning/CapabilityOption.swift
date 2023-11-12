@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/capabilityoption>
  */
-public struct CapabilityOption: Codable {
+public struct CapabilityOption {
     public var description: String?
     public var enabled: Bool?
     public var enabledByDefault: Bool?
@@ -31,7 +31,7 @@ public struct CapabilityOption: Codable {
         self.supportsWildcard = supportsWildcard
     }
 
-    public enum Key: String, Codable, CaseIterable {
+    public enum Key: String {
         case xcode5 = "XCODE_5"
         case xcode6 = "XCODE_6"
         case completeProtection = "COMPLETE_PROTECTION"

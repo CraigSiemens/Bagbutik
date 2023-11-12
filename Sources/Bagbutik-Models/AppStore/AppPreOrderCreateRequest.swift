@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreordercreaterequest>
  */
-public struct AppPreOrderCreateRequest: Codable, RequestBody {
+public struct AppPreOrderCreateRequest: RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -22,7 +22,7 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreordercreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data {
         public var type: String { "appPreOrders" }
         public var attributes: Attributes?
         public let relationships: Relationships
@@ -34,28 +34,6 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
-        }
-
         /**
          # AppPreOrderCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
@@ -63,7 +41,7 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreordercreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             public var appReleaseDate: String?
 
             public init(appReleaseDate: String? = nil) {
@@ -78,7 +56,7 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreordercreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships {
             public let app: App
 
             public init(app: App) {
@@ -92,7 +70,7 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreordercreaterequest/data/relationships/app>
              */
-            public struct App: Codable {
+            public struct App {
                 public let data: Data
 
                 public init(data: Data) {
@@ -106,31 +84,12 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/apppreordercreaterequest/data/relationships/app/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }

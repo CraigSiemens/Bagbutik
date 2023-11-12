@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest>
  */
-public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
+public struct CustomerReviewResponseV1CreateRequest: RequestBody {
     /// The resource data for your customer review response.
     public let data: Data
 
@@ -23,7 +23,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data>
      */
-    public struct Data: Codable {
+    public struct Data {
         /// The resource type.
         public var type: String { "customerReviewResponses" }
         /// The attributes of the customer review response, including its text content.
@@ -38,28 +38,6 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
-        }
-
         /**
          # CustomerReviewResponseV1CreateRequest.Data.Attributes
          The attributes of the customer review response, including its text content.
@@ -67,7 +45,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             /// The text of your response to the customer review.
             public let responseBody: String
 
@@ -83,7 +61,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships {
             /// The customer review related to the response you’re creating.
             public let review: Review
 
@@ -98,7 +76,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data/relationships/review>
              */
-            public struct Review: Codable {
+            public struct Review {
                 /// The type and ID of a resource that you’re relating with the resource you’re updating.
                 public let data: Data
 
@@ -113,7 +91,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data/relationships/review/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     /// The opaque resource ID that uniquely identifies the `customerReviews` resource that you’re responding to.
                     public let id: String
                     /// The resource type.
@@ -121,25 +99,6 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }

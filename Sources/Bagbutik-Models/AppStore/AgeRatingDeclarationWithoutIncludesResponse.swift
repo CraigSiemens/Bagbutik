@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AgeRatingDeclarationWithoutIncludesResponse: Codable {
+public struct AgeRatingDeclarationWithoutIncludesResponse {
     public let data: AppStoreVersion
     public let links: DocumentLinks
 

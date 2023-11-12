@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversionsresponse>
  */
-public struct CiMacOsVersionsResponse: Codable, PagedResponse {
+public struct CiMacOsVersionsResponse: PagedResponse {
     public typealias Data = CiMacOsVersion
 
     /// The resource data.

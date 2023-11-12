@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest>
  */
-public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
+public struct BetaBuildLocalizationCreateRequest: RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -23,7 +23,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data {
         /// The resource type.
         public var type: String { "betaBuildLocalizations" }
         /// The resource's attributes.
@@ -38,28 +38,6 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
-        }
-
         /**
          # BetaBuildLocalizationCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
@@ -69,7 +47,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_build_localizations/betabuildlocalizationcreaterequest/data/attributes#3073798) for possible values.
             public let locale: String
             /// A field that describes changes and additions to a build and indicates features you would like your users to test.
@@ -90,7 +68,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships {
             public let build: Build
 
             public init(build: Build) {
@@ -104,7 +82,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/relationships/build>
              */
-            public struct Build: Codable {
+            public struct Build {
                 public let data: Data
 
                 public init(data: Data) {
@@ -118,7 +96,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/relationships/build/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.
@@ -126,25 +104,6 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }

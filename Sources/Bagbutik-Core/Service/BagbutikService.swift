@@ -144,24 +144,25 @@ public class BagbutikService {
                     return EmptyResponse() as! T
                 }
                 return try Self.jsonDecoder.decode(T.self, from: data)
-            } else if let errorResponse = try? Self.jsonDecoder.decode(ErrorResponse.self, from: data) {
-                switch httpResponse.statusCode {
-                case 400:
-                    throw ServiceError.badRequest(errorResponse)
-                case 401:
-                    throw ServiceError.unauthorized(errorResponse)
-                case 403:
-                    throw ServiceError.forbidden(errorResponse)
-                case 404:
-                    throw ServiceError.notFound(errorResponse)
-                case 409:
-                    throw ServiceError.conflict(errorResponse)
-                case 422:
-                    throw ServiceError.unprocessableEntity(errorResponse)
-                default:
-                    break
-                }
             }
+//            else if let errorResponse = try? Self.jsonDecoder.decode(ErrorResponse.self, from: data) {
+//                switch httpResponse.statusCode {
+//                case 400:
+//                    throw ServiceError.badRequest(errorResponse)
+//                case 401:
+//                    throw ServiceError.unauthorized(errorResponse)
+//                case 403:
+//                    throw ServiceError.forbidden(errorResponse)
+//                case 404:
+//                    throw ServiceError.notFound(errorResponse)
+//                case 409:
+//                    throw ServiceError.conflict(errorResponse)
+//                case 422:
+//                    throw ServiceError.unprocessableEntity(errorResponse)
+//                default:
+//                    break
+//                }
+//            }
             throw ServiceError.unknownHTTPError(statusCode: httpResponse.statusCode, data: data)
         }
         throw ServiceError.unknown(data: data)

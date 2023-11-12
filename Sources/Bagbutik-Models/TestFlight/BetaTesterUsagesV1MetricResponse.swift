@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterusagesv1metricresponse>
  */
-public struct BetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
+public struct BetaTesterUsagesV1MetricResponse: PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -22,7 +22,7 @@ public struct BetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
-    public struct Data: Codable {
+    public struct Data {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
 
@@ -33,7 +33,7 @@ public struct BetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
             self.dimensions = dimensions
         }
 
-        public struct DataPoints: Codable {
+        public struct DataPoints {
             public var end: Date?
             public var start: Date?
             public var values: Values?
@@ -47,7 +47,7 @@ public struct BetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
                 self.values = values
             }
 
-            public struct Values: Codable {
+            public struct Values {
                 public var crashCount: Int?
                 public var feedbackCount: Int?
                 public var sessionCount: Int?
@@ -63,21 +63,21 @@ public struct BetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
             }
         }
 
-        public struct Dimensions: Codable {
+        public struct Dimensions {
             public var apps: Apps?
 
             public init(apps: Apps? = nil) {
                 self.apps = apps
             }
 
-            public struct Apps: Codable {
+            public struct Apps {
                 public var links: Links?
 
                 public init(links: Links? = nil) {
                     self.links = links
                 }
 
-                public struct Links: Codable {
+                public struct Links {
                     public var groupBy: String?
                     public var related: String?
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cifilesandfoldersrule>
  */
-public struct CiFilesAndFoldersRule: Codable {
+public struct CiFilesAndFoldersRule {
     /// Directory and file information Xcode Cloud uses to determine if a change to a file or directory matches a custom start condition.
     public var matchers: [CiStartConditionFileMatcher]?
     /// A string that indicates whether a workflow’s start condition’s Files and Folders setting should start a new build or not for a change.
@@ -21,7 +21,7 @@ public struct CiFilesAndFoldersRule: Codable {
         self.mode = mode
     }
 
-    public enum Mode: String, Codable, CaseIterable {
+    public enum Mode: String {
         case startIfAnyFileMatches = "START_IF_ANY_FILE_MATCHES"
         case doNotStartIfAllFilesMatch = "DO_NOT_START_IF_ALL_FILES_MATCH"
     }

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionOfferCodeResponse: Codable {
+public struct SubscriptionOfferCodeResponse {
     public let data: SubscriptionOfferCode
     public var included: [Included]?
     public let links: DocumentLinks
@@ -58,42 +58,10 @@ public struct SubscriptionOfferCodeResponse: Codable {
         }.first { $0.id == data.relationships?.subscription?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case subscription(Subscription)
         case subscriptionOfferCodeCustomCode(SubscriptionOfferCodeCustomCode)
         case subscriptionOfferCodeOneTimeUseCode(SubscriptionOfferCodeOneTimeUseCode)
         case subscriptionOfferCodePrice(SubscriptionOfferCodePrice)
-
-        public init(from decoder: Decoder) throws {
-            if let subscription = try? Subscription(from: decoder) {
-                self = .subscription(subscription)
-            } else if let subscriptionOfferCodeCustomCode = try? SubscriptionOfferCodeCustomCode(from: decoder) {
-                self = .subscriptionOfferCodeCustomCode(subscriptionOfferCodeCustomCode)
-            } else if let subscriptionOfferCodeOneTimeUseCode = try? SubscriptionOfferCodeOneTimeUseCode(from: decoder) {
-                self = .subscriptionOfferCodeOneTimeUseCode(subscriptionOfferCodeOneTimeUseCode)
-            } else if let subscriptionOfferCodePrice = try? SubscriptionOfferCodePrice(from: decoder) {
-                self = .subscriptionOfferCodePrice(subscriptionOfferCodePrice)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .subscription(value):
-                try value.encode(to: encoder)
-            case let .subscriptionOfferCodeCustomCode(value):
-                try value.encode(to: encoder)
-            case let .subscriptionOfferCodeOneTimeUseCode(value):
-                try value.encode(to: encoder)
-            case let .subscriptionOfferCodePrice(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

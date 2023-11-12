@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse>
  */
-public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, PagedResponse {
+public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -29,7 +29,7 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, PagedRes
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
         /// The granularity of the data using the ISO 8601 format for durations.
@@ -51,7 +51,7 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, PagedRes
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/datapoints>
          */
-        public struct DataPoints: Codable {
+        public struct DataPoints {
             /// The time Game Center ends the data collection.
             public var end: Date?
             /// The time Game Center starts the data collection.
@@ -74,7 +74,7 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, PagedRes
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/datapoints/values>
              */
-            public struct Values: Codable {
+            public struct Values {
                 /// The number of rule errors in the response.
                 public var count: Int?
 
@@ -91,7 +91,7 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, PagedRes
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/dimensions>
          */
-        public struct Dimensions: Codable {
+        public struct Dimensions {
             public var gameCenterMatchmakingQueue: GameCenterMatchmakingQueue?
 
             public init(gameCenterMatchmakingQueue: GameCenterMatchmakingQueue? = nil) {
@@ -105,7 +105,7 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, PagedRes
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/dimensions/gamecentermatchmakingqueue>
              */
-            public struct GameCenterMatchmakingQueue: Codable {
+            public struct GameCenterMatchmakingQueue {
                 public var links: Links?
 
                 public init(links: Links? = nil) {
@@ -119,7 +119,7 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, PagedRes
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/dimensions/gamecentermatchmakingqueue/links>
                  */
-                public struct Links: Codable {
+                public struct Links {
                     /// A string URI representation of the data that Game Center organizes by group.
                     public var groupBy: String?
                     /// A string URI representation of the related data.
@@ -135,7 +135,7 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, PagedRes
             }
         }
 
-        public enum Granularity: String, Codable, CaseIterable {
+        public enum Granularity: String {
             case P1D
             case PT1H
             case PT15M

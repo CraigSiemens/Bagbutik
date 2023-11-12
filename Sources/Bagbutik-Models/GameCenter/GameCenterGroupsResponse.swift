@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupsresponse>
  */
-public struct GameCenterGroupsResponse: Codable, PagedResponse {
+public struct GameCenterGroupsResponse: PagedResponse {
     public typealias Data = GameCenterGroup
 
     public let data: [GameCenterGroup]
@@ -75,42 +75,10 @@ public struct GameCenterGroupsResponse: Codable, PagedResponse {
         return gameCenterLeaderboards
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterDetail(GameCenterDetail)
         case gameCenterLeaderboard(GameCenterLeaderboard)
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
-
-        public init(from decoder: Decoder) throws {
-            if let gameCenterAchievement = try? GameCenterAchievement(from: decoder) {
-                self = .gameCenterAchievement(gameCenterAchievement)
-            } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
-                self = .gameCenterDetail(gameCenterDetail)
-            } else if let gameCenterLeaderboard = try? GameCenterLeaderboard(from: decoder) {
-                self = .gameCenterLeaderboard(gameCenterLeaderboard)
-            } else if let gameCenterLeaderboardSet = try? GameCenterLeaderboardSet(from: decoder) {
-                self = .gameCenterLeaderboardSet(gameCenterLeaderboardSet)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .gameCenterAchievement(value):
-                try value.encode(to: encoder)
-            case let .gameCenterDetail(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboard(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboardSet(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

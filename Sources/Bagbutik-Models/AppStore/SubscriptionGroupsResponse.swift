@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGroupsResponse: Codable, PagedResponse {
+public struct SubscriptionGroupsResponse: PagedResponse {
     public typealias Data = SubscriptionGroup
 
     public let data: [SubscriptionGroup]
@@ -44,32 +44,8 @@ public struct SubscriptionGroupsResponse: Codable, PagedResponse {
         return subscriptions
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case subscription(Subscription)
         case subscriptionGroupLocalization(SubscriptionGroupLocalization)
-
-        public init(from decoder: Decoder) throws {
-            if let subscription = try? Subscription(from: decoder) {
-                self = .subscription(subscription)
-            } else if let subscriptionGroupLocalization = try? SubscriptionGroupLocalization(from: decoder) {
-                self = .subscriptionGroupLocalization(subscriptionGroupLocalization)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .subscription(value):
-                try value.encode(to: encoder)
-            case let .subscriptionGroupLocalization(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

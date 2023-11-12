@@ -31,7 +31,7 @@ public enum ListBetaTestersForBetaGroupV1 {
         /// The fields to include for returned resources of type betaTesters
         case betaTesters([BetaTesters])
 
-        public enum BetaTesters: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaTesters: String {
             case apps
             case betaGroups
             case builds

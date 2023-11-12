@@ -44,7 +44,7 @@ public enum ListBundleIdsV1 {
         /// The fields to include for returned resources of type profiles
         case profiles([Profiles])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -91,13 +91,13 @@ public enum ListBundleIdsV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BundleIdCapabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum BundleIdCapabilities: String {
             case bundleId
             case capabilityType
             case settings
         }
 
-        public enum BundleIds: String, ParameterValue, Codable, CaseIterable {
+        public enum BundleIds: String {
             case app
             case bundleIdCapabilities
             case identifier
@@ -107,7 +107,7 @@ public enum ListBundleIdsV1 {
             case seedId
         }
 
-        public enum Profiles: String, ParameterValue, Codable, CaseIterable {
+        public enum Profiles: String {
             case bundleId
             case certificates
             case createdDate

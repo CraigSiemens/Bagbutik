@@ -47,7 +47,7 @@ public enum ListBuildRunsForCiProductV1 {
         /// The fields to include for returned resources of type scmPullRequests
         case scmPullRequests([ScmPullRequests])
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -74,7 +74,7 @@ public enum ListBuildRunsForCiProductV1 {
             case version
         }
 
-        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildRuns: String {
             case actions
             case buildRun
             case builds
@@ -98,7 +98,7 @@ public enum ListBuildRunsForCiProductV1 {
             case workflow
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String {
             case additionalRepositories
             case app
             case buildRuns
@@ -110,7 +110,7 @@ public enum ListBuildRunsForCiProductV1 {
             case workflows
         }
 
-        public enum CiWorkflows: String, ParameterValue, Codable, CaseIterable {
+        public enum CiWorkflows: String {
             case actions
             case branchStartCondition
             case buildRuns
@@ -130,7 +130,7 @@ public enum ListBuildRunsForCiProductV1 {
             case xcodeVersion
         }
 
-        public enum ScmGitReferences: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmGitReferences: String {
             case canonicalName
             case isDeleted
             case kind
@@ -138,7 +138,7 @@ public enum ListBuildRunsForCiProductV1 {
             case repository
         }
 
-        public enum ScmPullRequests: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmPullRequests: String {
             case destinationBranchName
             case destinationRepositoryName
             case destinationRepositoryOwner

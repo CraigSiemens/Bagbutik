@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetreleasesresponse>
  */
-public struct GameCenterLeaderboardSetReleasesResponse: Codable, PagedResponse {
+public struct GameCenterLeaderboardSetReleasesResponse: PagedResponse {
     public typealias Data = GameCenterLeaderboardSetRelease
 
     public let data: [GameCenterLeaderboardSetRelease]
@@ -41,32 +41,8 @@ public struct GameCenterLeaderboardSetReleasesResponse: Codable, PagedResponse {
         }.first { $0.id == gameCenterLeaderboardSetRelease.relationships?.gameCenterLeaderboardSet?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case gameCenterDetail(GameCenterDetail)
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
-
-        public init(from decoder: Decoder) throws {
-            if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
-                self = .gameCenterDetail(gameCenterDetail)
-            } else if let gameCenterLeaderboardSet = try? GameCenterLeaderboardSet(from: decoder) {
-                self = .gameCenterLeaderboardSet(gameCenterLeaderboardSet)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .gameCenterDetail(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboardSet(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

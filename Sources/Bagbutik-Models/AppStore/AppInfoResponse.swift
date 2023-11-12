@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinforesponse>
  */
-public struct AppInfoResponse: Codable {
+public struct AppInfoResponse {
     /// The resource data.
     public let data: AppInfo
     public var included: [Included]?
@@ -92,42 +92,10 @@ public struct AppInfoResponse: Codable {
         }.first { $0.id == data.relationships?.secondarySubcategoryTwo?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case ageRatingDeclaration(AgeRatingDeclaration)
         case app(App)
         case appCategory(AppCategory)
         case appInfoLocalization(AppInfoLocalization)
-
-        public init(from decoder: Decoder) throws {
-            if let ageRatingDeclaration = try? AgeRatingDeclaration(from: decoder) {
-                self = .ageRatingDeclaration(ageRatingDeclaration)
-            } else if let app = try? App(from: decoder) {
-                self = .app(app)
-            } else if let appCategory = try? AppCategory(from: decoder) {
-                self = .appCategory(appCategory)
-            } else if let appInfoLocalization = try? AppInfoLocalization(from: decoder) {
-                self = .appInfoLocalization(appInfoLocalization)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .ageRatingDeclaration(value):
-                try value.encode(to: encoder)
-            case let .app(value):
-                try value.encode(to: encoder)
-            case let .appCategory(value):
-                try value.encode(to: encoder)
-            case let .appInfoLocalization(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

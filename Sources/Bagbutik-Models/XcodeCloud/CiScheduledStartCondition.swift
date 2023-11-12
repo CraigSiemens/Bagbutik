@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cischeduledstartcondition>
  */
-public struct CiScheduledStartCondition: Codable {
+public struct CiScheduledStartCondition {
     /// The schedule information you configure for a workflow that starts a new build based on a schedule.
     public var schedule: Schedule?
     /// The source branch name and custom patterns you configure for a workflow that starts a new build on a schedule.
@@ -28,7 +28,7 @@ public struct CiScheduledStartCondition: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cischeduledstartcondition/schedule>
      */
-    public struct Schedule: Codable {
+    public struct Schedule {
         /// A list of days you configure for the start condition that starts a new build on a schedule.
         public var days: Items?
         /// A string indicating the frequency of the start condition that starts a new build on a schedule.
@@ -53,13 +53,13 @@ public struct CiScheduledStartCondition: Codable {
             self.timezone = timezone
         }
 
-        public enum Frequency: String, Codable, CaseIterable {
+        public enum Frequency: String {
             case weekly = "WEEKLY"
             case daily = "DAILY"
             case hourly = "HOURLY"
         }
 
-        public enum Items: String, Codable, CaseIterable {
+        public enum Items: String {
             case sunday = "SUNDAY"
             case monday = "MONDAY"
             case tuesday = "TUESDAY"

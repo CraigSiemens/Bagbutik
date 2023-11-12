@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citeststatus>
  */
-public enum CiTestStatus: String, Codable, CaseIterable {
+public enum CiTestStatus: String {
     /// The tests passed.
     case success = "SUCCESS"
     /// The tests failed.

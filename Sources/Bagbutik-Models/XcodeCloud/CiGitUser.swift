@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cigituser>
  */
-public struct CiGitUser: Codable {
+public struct CiGitUser {
     /// The URL to the Git user’s avatar image.
     public var avatarUrl: String?
     /// The name of the Git user.

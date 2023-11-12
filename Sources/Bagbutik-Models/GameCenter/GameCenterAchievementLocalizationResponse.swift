@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct GameCenterAchievementLocalizationResponse: Codable {
+public struct GameCenterAchievementLocalizationResponse {
     public let data: GameCenterAchievementLocalization
     public var included: [Included]?
     public let links: DocumentLinks
@@ -29,32 +29,8 @@ public struct GameCenterAchievementLocalizationResponse: Codable {
         }.first { $0.id == data.relationships?.gameCenterAchievementImage?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterAchievementImage(GameCenterAchievementImage)
-
-        public init(from decoder: Decoder) throws {
-            if let gameCenterAchievement = try? GameCenterAchievement(from: decoder) {
-                self = .gameCenterAchievement(gameCenterAchievement)
-            } else if let gameCenterAchievementImage = try? GameCenterAchievementImage(from: decoder) {
-                self = .gameCenterAchievementImage(gameCenterAchievementImage)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .gameCenterAchievement(value):
-                try value.encode(to: encoder)
-            case let .gameCenterAchievementImage(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

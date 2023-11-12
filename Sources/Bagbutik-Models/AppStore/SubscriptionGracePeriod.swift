@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGracePeriod: Codable, Identifiable {
+public struct SubscriptionGracePeriod: Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "subscriptionGracePeriods" }
@@ -16,32 +16,7 @@ public struct SubscriptionGracePeriod: Codable, Identifiable {
         self.attributes = attributes
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
-    }
-
-    public struct Attributes: Codable {
+    public struct Attributes {
         public var duration: SubscriptionGracePeriodDuration?
         public var optIn: Bool?
         public var renewalType: RenewalType?
@@ -58,7 +33,7 @@ public struct SubscriptionGracePeriod: Codable, Identifiable {
             self.sandboxOptIn = sandboxOptIn
         }
 
-        public enum RenewalType: String, Codable, CaseIterable {
+        public enum RenewalType: String {
             case allRenewals = "ALL_RENEWALS"
             case paidToPaidOnly = "PAID_TO_PAID_ONLY"
         }

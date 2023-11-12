@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversionsresponse>
  */
-public struct CiXcodeVersionsResponse: Codable, PagedResponse {
+public struct CiXcodeVersionsResponse: PagedResponse {
     public typealias Data = CiXcodeVersion
 
     /// The resource data.

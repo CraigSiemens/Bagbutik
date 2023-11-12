@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/externalbetastate>
  */
-public enum ExternalBetaState: String, Codable, CaseIterable {
+public enum ExternalBetaState: String {
     case processing = "PROCESSING"
     case processingException = "PROCESSING_EXCEPTION"
     case missingExportCompliance = "MISSING_EXPORT_COMPLIANCE"

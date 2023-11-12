@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionAvailabilityResponse: Codable {
+public struct SubscriptionAvailabilityResponse {
     public let data: SubscriptionAvailability
     public var included: [Included]?
     public let links: DocumentLinks
@@ -34,32 +34,8 @@ public struct SubscriptionAvailabilityResponse: Codable {
         }.first { $0.id == data.relationships?.subscription?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case subscription(Subscription)
         case territory(Territory)
-
-        public init(from decoder: Decoder) throws {
-            if let subscription = try? Subscription(from: decoder) {
-                self = .subscription(subscription)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .subscription(value):
-                try value.encode(to: encoder)
-            case let .territory(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildusagesv1metricresponse>
  */
-public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
+public struct BetaBuildUsagesV1MetricResponse: PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -22,7 +22,7 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
-    public struct Data: Codable {
+    public struct Data {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
 
@@ -33,7 +33,7 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
             self.dimensions = dimensions
         }
 
-        public struct DataPoints: Codable {
+        public struct DataPoints {
             public var end: Date?
             public var start: Date?
             public var values: Values?
@@ -47,7 +47,7 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
                 self.values = values
             }
 
-            public struct Values: Codable {
+            public struct Values {
                 public var crashCount: Int?
                 public var feedbackCount: Int?
                 public var installCount: Int?
@@ -69,21 +69,21 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
             }
         }
 
-        public struct Dimensions: Codable {
+        public struct Dimensions {
             public var bundleIds: BundleIds?
 
             public init(bundleIds: BundleIds? = nil) {
                 self.bundleIds = bundleIds
             }
 
-            public struct BundleIds: Codable {
+            public struct BundleIds {
                 public var links: Links?
 
                 public init(links: Links? = nil) {
                     self.links = links
                 }
 
-                public struct Links: Codable {
+                public struct Links {
                     public var groupBy: String?
 
                     public init(groupBy: String? = nil) {

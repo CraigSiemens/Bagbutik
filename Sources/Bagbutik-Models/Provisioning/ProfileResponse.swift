@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profileresponse>
  */
-public struct ProfileResponse: Codable {
+public struct ProfileResponse {
     /// The resource data.
     public let data: Profile
     public var included: [Included]?
@@ -55,37 +55,9 @@ public struct ProfileResponse: Codable {
         return devices
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case bundleId(BundleId)
         case certificate(Certificate)
         case device(Device)
-
-        public init(from decoder: Decoder) throws {
-            if let bundleId = try? BundleId(from: decoder) {
-                self = .bundleId(bundleId)
-            } else if let certificate = try? Certificate(from: decoder) {
-                self = .certificate(certificate)
-            } else if let device = try? Device(from: decoder) {
-                self = .device(device)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .bundleId(value):
-                try value.encode(to: encoder)
-            case let .certificate(value):
-                try value.encode(to: encoder)
-            case let .device(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

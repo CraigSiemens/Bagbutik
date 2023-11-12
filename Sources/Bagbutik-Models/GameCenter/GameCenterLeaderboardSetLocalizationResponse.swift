@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetlocalizationresponse>
  */
-public struct GameCenterLeaderboardSetLocalizationResponse: Codable {
+public struct GameCenterLeaderboardSetLocalizationResponse {
     public let data: GameCenterLeaderboardSetLocalization
     public var included: [Included]?
     public let links: DocumentLinks
@@ -36,32 +36,8 @@ public struct GameCenterLeaderboardSetLocalizationResponse: Codable {
         }.first { $0.id == data.relationships?.gameCenterLeaderboardSetImage?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
         case gameCenterLeaderboardSetImage(GameCenterLeaderboardSetImage)
-
-        public init(from decoder: Decoder) throws {
-            if let gameCenterLeaderboardSet = try? GameCenterLeaderboardSet(from: decoder) {
-                self = .gameCenterLeaderboardSet(gameCenterLeaderboardSet)
-            } else if let gameCenterLeaderboardSetImage = try? GameCenterLeaderboardSetImage(from: decoder) {
-                self = .gameCenterLeaderboardSetImage(gameCenterLeaderboardSetImage)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .gameCenterLeaderboardSet(value):
-                try value.encode(to: encoder)
-            case let .gameCenterLeaderboardSetImage(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

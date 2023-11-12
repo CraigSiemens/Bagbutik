@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetsresponse>
  */
-public struct GameCenterMatchmakingRuleSetsResponse: Codable, PagedResponse {
+public struct GameCenterMatchmakingRuleSetsResponse: PagedResponse {
     public typealias Data = GameCenterMatchmakingRuleSet
 
     /// The rule sets that an endpoint gets.
@@ -65,37 +65,9 @@ public struct GameCenterMatchmakingRuleSetsResponse: Codable, PagedResponse {
         return teams
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case gameCenterMatchmakingQueue(GameCenterMatchmakingQueue)
         case gameCenterMatchmakingRule(GameCenterMatchmakingRule)
         case gameCenterMatchmakingTeam(GameCenterMatchmakingTeam)
-
-        public init(from decoder: Decoder) throws {
-            if let gameCenterMatchmakingQueue = try? GameCenterMatchmakingQueue(from: decoder) {
-                self = .gameCenterMatchmakingQueue(gameCenterMatchmakingQueue)
-            } else if let gameCenterMatchmakingRule = try? GameCenterMatchmakingRule(from: decoder) {
-                self = .gameCenterMatchmakingRule(gameCenterMatchmakingRule)
-            } else if let gameCenterMatchmakingTeam = try? GameCenterMatchmakingTeam(from: decoder) {
-                self = .gameCenterMatchmakingTeam(gameCenterMatchmakingTeam)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .gameCenterMatchmakingQueue(value):
-                try value.encode(to: encoder)
-            case let .gameCenterMatchmakingRule(value):
-                try value.encode(to: encoder)
-            case let .gameCenterMatchmakingTeam(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

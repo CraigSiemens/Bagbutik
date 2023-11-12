@@ -27,7 +27,7 @@ public enum GetAppForBundleIdV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String {
             case appAvailability
             case appClips
             case appCustomProductPages

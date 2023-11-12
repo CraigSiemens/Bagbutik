@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct PromotedPurchasesResponse: Codable, PagedResponse {
+public struct PromotedPurchasesResponse: PagedResponse {
     public typealias Data = PromotedPurchase
 
     public let data: [PromotedPurchase]
@@ -46,37 +46,9 @@ public struct PromotedPurchasesResponse: Codable, PagedResponse {
         }.first { $0.id == promotedPurchase.relationships?.subscription?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case inAppPurchaseV2(InAppPurchaseV2)
         case promotedPurchaseImage(PromotedPurchaseImage)
         case subscription(Subscription)
-
-        public init(from decoder: Decoder) throws {
-            if let inAppPurchaseV2 = try? InAppPurchaseV2(from: decoder) {
-                self = .inAppPurchaseV2(inAppPurchaseV2)
-            } else if let promotedPurchaseImage = try? PromotedPurchaseImage(from: decoder) {
-                self = .promotedPurchaseImage(promotedPurchaseImage)
-            } else if let subscription = try? Subscription(from: decoder) {
-                self = .subscription(subscription)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .inAppPurchaseV2(value):
-                try value.encode(to: encoder)
-            case let .promotedPurchaseImage(value):
-                try value.encode(to: encoder)
-            case let .subscription(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

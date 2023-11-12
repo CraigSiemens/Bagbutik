@@ -46,7 +46,7 @@ public enum GetMetricsForExperimentMatchmakingQueueSizeInGameCenterMatchmakingQu
     /**
      The granularity of the per-group dataset
      */
-    public enum Granularity: String, ParameterValue, Codable, CaseIterable {
+    public enum Granularity: String {
         case P1D
         case PT1H
         case PT15M

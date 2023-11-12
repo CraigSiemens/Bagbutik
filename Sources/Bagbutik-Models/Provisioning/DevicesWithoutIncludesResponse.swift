@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct DevicesWithoutIncludesResponse: Codable, PagedResponse {
+public struct DevicesWithoutIncludesResponse: PagedResponse {
     public typealias Data = Profile
 
     public let data: [Profile]

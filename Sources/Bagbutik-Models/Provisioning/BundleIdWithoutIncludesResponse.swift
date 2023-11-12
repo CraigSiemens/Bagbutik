@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct BundleIdWithoutIncludesResponse: Codable {
+public struct BundleIdWithoutIncludesResponse {
     public let data: Profile
     public let links: DocumentLinks
 

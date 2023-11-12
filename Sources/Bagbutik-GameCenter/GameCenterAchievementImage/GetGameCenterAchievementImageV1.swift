@@ -31,7 +31,7 @@ public enum GetGameCenterAchievementImageV1 {
         /// The fields to include for returned resources of type gameCenterAchievementImages
         case gameCenterAchievementImages([GameCenterAchievementImages])
 
-        public enum GameCenterAchievementImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementImages: String {
             case assetDeliveryState
             case fileName
             case fileSize

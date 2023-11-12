@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct ReviewSubmissionItemsResponse: Codable, PagedResponse {
+public struct ReviewSubmissionItemsResponse: PagedResponse {
     public typealias Data = ReviewSubmissionItem
 
     public let data: [ReviewSubmissionItem]
@@ -55,47 +55,11 @@ public struct ReviewSubmissionItemsResponse: Codable, PagedResponse {
         }.first { $0.id == reviewSubmissionItem.relationships?.appStoreVersionExperimentV2?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appEvent(AppEvent)
         case appStoreVersion(AppStoreVersion)
         case appStoreVersionExperiment(AppStoreVersionExperiment)
         case appStoreVersionExperimentV2(AppStoreVersionExperimentV2)
-
-        public init(from decoder: Decoder) throws {
-            if let appCustomProductPageVersion = try? AppCustomProductPageVersion(from: decoder) {
-                self = .appCustomProductPageVersion(appCustomProductPageVersion)
-            } else if let appEvent = try? AppEvent(from: decoder) {
-                self = .appEvent(appEvent)
-            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersion(appStoreVersion)
-            } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
-                self = .appStoreVersionExperiment(appStoreVersionExperiment)
-            } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
-                self = .appStoreVersionExperimentV2(appStoreVersionExperimentV2)
-            } else {
-                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                      debugDescription: "Unknown Included"))
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            switch self {
-            case let .appCustomProductPageVersion(value):
-                try value.encode(to: encoder)
-            case let .appEvent(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersion(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperiment(value):
-                try value.encode(to: encoder)
-            case let .appStoreVersionExperimentV2(value):
-                try value.encode(to: encoder)
-            }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-        }
     }
 }

@@ -31,7 +31,7 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionLocalizations: String {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion

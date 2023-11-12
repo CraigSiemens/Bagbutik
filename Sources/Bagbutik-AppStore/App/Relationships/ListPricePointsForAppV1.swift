@@ -44,7 +44,7 @@ public enum ListPricePointsForAppV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum AppPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPricePoints: String {
             case app
             case customerPrice
             case priceTier
@@ -52,11 +52,11 @@ public enum ListPricePointsForAppV1 {
             case territory
         }
 
-        public enum AppPriceTiers: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPriceTiers: String {
             case pricePoints
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String {
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -103,7 +103,7 @@ public enum ListPricePointsForAppV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String {
             case currency
         }
     }

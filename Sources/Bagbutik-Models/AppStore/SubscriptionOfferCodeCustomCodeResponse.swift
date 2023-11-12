@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionOfferCodeCustomCodeResponse: Codable {
+public struct SubscriptionOfferCodeCustomCodeResponse {
     public let data: SubscriptionOfferCodeCustomCode
     public var included: [SubscriptionOfferCode]?
     public let links: DocumentLinks

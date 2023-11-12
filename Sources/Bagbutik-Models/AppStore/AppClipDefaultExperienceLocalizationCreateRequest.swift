@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest>
  */
-public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, RequestBody {
+public struct AppClipDefaultExperienceLocalizationCreateRequest: RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -23,7 +23,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data {
         /// The resource type.
         public var type: String { "appClipDefaultExperienceLocalizations" }
         /// The attributes that describes the request that creates a Default App Clip Experience Localizations resource.
@@ -38,28 +38,6 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
-        }
-
         /**
          # AppClipDefaultExperienceLocalizationCreateRequest.Data.Attributes
          The attributes you set that describe the Default App Clip Experience Localizations resource.
@@ -67,7 +45,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes {
             /// The specified locale.
             public let locale: String
             /// The subtitle that appears on the App Clip card for the default App Clip experience.
@@ -88,7 +66,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships {
             /// The related Default App Clip Experiences resource.
             public let appClipDefaultExperience: AppClipDefaultExperience
 
@@ -103,7 +81,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data/relationships/appclipdefaultexperience>
              */
-            public struct AppClipDefaultExperience: Codable {
+            public struct AppClipDefaultExperience {
                 /// The ID and type of the related Default App Clip Experiences resource.
                 public let data: Data
 
@@ -118,7 +96,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data/relationships/appclipdefaultexperience/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                     public let id: String
                     /// The resource type.
@@ -126,25 +104,6 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }
